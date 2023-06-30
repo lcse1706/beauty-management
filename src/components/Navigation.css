@@ -1,0 +1,19 @@
+.mainNav ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.mainNav ul li {
+  height: 60px;
+  line-height: 60px;
+}
+
+.mainNav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+}
