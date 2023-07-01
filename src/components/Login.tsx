@@ -13,10 +13,10 @@ const Login = (props: { loginHandler: any }) => {
   };
 
   return (
-    <form className='loginForm'>
-      <Input ref={loginRef} label='Login' type='text' />
-      <Input ref={passRef} label='Password' type='password' />
-      <button type='submit' onClick={loginHandler}>
+    <form className="loginForm">
+      <Input ref={loginRef} label="Login" type="text" />
+      <Input ref={passRef} label="Password" type="password" />
+      <button type="submit" onClick={loginHandler}>
         Login
       </button>
     </form>

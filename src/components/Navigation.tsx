@@ -2,16 +2,16 @@ import './Navigation.css';
 
 const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
   return (
-    <nav className='mainNav'>
+    <nav className="mainNav">
       <ul>
         {props.isLoggedIn && (
           <li>
-            <a href='/'>Receipts</a>
+            <a href="/">Receipts</a>
           </li>
         )}
         {props.isLoggedIn && (
           <li>
-            <a href='/'>Send Receipt</a>
+            <a href="/">Send Receipt</a>
           </li>
         )}
         {props.isLoggedIn && (

@@ -29,7 +29,7 @@ const ReceiptForm = () => {
     };
 
     // 1.Save array to display and edit if needed, 2.load from the server
-    setReceiptsArray(current => [...current, data]);
+    setReceiptsArray((current) => [...current, data]);
 
     // Send data to make a form and send it to client
     sendReceipt(data);
@@ -51,25 +51,22 @@ const ReceiptForm = () => {
   return (
     //TODO: Add some validation
 
-    <form className='receiptForm' onSubmit={submitHandler}>
-      <Input ref={clientNameRef} label='Client Name:' type='text' />
-      <Input ref={clientEmailRef} label='Client Email:' type='email' />
-      <label className='label'>
+    <form className="receiptForm" onSubmit={submitHandler}>
+      <Input ref={clientNameRef} label="Client Name:" type="text" />
+      <Input ref={clientEmailRef} label="Client Email:" type="email" />
+      <label className="label">
         Treatment:
-        <select
-          ref={treatmentRef}
-          defaultValue={treatment} /*value={treatment} onChange={handleChange}*/
-        >
-          <option value='' disabled hidden>
+        <select ref={treatmentRef} defaultValue={treatment} /*value={treatment} onChange={handleChange}*/>
+          <option value="" disabled hidden>
             Choose here
           </option>
-          <option value='lashes'>Lashes</option>
-          <option value='brown'>Brown</option>
-          <option value='nails'>Nails</option>
+          <option value="lashes">Lashes</option>
+          <option value="brown">Brown</option>
+          <option value="nails">Nails</option>
         </select>
       </label>
-      <Input ref={priceRef} label='Price:' type='number' />
-      <button type='submit'>Send</button>
+      <Input ref={priceRef} label="Price:" type="number" />
+      <button type="submit">Send</button>
     </form>
   );
 };

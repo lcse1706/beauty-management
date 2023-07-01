@@ -3,12 +3,9 @@ import './MainHeader.css';
 
 const MainHeader = (props: { isAuthenticated: boolean; onLogout: any }) => {
   return (
-    <header className='mainNavHeader'>
+    <header className="mainNavHeader">
       <h1>Beauty Management</h1>
-      <Navigation
-        isLoggedIn={props.isAuthenticated}
-        onLogout={props.onLogout}
-      />
+      <Navigation isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} />
     </header>
   );
 };

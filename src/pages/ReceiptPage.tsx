@@ -3,7 +3,7 @@ import './ReceiptPage.css';
 
 const ReceiptPage = () => {
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
       <h1>Receipt Page</h1>
       <ReceiptForm />
     </div>

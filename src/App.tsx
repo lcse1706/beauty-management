@@ -18,9 +18,7 @@ const App = () => {
 
   return (
     <div>
-      {isLoggedin && (
-        <MainHeader isAuthenticated={isLoggedin} onLogout={logoutHandler} />
-      )}
+      {isLoggedin && <MainHeader isAuthenticated={isLoggedin} onLogout={logoutHandler} />}
       {isLoggedin ? <ReceiptPage /> : <Login loginHandler={loginHandler} />}
     </div>
   );
