@@ -3,7 +3,7 @@ import './Navigation.scss';
 const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
   return (
     <nav className="mainNav">
-      <ul>
+      <ul className="menu-list">
         {props.isLoggedIn && (
           <li>
             <a href="/">Receipts</a>
@@ -16,7 +16,9 @@ const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
         )}
         {props.isLoggedIn && (
           <li>
-            <button onClick={props.onLogout}>Logout</button>
+            <button className="button is-small" onClick={props.onLogout}>
+              Logout
+            </button>
           </li>
         )}
       </ul>

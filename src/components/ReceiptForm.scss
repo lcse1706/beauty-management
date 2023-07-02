@@ -3,16 +3,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-}
+  // width: 90%;
 
-.label {
-  margin: 5px;
-  width: 300px;
-  display: flex;
-  justify-content: space-between;
-}
+  .label {
+    margin: 5px;
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
 
-.label select {
-  width: 40%;
+    select {
+      width: 40%;
+    }
+  }
 }

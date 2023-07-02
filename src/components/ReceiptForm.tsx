@@ -66,7 +66,9 @@ const ReceiptForm = () => {
         </select>
       </label>
       <Input ref={priceRef} label="Price:" type="number" />
-      <button type="submit">Send</button>
+      <button className="button" type="submit">
+        Send
+      </button>
     </form>
   );
 };
