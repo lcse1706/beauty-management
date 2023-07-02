@@ -7,13 +7,14 @@
 
   .label {
     margin: 5px;
-    width: 300px;
+    // width: 300px;
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    font-weight: normal;
+    // color: #fff;
 
     select {
-      width: 40%;
+      // width: 40%;
     }
   }
 }

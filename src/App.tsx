@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import 'bulma/css/bulma.css';
 import ReceiptPage from './pages/ReceiptPage';
-import './App.css';
+import './App.scss';
 import MainHeader from './components/MainHeader';
-import Login from './components/Login';
+import LoginForm from './components/LoginForm';
 
 const App = () => {
   const [isLoggedin, setIsLoggedIn] = useState(false);
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       {isLoggedin && <MainHeader isAuthenticated={isLoggedin} onLogout={logoutHandler} />}
-      {isLoggedin ? <ReceiptPage /> : <Login loginHandler={loginHandler} />}
+      {isLoggedin ? <ReceiptPage /> : <LoginForm loginHandler={loginHandler} />}
     </div>
   );
 };

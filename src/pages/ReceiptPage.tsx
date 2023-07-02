@@ -3,7 +3,7 @@ import './ReceiptPage.scss';
 
 const ReceiptPage = () => {
   return (
-    <div className="wrapper">
+    <div className="receiptWrapper">
       <h1>Receipt Page</h1>
       <ReceiptForm />
     </div>

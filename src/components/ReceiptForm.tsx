@@ -54,7 +54,7 @@ const ReceiptForm = () => {
     <form className="receiptForm" onSubmit={submitHandler}>
       <Input ref={clientNameRef} label="Client Name:" type="text" />
       <Input ref={clientEmailRef} label="Client Email:" type="email" />
-      <label className="label">
+      <label className="label input">
         Treatment:
         <select ref={treatmentRef} defaultValue={treatment} /*value={treatment} onChange={handleChange}*/>
           <option value="" disabled hidden>
