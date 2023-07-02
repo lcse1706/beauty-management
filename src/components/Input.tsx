@@ -4,6 +4,7 @@ import './Input.scss';
 interface inputProps {
   label: string;
   type: string;
+  onChange?: () => any;
 }
 
 // dlaczego jak wpisuje HTMLInputElement to err
@@ -11,7 +12,7 @@ const Input = React.forwardRef((props: inputProps, ref: Ref<HTMLInputElement>) =
   return (
     <div className="input">
       <label>{props.label}</label>
-      <input ref={ref} type={props.type}></input>
+      <input ref={ref} type={props.type} onChange={props.onChange}></input>
     </div>
   );
 });
