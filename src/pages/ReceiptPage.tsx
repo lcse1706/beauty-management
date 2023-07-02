@@ -1,5 +1,5 @@
 import ReceiptForm from '../components/ReceiptForm';
-import './ReceiptPage.css';
+import './ReceiptPage.scss';
 
 const ReceiptPage = () => {
   return (

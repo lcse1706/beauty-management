@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, ChangeEventHandler } from 'react';
 import sendReceipt from './sendReceipt';
 import Input from './Input';
-import './ReceiptForm.css';
+import './ReceiptForm.scss';
 
 const ReceiptForm = () => {
   // const [treatment, setTreatment] = useState('');

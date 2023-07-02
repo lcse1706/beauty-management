@@ -1,5 +1,5 @@
 import React, { Ref } from 'react';
-import './Input.css';
+import './Input.scss';
 
 interface inputProps {
   label: string;
