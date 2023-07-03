@@ -14,7 +14,7 @@ const accounts: Users[] = [
   },
 ];
 
-const Login = (props: { loginHandler: any }) => {
+const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -76,4 +76,4 @@ const Login = (props: { loginHandler: any }) => {
   );
 };
 
-export default Login;
+export default LoginForm;

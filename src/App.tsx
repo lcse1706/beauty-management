@@ -5,6 +5,7 @@ import ReceiptPage from './pages/ReceiptPage';
 import './App.scss';
 import MainHeader from './components/MainHeader';
 import LoginForm from './components/LoginForm';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
   const [isLoggedin, setIsLoggedIn] = useState(false);
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <div>
       {isLoggedin && <MainHeader isAuthenticated={isLoggedin} onLogout={logoutHandler} />}
-      {isLoggedin ? <ReceiptPage /> : <LoginForm loginHandler={loginHandler} />}
+      {isLoggedin ? <ReceiptPage /> : <LoginPage loginHandler={loginHandler} />}
     </div>
   );
 };
