@@ -12,6 +12,10 @@ const accounts: Users[] = [
     login: 'Ewa',
     password: 'Ewa',
   },
+  {
+    login: 'Lukasz',
+    password: 'Lukasz',
+  },
 ];
 
 const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
@@ -25,7 +29,6 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
 
   // Okreslamy na jakim elemencie dziala funkcja
 
-  //TODO: otypowac onchange funkcje
   //TODO: dowiedziec sie jak obejsc loginRef.current
   const usernameHandler = () => {
     if (loginRef.current) {
@@ -39,9 +42,23 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
     }
   };
 
+  let isUser: boolean = false;
+  const checkLogin = (username: string, password: string): any => {
+    accounts.map((user) => {
+      if (user.login === username && user.password === password) {
+        return (isUser = true);
+      }
+    });
+  };
+
   const loginHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
-    if (username === accounts[0].login && password === accounts[0].password) {
+
+    checkLogin(username, password);
+
+    if (isUser) {
+      // if (username === accounts[0].login && password === accounts[0].password) {
+      console.log('poszlo');
       props.loginHandler(true);
     } else {
       if (loginRef.current) {
@@ -59,8 +76,6 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
       props.loginHandler(false);
     }
   };
-
-  // props.loginHandler(true);
 
   return (
     <div className="loginWrapper">

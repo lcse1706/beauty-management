@@ -4,10 +4,10 @@ import './Input.scss';
 interface inputProps {
   label: string;
   type: string;
-  onChange?: () => any;
+  //TODO: ask if we need to type such function
+  onChange?: () => void;
 }
 
-// dlaczego jak wpisuje HTMLInputElement to err
 const Input = React.forwardRef((props: inputProps, ref: Ref<HTMLInputElement>) => {
   return (
     <div className="input">
