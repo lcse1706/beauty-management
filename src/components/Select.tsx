@@ -27,4 +27,6 @@ const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
   );
 });
 
+Select.displayName = 'forwardRed (Select)';
+
 export default Select;
