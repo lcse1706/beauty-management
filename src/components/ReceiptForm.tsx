@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, ChangeEventHandler } from 'react';
 import sendReceipt from './sendReceipt';
 import Input from './Input';
+import Select from './Select';
 import './ReceiptForm.scss';
 
 const ReceiptForm = () => {
@@ -54,14 +55,16 @@ const ReceiptForm = () => {
     <form className="receiptForm" onSubmit={submitHandler}>
       <Input ref={clientNameRef} label="Client Name:" type="text" />
       <Input ref={clientEmailRef} label="Client Email:" type="email" />
+      <Select ref={clientEmailRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
+
       <label className="label input">
         Treatment:
-        <select ref={treatmentRef} defaultValue={treatment} /*value={treatment} onChange={handleChange}*/>
+        <select ref={treatmentRef} defaultValue="Choose here" /*value={treatment} onChange={handleChange}*/>
           <option value="" disabled hidden>
             Choose here
           </option>
           <option value="lashes">Lashes</option>
-          <option value="brown">Brown</option>
+          <option value="brown">Brow</option>
           <option value="nails">Nails</option>
         </select>
       </label>
