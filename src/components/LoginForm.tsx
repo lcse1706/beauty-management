@@ -1,6 +1,7 @@
 import { FormEventHandler, useRef, useState, useEffect } from 'react';
 import Input from './Input';
 import './LoginForm.scss';
+// import { clearInput } from './clearIInput';
 
 interface Users {
   login: string;
@@ -42,6 +43,15 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
     }
   };
 
+  const clearInput = () => {
+    if (loginRef.current) {
+      loginRef.current.value = '';
+    }
+    if (passRef.current) {
+      passRef.current.value = '';
+    }
+  };
+
   let isUser: boolean = false;
   const checkLogin = (username: string, password: string): any => {
     accounts.map((user) => {
@@ -61,13 +71,7 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
       console.log('poszlo');
       props.loginHandler(true);
     } else {
-      if (loginRef.current) {
-        loginRef.current.value = '';
-      }
-
-      if (passRef.current) {
-        passRef.current.value = '';
-      }
+      clearInput();
 
       setUsername('');
       setPassword('');
