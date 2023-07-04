@@ -1,14 +1,13 @@
-import React, { Ref } from 'react';
+import { ChangeEvent, forwardRef, Ref } from 'react';
 import './Input.scss';
 
-interface inputProps {
+interface InputProps {
   label: string;
   type: string;
-  //TODO: ask if we need to type such function
-  onChange?: () => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = React.forwardRef((props: inputProps, ref: Ref<HTMLInputElement>) => {
+const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
   return (
     <div className="input">
       <label>{props.label}</label>
