@@ -1,6 +1,7 @@
 import { FormEventHandler, useRef, useState, useEffect } from 'react';
 import Input from './Input';
 import './LoginForm.scss';
+import Button from './Button';
 // import { clearInput } from './clearIInput';
 
 interface Users {
@@ -87,9 +88,9 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
         <Input ref={loginRef} label="Login" type="text" onChange={usernameHandler} />
         <Input ref={passRef} label="Password" type="password" onChange={passwordHandler} />
         <div style={{ color: 'red' }}>{error && `${error}`}</div>
-        <button className="button is-rounded" type="submit">
+        <Button className="button is-rounded" type="submit">
           Login
-        </button>
+        </Button>
       </form>
     </div>
   );

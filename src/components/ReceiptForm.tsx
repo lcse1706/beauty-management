@@ -3,6 +3,7 @@ import sendReceipt from './sendReceipt';
 import Input from './Input';
 import Select from './Select';
 import './ReceiptForm.scss';
+import Button from './Button';
 
 const ReceiptForm = () => {
   // const [treatment, setTreatment] = useState('');
@@ -56,22 +57,10 @@ const ReceiptForm = () => {
       <Input ref={clientNameRef} label="Client Name:" type="text" />
       <Input ref={clientEmailRef} label="Client Email:" type="email" />
       <Select ref={clientEmailRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
-
-      <label className="label input">
-        Treatment:
-        <select ref={treatmentRef} defaultValue="Choose here" /*value={treatment} onChange={handleChange}*/>
-          <option value="" disabled hidden>
-            Choose here
-          </option>
-          <option value="lashes">Lashes</option>
-          <option value="brown">Brow</option>
-          <option value="nails">Nails</option>
-        </select>
-      </label>
       <Input ref={priceRef} label="Price:" type="number" />
-      <button className="button" type="submit">
+      <Button className="button is-rounded" type="submit">
         Send
-      </button>
+      </Button>
     </form>
   );
 };

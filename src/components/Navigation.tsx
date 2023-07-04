@@ -1,3 +1,4 @@
+import Button from './Button';
 import './Navigation.scss';
 
 const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
@@ -16,9 +17,9 @@ const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
         )}
         {props.isLoggedIn && (
           <li>
-            <button className="button is-small" onClick={props.onLogout}>
+            <Button type="button" className="button is-small is-rounded" onClick={props.onLogout}>
               Logout
-            </button>
+            </Button>
           </li>
         )}
       </ul>
