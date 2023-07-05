@@ -9,8 +9,8 @@ import LoginPage from './pages/LoginPage';
 const App = () => {
   const [isLoggedin, setIsLoggedIn] = useState(true);
 
-  const loginHandler = (Auth: boolean) => {
-    setIsLoggedIn(Auth);
+  const loginHandler = (auth: boolean) => {
+    setIsLoggedIn(auth);
   };
 
   const logoutHandler = () => {
