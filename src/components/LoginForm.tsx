@@ -1,20 +1,22 @@
-import { FormEventHandler, useRef, useState, useEffect } from 'react';
+import { FormEventHandler, useRef, useState, useEffect, ChangeEvent } from 'react';
 import Input from './Input';
 import './LoginForm.scss';
 import Button from './Button';
-// import { clearInput } from './clearIInput';
 
 interface Users {
+  id: number;
   login: string;
   password: string;
 }
 
 const accounts: Users[] = [
   {
+    id: 1,
     login: 'Ewa',
     password: 'Ewa',
   },
   {
+    id: 2,
     login: 'Lukasz',
     password: 'Lukasz',
   },
@@ -25,32 +27,27 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  //domyslnie do czego ref bedzie przypisanny
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
 
-  // Okreslamy na jakim elemencie dziala funkcja
-
-  //TODO: dowiedziec sie jak obejsc loginRef.current
+  //TODO Czy w tym wypadku typujemy funkcje ?
   const usernameHandler = () => {
-    if (loginRef.current) {
-      setUsername(loginRef.current.value);
-    }
+    const username = loginRef.current?.value ?? '';
+    setUsername(username);
   };
 
   const passwordHandler = () => {
-    if (passRef.current) {
-      setPassword(passRef.current.value);
-    }
+    const password = passRef.current?.value ?? '';
+    setPassword(password);
   };
 
   const clearInputs = () => {
-    if (loginRef.current) {
+    if (loginRef.current && passRef.current) {
       loginRef.current.value = '';
-    }
-    if (passRef.current) {
       passRef.current.value = '';
     }
+    setUsername('');
+    setPassword('');
   };
 
   let isUser: boolean = false;
@@ -64,19 +61,11 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
 
   const loginHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
-
     checkLogin(username, password);
-
     if (isUser) {
-      // if (username === accounts[0].login && password === accounts[0].password) {
-      console.log('poszlo');
       props.loginHandler(true);
     } else {
       clearInputs();
-
-      setUsername('');
-      setPassword('');
-
       setError('Incorrect login or password !');
       props.loginHandler(false);
     }
