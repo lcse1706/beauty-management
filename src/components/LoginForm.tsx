@@ -44,7 +44,7 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
     }
   };
 
-  const clearInput = () => {
+  const clearInputs = () => {
     if (loginRef.current) {
       loginRef.current.value = '';
     }
@@ -72,7 +72,7 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
       console.log('poszlo');
       props.loginHandler(true);
     } else {
-      clearInput();
+      clearInputs();
 
       setUsername('');
       setPassword('');
