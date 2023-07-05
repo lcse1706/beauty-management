@@ -4,11 +4,10 @@ import 'bulma/css/bulma.css';
 import ReceiptPage from './pages/ReceiptPage';
 import './App.scss';
 import MainHeader from './components/MainHeader';
-import LoginForm from './components/LoginForm';
 import LoginPage from './pages/LoginPage';
 
 const App = () => {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [isLoggedin, setIsLoggedIn] = useState(true);
 
   const loginHandler = (Auth: boolean) => {
     setIsLoggedIn(Auth);
