@@ -1,4 +1,4 @@
-import { FormEventHandler, useRef, useState, useEffect, ChangeEvent } from 'react';
+import { FormEventHandler, useRef, useState } from 'react';
 import Input from './Input';
 import './LoginForm.scss';
 import Button from './Button';
@@ -20,12 +20,17 @@ const accounts: Users[] = [
     login: 'Lukasz',
     password: 'Lukasz',
   },
+  {
+    id: 3,
+    login: '1',
+    password: '1',
+  },
 ];
 
-const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+const LoginForm = (props: { loginHandler: (auth: boolean) => void }) => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
@@ -50,23 +55,25 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
     setPassword('');
   };
 
-  let isUser: boolean = false;
-  const checkLogin = (username: string, password: string): any => {
-    accounts.map((user) => {
-      if (user.login === username && user.password === password) {
-        return (isUser = true);
-      }
+  const checkLogin = (username: string, password: string): boolean => {
+    const isLoggedIn = accounts.some((user) => {
+      return user.login === username && user.password === password;
     });
+
+    if (isLoggedIn) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const loginHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
-    checkLogin(username, password);
-    if (isUser) {
+    if (checkLogin(username, password)) {
       props.loginHandler(true);
     } else {
       clearInputs();
-      setError('Incorrect login or password !');
+      setErrorMessage('Incorrect login or password !');
       props.loginHandler(false);
     }
   };
@@ -76,7 +83,8 @@ const LoginForm = (props: { loginHandler: (Auth: boolean) => void }) => {
       <form className="loginForm" onSubmit={loginHandler}>
         <Input ref={loginRef} label="Login" type="text" onChange={usernameHandler} />
         <Input ref={passRef} label="Password" type="password" onChange={passwordHandler} />
-        <div style={{ color: 'red' }}>{error && `${error}`}</div>
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+
         <Button className="button is-rounded" type="submit">
           Login
         </Button>
