@@ -1,11 +1,15 @@
 import LoginForm from '../components/LoginForm';
 
-const LoginPage = (props: { loginHandler: (Auth: boolean) => void }) => {
-  const loginHandler = (auth: boolean) => {
-    props.loginHandler(auth);
+type Props = {
+  loginHandler: (auth: boolean) => void;
+};
+
+const LoginPage = ({ loginHandler }: Props) => {
+  const formloginHandler = (auth: boolean) => {
+    loginHandler(auth);
   };
 
-  return <LoginForm loginHandler={loginHandler} />;
+  return <LoginForm loginHandler={formloginHandler} />;
 };
 
 export default LoginPage;

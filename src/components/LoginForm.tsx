@@ -27,32 +27,21 @@ const accounts: Users[] = [
   },
 ];
 
-const LoginForm = (props: { loginHandler: (auth: boolean) => void }) => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+type Props = {
+  loginHandler: (auth: boolean) => void;
+};
+
+const LoginForm = ({ loginHandler }: Props) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
-
-  //TODO Czy w tym wypadku typujemy funkcje ?
-  const usernameHandler = () => {
-    const username = loginRef.current?.value ?? '';
-    setUsername(username);
-  };
-
-  const passwordHandler = () => {
-    const password = passRef.current?.value ?? '';
-    setPassword(password);
-  };
 
   const clearInputs = () => {
     if (loginRef.current && passRef.current) {
       loginRef.current.value = '';
       passRef.current.value = '';
     }
-    setUsername('');
-    setPassword('');
   };
 
   const checkLogin = (username: string, password: string): boolean => {
@@ -67,22 +56,24 @@ const LoginForm = (props: { loginHandler: (auth: boolean) => void }) => {
     }
   };
 
-  const loginHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
+  const formHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
+    const username = loginRef.current?.value ?? '';
+    const password = passRef.current?.value ?? '';
     if (checkLogin(username, password)) {
-      props.loginHandler(true);
+      loginHandler(true);
     } else {
       clearInputs();
       setErrorMessage('Incorrect login or password !');
-      props.loginHandler(false);
+      loginHandler(false);
     }
   };
 
   return (
     <div className="loginWrapper">
-      <form className="loginForm" onSubmit={loginHandler}>
-        <Input ref={loginRef} label="Login" type="text" onChange={usernameHandler} />
-        <Input ref={passRef} label="Password" type="password" onChange={passwordHandler} />
+      <form className="loginForm" onSubmit={formHandler}>
+        <Input ref={loginRef} label="Login" type="text" />
+        <Input ref={passRef} label="Password" type="password" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
         <Button className="button is-rounded" type="submit">

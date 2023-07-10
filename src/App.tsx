@@ -7,7 +7,7 @@ import MainHeader from './components/MainHeader';
 import LoginPage from './pages/LoginPage';
 
 const App = () => {
-  const [isLoggedin, setIsLoggedIn] = useState(true);
+  const [isLoggedin, setIsLoggedIn] = useState(false);
 
   const loginHandler = (auth: boolean) => {
     setIsLoggedIn(auth);
