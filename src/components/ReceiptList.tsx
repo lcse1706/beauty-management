@@ -1,15 +1,26 @@
 import { useEffect, useState } from 'react';
+import ReceiptDetails from './ReceiptDetails';
 
-const REACT_APP_AIRTABLE_API_TOKEN =
-  'patBhitxBEpQ1E3rr.90189257c2089de66336a85eeb9f6c1d65a7f4889966fa715071f6871ff0e702';
+interface Receipt {
+  id: string;
+  fields: {
+    receipt_id: string;
+    name: string;
+    email: string;
+    threatment: string;
+    price: number;
+    date: string;
+  };
+}
+
 const ReceiptList = () => {
-  const [receipts, setReceipts] = useState([]);
+  const [receipts, setReceipts] = useState<Receipt[]>([]);
 
   useEffect(() => {
     console.log(process.env.REACT_APP_AIRTABLE_API_TOKEN);
     fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
       headers: {
-        Authorization: `Bearer ${REACT_APP_AIRTABLE_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
       },
     })
       .then((response) => {
@@ -18,14 +29,25 @@ const ReceiptList = () => {
         }
       })
       .then((data) => {
-        console.log('data: ', data);
-        setReceipts(data);
+        console.log('data: ', data.records);
+        setReceipts(data.records);
       });
   }, []);
 
   return (
     <div>
       <h2>Receipts</h2>
+      {receipts.map((receipt) => (
+        <ReceiptDetails
+          key={receipt.id}
+          receipt_id={receipt.fields.receipt_id}
+          name={receipt.fields.name}
+          email={receipt.fields.email}
+          threatment={receipt.fields.threatment}
+          price={receipt.fields.price}
+          date={receipt.fields.date}
+        />
+      ))}
     </div>
   );
 };
