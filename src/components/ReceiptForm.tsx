@@ -49,12 +49,6 @@ const ReceiptForm = () => {
     return false;
   };
 
-  useEffect(() => {
-    if (errorMessage !== '') {
-      return;
-    }
-  }, [errorMessage]);
-
   const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
     setErrorMessage('');
