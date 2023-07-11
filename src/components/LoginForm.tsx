@@ -1,7 +1,7 @@
 import { FormEventHandler, useRef, useState } from 'react';
-import Input from './Input';
+import Input from '../UI/Input';
 import './LoginForm.scss';
-import Button from './Button';
+import Button from '../UI/Button';
 
 interface Users {
   id: number;
@@ -71,7 +71,7 @@ const LoginForm = ({ loginHandler }: Props) => {
 
   return (
     <div className="loginWrapper">
-      <form className="loginForm" onSubmit={formHandler}>
+      <form className="loginForm " onSubmit={formHandler}>
         <Input ref={loginRef} label="Login" type="text" />
         <Input ref={passRef} label="Password" type="password" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}

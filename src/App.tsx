@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import 'bulma/css/bulma.css';
 import ReceiptPage from './pages/ReceiptPage';
 import './App.scss';
 import MainHeader from './components/MainHeader';

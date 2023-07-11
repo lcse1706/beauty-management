@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button from '../UI/Button';
 import './Navigation.scss';
 
 const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {

@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect, FormEventHandler } from 'react';
 import sendReceipt from './sendReceipt';
-import Input from './Input';
-import Select from './Select';
+import Input from '../UI/Input';
+import Select from '../UI/Select';
 import './ReceiptForm.scss';
-import Button from './Button';
+import Button from '../UI/Button';
 
 interface Receipt {
   id: string;
@@ -56,6 +56,7 @@ const ReceiptForm = () => {
     if (inputValidator()) {
       return;
     }
+
     const data: Receipt = {
       id: receiptsList.length + 1 + '/' + new Date().getFullYear(),
       name: clientNameRef.current?.value ?? '',
@@ -75,7 +76,7 @@ const ReceiptForm = () => {
   };
 
   return (
-    <form className="receiptForm" onSubmit={submitHandler}>
+    <form className="receiptForm w-full max-w-sm" onSubmit={submitHandler}>
       <Input ref={clientNameRef} label="Client Name:" type="text" />
       <Input ref={clientEmailRef} label="Client Email:" type="email" />
       <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
