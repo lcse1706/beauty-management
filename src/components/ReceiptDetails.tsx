@@ -1,3 +1,5 @@
+import './ReceiptDetails.scss';
+
 type Props = {
   data: {
     receipt_id: string;
@@ -11,7 +13,7 @@ type Props = {
 
 const ReceiptDetails = ({ data }: Props) => {
   return (
-    <div>
+    <div className="table-row">
       <p>{data.receipt_id}</p>
       <p>{data.name}</p>
       <p>{data.email}</p>

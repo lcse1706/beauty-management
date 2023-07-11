@@ -1,0 +1,13 @@
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  width: 90%;
+}
+
+.table-row p {
+  width: 20%;
+  margin: 0;
+}

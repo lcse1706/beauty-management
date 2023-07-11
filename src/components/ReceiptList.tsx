@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReceiptDetails from './ReceiptDetails';
+import './ReceiptList.scss';
 
 interface Receipt {
   id: string;
@@ -35,7 +36,7 @@ const ReceiptList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="receiptList">
       <h2>Receipts</h2>
       {receipts.map((receipt) => (
         <ReceiptDetails key={receipt.id} data={receipt.fields} />
