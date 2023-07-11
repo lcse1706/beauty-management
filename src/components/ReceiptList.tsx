@@ -38,15 +38,7 @@ const ReceiptList = () => {
     <div>
       <h2>Receipts</h2>
       {receipts.map((receipt) => (
-        <ReceiptDetails
-          key={receipt.id}
-          receipt_id={receipt.fields.receipt_id}
-          name={receipt.fields.name}
-          email={receipt.fields.email}
-          threatment={receipt.fields.threatment}
-          price={receipt.fields.price}
-          date={receipt.fields.date}
-        />
+        <ReceiptDetails key={receipt.id} data={receipt.fields} />
       ))}
     </div>
   );

@@ -1,21 +1,23 @@
 type Props = {
-  receipt_id: string;
-  name: string;
-  email: string;
-  threatment: string;
-  price: number;
-  date: string;
+  data: {
+    receipt_id: string;
+    name: string;
+    email: string;
+    threatment: string;
+    price: number;
+    date: string;
+  };
 };
 
-const ReceiptDetails = ({ receipt_id, name, email, threatment, price, date }: Props) => {
+const ReceiptDetails = ({ data }: Props) => {
   return (
     <div>
-      <p>{receipt_id}</p>
-      <p>{name}</p>
-      <p>{email}</p>
-      <p>{threatment}</p>
-      <p>{price}</p>
-      <p>{date}</p>
+      <p>{data.receipt_id}</p>
+      <p>{data.name}</p>
+      <p>{data.email}</p>
+      <p>{data.threatment}</p>
+      <p>{data.price}</p>
+      <p>{data.date}</p>
     </div>
   );
 };
