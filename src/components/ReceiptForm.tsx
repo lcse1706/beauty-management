@@ -76,16 +76,18 @@ const ReceiptForm = () => {
   };
 
   return (
-    <form className="receiptForm w-full max-w-sm" onSubmit={submitHandler}>
-      <Input ref={clientNameRef} label="Client Name:" type="text" />
-      <Input ref={clientEmailRef} label="Client Email:" type="email" />
-      <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
-      <Input ref={priceRef} label="Price:" type="number" />
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-      <Button className="button is-rounded" type="submit">
-        Send
-      </Button>
-    </form>
+    <div className="receiptFormWrapper">
+      <form className="receiptForm" onSubmit={submitHandler}>
+        <Input ref={clientNameRef} label="Client Name:" type="text" />
+        <Input ref={clientEmailRef} label="Client Email:" type="email" />
+        <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
+        <Input ref={priceRef} label="Price:" type="number" />
+        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+        <Button className="button is-rounded" type="submit">
+          Send
+        </Button>
+      </form>
+    </div>
   );
 };
 
