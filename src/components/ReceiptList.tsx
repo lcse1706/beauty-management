@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ReceiptDetails from './ReceiptDetails';
 import './ReceiptList.scss';
+import { useHttp } from '../hooks/useHttp';
 
 interface Receipt {
   id: string;
@@ -16,31 +17,35 @@ interface Receipt {
 
 const ReceiptList = () => {
   const [receipts, setReceipts] = useState<Receipt[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    try {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const data = await useHttp();
+
+      if (Array.isArray(data)) {
+        setReceipts(data);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_AIRTABLE_API_TOKEN);
-    fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        console.log('data: ', data.records);
-        setReceipts(data.records);
-      });
+    fetchData();
   }, []);
 
   return (
     <div className="receiptList">
       <h2>Receipts</h2>
-      {receipts.map((receipt) => (
-        <ReceiptDetails key={receipt.id} data={receipt.fields} />
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        receipts.map((receipt: any) => <ReceiptDetails key={receipt.id} data={receipt.fields} />)
+      )}
     </div>
   );
 };
