@@ -3,3 +3,12 @@ html {
   background-color: #1f2d3b;
   color: #fff;
 }
+
+.container {
+  max-width: 1920px;
+  text-align: center;
+  width: 80vw;
+  height: 90vh;
+  margin: 10vh auto;
+  overflow: hidden;
+}

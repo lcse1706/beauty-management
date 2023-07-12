@@ -1,4 +1,4 @@
-import Navigation from './Navigation';
+import Navigation from './navigation/Navigation';
 import './MainHeader.scss';
 
 const MainHeader = (props: { isAuthenticated: boolean; onLogout: any }) => {
