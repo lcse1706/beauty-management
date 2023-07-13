@@ -1,28 +1,34 @@
+import { useContext } from 'react';
+import { ContextApi } from '../../Context/ContextApi';
 import Button from '../../../UI/Button';
 import './Navigation.scss';
 
-const Navigation = (props: { isLoggedIn: boolean; onLogout: any }) => {
+const Navigation = () => {
+  const { isLoggedin, setIsLoggedIn } = useContext(ContextApi);
+
   return (
     <nav className="mainNav">
-      <ul className="menu-list">
-        {props.isLoggedIn && (
+      {isLoggedin && (
+        <ul className="menu-list">
           <li>
             <a href="/">Receipts</a>
           </li>
-        )}
-        {props.isLoggedIn && (
           <li>
             <a href="/">Send Receipt</a>
           </li>
-        )}
-        {props.isLoggedIn && (
           <li>
-            <Button type="button" className="button is-small is-rounded" onClick={props.onLogout}>
+            <Button
+              type="button"
+              className="button is-small is-rounded"
+              onClick={() => {
+                setIsLoggedIn(false);
+              }}
+            >
               Logout
             </Button>
           </li>
-        )}
-      </ul>
+        </ul>
+      )}
     </nav>
   );
 };

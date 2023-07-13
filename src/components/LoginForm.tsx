@@ -3,6 +3,7 @@ import Input from '../UI/Input';
 import './LoginForm.scss';
 import Button from '../UI/Button';
 import { ContextApi } from './Context/ContextApi';
+import { useNavigate } from 'react-router-dom';
 
 interface Users {
   id: number;
@@ -28,14 +29,10 @@ const accounts: Users[] = [
   },
 ];
 
-type Props = {
-  loginHandler: (auth: boolean) => void;
-};
-
-// const LoginForm = ({ loginHandler }: Props) => {
 const LoginForm = () => {
-  const { isLoggedin, setIsLoggedIn } = useContext(ContextApi);
+  const { setIsLoggedIn } = useContext(ContextApi);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const navigate = useNavigate();
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
@@ -65,11 +62,10 @@ const LoginForm = () => {
     const password = passRef.current?.value ?? '';
     if (checkLogin(username, password)) {
       setIsLoggedIn(true);
-      // loginHandler(true);
+      navigate('/sendreceipt');
     } else {
       clearInputs();
       setErrorMessage('Incorrect login or password !');
-      // loginHandler(false);
       setIsLoggedIn(false);
     }
   };

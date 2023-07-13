@@ -4,7 +4,7 @@ import MainHeader from './MainHeader';
 const RootLayout = () => {
   return (
     <>
-      {/* <MainHeader /> */}
+      <MainHeader />
       <div className="container">
         <Outlet />
       </div>

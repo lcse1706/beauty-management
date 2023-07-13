@@ -1,11 +1,11 @@
 import Navigation from './navigation/Navigation';
 import './MainHeader.scss';
 
-const MainHeader = (props: { isAuthenticated: boolean; onLogout: any }) => {
+const MainHeader = () => {
   return (
     <header className="mainNavHeader">
       <h1>Beauty Management</h1>
-      <Navigation isLoggedIn={props.isAuthenticated} onLogout={props.onLogout} />
+      <Navigation />
     </header>
   );
 };
