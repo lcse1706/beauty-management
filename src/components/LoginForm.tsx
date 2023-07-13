@@ -1,7 +1,8 @@
-import { FormEventHandler, useRef, useState } from 'react';
+import { FormEventHandler, useContext, useRef, useState } from 'react';
 import Input from '../UI/Input';
 import './LoginForm.scss';
 import Button from '../UI/Button';
+import { ContextApi } from './Context/ContextApi';
 
 interface Users {
   id: number;
@@ -31,7 +32,9 @@ type Props = {
   loginHandler: (auth: boolean) => void;
 };
 
-const LoginForm = ({ loginHandler }: Props) => {
+// const LoginForm = ({ loginHandler }: Props) => {
+const LoginForm = () => {
+  const { isLoggedin, setIsLoggedIn } = useContext(ContextApi);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const loginRef = useRef<HTMLInputElement>(null);
@@ -61,11 +64,13 @@ const LoginForm = ({ loginHandler }: Props) => {
     const username = loginRef.current?.value ?? '';
     const password = passRef.current?.value ?? '';
     if (checkLogin(username, password)) {
-      loginHandler(true);
+      setIsLoggedIn(true);
+      // loginHandler(true);
     } else {
       clearInputs();
       setErrorMessage('Incorrect login or password !');
-      loginHandler(false);
+      // loginHandler(false);
+      setIsLoggedIn(false);
     }
   };
 

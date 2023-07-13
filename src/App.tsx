@@ -9,13 +9,14 @@ import MainHeader from './components/layout/MainHeader';
 import LoginPage from './pages/LoginPage';
 import ReceiptDetails from './components/ReceiptDetails';
 import ReceiptList from './components/ReceiptList';
+import { ContextApi } from './components/Context/ContextApi';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      { index: true, element: <ReceiptPage /> },
+      { index: true, element: <LoginPage /> },
       // { path: 'sendreceipt', element: <ReceiptPage /> },
       { path: 'receiptlist', element: <ReceiptList /> },
     ],
@@ -23,7 +24,13 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+
+  return (
+    <ContextApi.Provider value={{ isLoggedin, setIsLoggedIn }}>
+      <RouterProvider router={router} />;
+    </ContextApi.Provider>
+  );
 };
 
 export default App;
