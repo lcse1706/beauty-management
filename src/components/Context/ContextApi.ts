@@ -1,3 +1,8 @@
 import { createContext } from 'react';
 
-export const ContextApi = createContext<any>(null);
+interface Context {
+  isLoggedin: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ContextApi = createContext<Context>({} as Context);
