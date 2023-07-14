@@ -13,7 +13,7 @@ type Props = {
 
 const ReceiptDetails = ({ data }: Props) => {
   return (
-    <div className="table-row">
+    <div className="details">
       <p>{data.receipt_id}</p>
       <p>{data.name}</p>
       <p>{data.email}</p>
