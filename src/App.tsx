@@ -1,14 +1,12 @@
 import React from 'react';
+import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/layout/RootLayout';
-import { useState } from 'react';
 import ReceiptPage from './pages/ReceiptPage';
-import './App.scss';
 import LoginPage from './pages/LoginPage';
-import ReceiptList from './components/ReceiptList';
+import ReceiptListPage from './pages/ReceiptListPage';
 import { ContextApi } from './components/Context/ContextApi';
-import { useNavigate } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import './App.scss';
 
 const router = createBrowserRouter([
   {
@@ -17,22 +15,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LoginPage /> },
       { path: 'sendreceipt', element: <ReceiptPage /> },
-      { path: 'receiptlist', element: <ReceiptList /> },
+      { path: 'receiptlist', element: <ReceiptListPage /> },
     ],
   },
 ]);
 
 const App = () => {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
-
-  // const navigate = useNavigate();
-  // if (isLoggedin) {
-  //   navigate('/sendreceipt');
-  // }
-
-  // if (isLoggedin) {
-  //   return <Navigate replace to="/sendreceipt" />;
-  // }
+  const [isLoggedin, setIsLoggedIn] = useState<boolean>(false);
   return (
     <ContextApi.Provider value={{ isLoggedin, setIsLoggedIn }}>
       <RouterProvider router={router} />;
@@ -41,25 +30,3 @@ const App = () => {
 };
 
 export default App;
-
-// const App = () => {
-//   const [isLoggedin, setIsLoggedIn] = useState(true);
-
-//   const loginHandler = (auth: boolean) => {
-//     setIsLoggedIn(auth);
-//   };
-
-//   const logoutHandler = () => {
-//     setIsLoggedIn(false);
-//   };
-
-//   return (
-//     <div>
-//       {isLoggedin && <MainHeader isAuthenticated={isLoggedin} onLogout={logoutHandler} />}
-//       {isLoggedin ? <ReceiptPage /> : <LoginPage loginHandler={loginHandler} />}
-//       <ReceiptList />
-//     </div>
-//   );
-// };
-
-// export default App;
