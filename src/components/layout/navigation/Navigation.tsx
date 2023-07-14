@@ -5,7 +5,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import Button from '../../../UI/Button';
 import './Navigation.scss';
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const { isLoggedin, setIsLoggedIn } = useContext(ContextApi);
   const navigate = useNavigate();
 
