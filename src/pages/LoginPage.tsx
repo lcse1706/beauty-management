@@ -1,10 +1,19 @@
 import LoginForm from '../components/LoginForm';
-import { useAuthContext } from '../components/Auth/AuthContext';
+
+import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
-  const { isLoggedin } = useAuthContext();
+  const isAuth = localStorage.getItem('isAuth');
+  const navigate = useNavigate();
 
-  return <div>{!isLoggedin && <LoginForm />} </div>;
+  useEffect(() => {
+    if (isAuth === 'true') {
+      navigate('/sendreceipt');
+    }
+  }, []);
+
+  return <LoginForm />;
 };
 
 export default LoginPage;

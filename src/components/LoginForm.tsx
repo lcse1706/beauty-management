@@ -50,6 +50,7 @@ const LoginForm = () => {
     });
 
     if (isLoggedIn) {
+      localStorage.setItem('isAuth', 'true');
       return true;
     } else {
       return false;

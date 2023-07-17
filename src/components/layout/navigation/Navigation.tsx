@@ -9,6 +9,7 @@ const Navigation: React.FC = () => {
 
   const logoutHandler = () => {
     setIsLoggedIn(false);
+    localStorage.setItem('isAuth', 'false');
     navigate('/');
   };
 
