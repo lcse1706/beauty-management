@@ -16,10 +16,14 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [isLogged, setIsLogged] = useState<boolean>(() => {
+    if (sessionStorage.getItem('isAuth') === 'true') {
+      return true;
+    } else return false;
+  });
 
   useEffect(() => {
-    const auth = localStorage.getItem('isAuth');
+    const auth = sessionStorage.getItem('isAuth');
     if (auth === 'true') {
       setIsLogged(true);
     }

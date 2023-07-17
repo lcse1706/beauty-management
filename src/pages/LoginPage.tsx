@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
 const LoginPage = () => {
-  const isAuth = localStorage.getItem('isAuth');
+  const isAuth = sessionStorage.getItem('isAuth');
   const navigate = useNavigate();
 
   useEffect(() => {

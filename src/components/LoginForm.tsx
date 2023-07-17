@@ -50,7 +50,7 @@ export const LoginForm = () => {
     });
 
     if (isLogged) {
-      localStorage.setItem('isAuth', 'true');
+      sessionStorage.setItem('isAuth', 'true');
       return true;
     } else {
       return false;

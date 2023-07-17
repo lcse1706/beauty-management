@@ -9,7 +9,7 @@ export const Navigation: React.FC = () => {
 
   const logoutHandler = () => {
     setIsLogged(false);
-    localStorage.setItem('isAuth', 'false');
+    sessionStorage.setItem('isAuth', 'false');
     navigate('/');
   };
 
