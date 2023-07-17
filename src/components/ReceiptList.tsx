@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ReceiptDetails } from './ReceiptDetails';
-import { useHttp } from '../hooks/useHttp';
+import { fetchReceipts } from '../services/receipts';
 import './ReceiptList.scss';
 
 interface Receipt {
@@ -21,8 +21,7 @@ export const ReceiptList = () => {
 
   const fetchData = async () => {
     try {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const data = await useHttp();
+      const data = await fetchReceipts();
 
       if (Array.isArray(data)) {
         setReceipts(data);
