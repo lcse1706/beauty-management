@@ -1,12 +1,10 @@
-import { useContext } from 'react';
-import { ContextApi } from '../../Context/ContextApi';
 import { useNavigate, NavLink } from 'react-router-dom';
-
 import Button from '../../../UI/Button';
 import './Navigation.scss';
+import { useAuthContext } from '../../Auth/AuthContext';
 
 const Navigation: React.FC = () => {
-  const { isLoggedin, setIsLoggedIn } = useContext(ContextApi);
+  const { isLoggedin, setIsLoggedIn } = useAuthContext();
   const navigate = useNavigate();
 
   const logoutHandler = () => {

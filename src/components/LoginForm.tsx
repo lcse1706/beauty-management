@@ -2,8 +2,8 @@ import { FormEventHandler, useContext, useRef, useState } from 'react';
 import Input from '../UI/Input';
 import './LoginForm.scss';
 import Button from '../UI/Button';
-import { ContextApi } from './Context/ContextApi';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from './Auth/AuthContext';
 
 interface Users {
   id: number;
@@ -30,7 +30,7 @@ const accounts: Users[] = [
 ];
 
 const LoginForm = () => {
-  const { setIsLoggedIn } = useContext(ContextApi);
+  const { setIsLoggedIn } = useAuthContext();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
 

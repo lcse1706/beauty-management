@@ -44,7 +44,7 @@ const ReceiptList = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        receipts.map((receipt: any) => <ReceiptDetails key={receipt.id} data={receipt.fields} />)
+        receipts.map((receipt) => <ReceiptDetails key={receipt.id} data={receipt.fields} />)
       )}
     </div>
   );
