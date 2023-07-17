@@ -1,15 +1,15 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../components/Auth/AuthContext';
-import ReceiptForm from '../components/ReceiptForm';
+import { ReceiptForm } from '../components/ReceiptForm';
 import './ReceiptPage.scss';
-import { useEffect } from 'react';
 
 const ReceiptPage = () => {
-  const { isLoggedin } = useAuthContext();
+  const { isLogged } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedin) {
+    if (!isLogged) {
       navigate('/');
     }
   }, []);

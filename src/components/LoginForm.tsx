@@ -1,9 +1,9 @@
-import { FormEventHandler, useContext, useRef, useState } from 'react';
-import Input from '../UI/Input';
-import './LoginForm.scss';
-import Button from '../UI/Button';
+import { FormEventHandler, useRef, useState } from 'react';
+import { Input } from '../UI/Input';
+import { Button } from '../UI/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from './Auth/AuthContext';
+import './LoginForm.scss';
 
 interface Users {
   id: number;
@@ -29,8 +29,8 @@ const accounts: Users[] = [
   },
 ];
 
-const LoginForm = () => {
-  const { setIsLoggedIn } = useAuthContext();
+export const LoginForm = () => {
+  const { setIsLogged } = useAuthContext();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
 
@@ -45,11 +45,11 @@ const LoginForm = () => {
   };
 
   const checkLogin = (username: string, password: string): boolean => {
-    const isLoggedIn = accounts.some((user) => {
+    const isLogged = accounts.some((user) => {
       return user.login === username && user.password === password;
     });
 
-    if (isLoggedIn) {
+    if (isLogged) {
       localStorage.setItem('isAuth', 'true');
       return true;
     } else {
@@ -62,12 +62,12 @@ const LoginForm = () => {
     const username = loginRef.current?.value ?? '';
     const password = passRef.current?.value ?? '';
     if (checkLogin(username, password)) {
-      setIsLoggedIn(true);
+      setIsLogged(true);
       navigate('/sendreceipt');
     } else {
       clearInputs();
       setErrorMessage('Incorrect login or password !');
-      setIsLoggedIn(false);
+      setIsLogged(false);
     }
   };
 
@@ -85,5 +85,3 @@ const LoginForm = () => {
     </div>
   );
 };
-
-export default LoginForm;

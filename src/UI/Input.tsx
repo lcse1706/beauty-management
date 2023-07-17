@@ -8,7 +8,7 @@ interface InputProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
+export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
   return (
     <div className={`input ${props.className}`}>
       <label>{props.label}</label>
@@ -18,5 +18,3 @@ const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
 });
 
 Input.displayName = 'forwardRef (Input)';
-
-export default Input;

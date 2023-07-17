@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect, FormEventHandler } from 'react';
-import sendReceipt from './sendReceipt';
-import Input from '../UI/Input';
-import Select from '../UI/Select';
+import { sendReceipt } from './sendReceipt';
+import { Input } from '../UI/Input';
+import { Select } from '../UI/Select';
+import { Button } from '../UI/Button';
 import './ReceiptForm.scss';
-import Button from '../UI/Button';
 
 interface Receipt {
   id: string;
@@ -13,7 +13,7 @@ interface Receipt {
   price: string;
 }
 
-const ReceiptForm = () => {
+export const ReceiptForm = () => {
   const [receiptsList, setReceiptsList] = useState<Receipt[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -90,5 +90,3 @@ const ReceiptForm = () => {
     </div>
   );
 };
-
-export default ReceiptForm;

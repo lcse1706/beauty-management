@@ -6,9 +6,7 @@ interface SelectProps {
   options: string[];
 }
 
-//TODO: Przy pierwszym renderze nie wyswietla defaultValue
-
-const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
+export const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
   const options = props.options.map((option) => (
     <option key={option} value={option}>
       {option}
@@ -29,5 +27,3 @@ const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
 });
 
 Select.displayName = 'forwardRed (Select)';
-
-export default Select;

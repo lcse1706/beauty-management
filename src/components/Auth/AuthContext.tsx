@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
-  isLoggedin: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  isLogged: boolean;
+  setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -16,24 +16,14 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLoggedin, setIsLoggedIn] = useState<boolean>(false);
+  const [isLogged, setIsLogged] = useState<boolean>(false);
 
   useEffect(() => {
     const auth = localStorage.getItem('isAuth');
-    console.log(auth);
     if (auth === 'true') {
-      setIsLoggedIn(true);
+      setIsLogged(true);
     }
   }, []);
 
-  // if (isLoggedin) {
-  //   localStorage.setItem('isAuth', 'true');
-  // } else {
-  //   localStorage.setItem('isAuth', 'false');
-  // }
-
-  // const checkLocalStorage = localStorage.getItem('isAuth');
-  // console.log(checkLocalStorage);
-
-  return <AuthContext.Provider value={{ isLoggedin, setIsLoggedIn }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isLogged, setIsLogged }}>{children}</AuthContext.Provider>;
 };

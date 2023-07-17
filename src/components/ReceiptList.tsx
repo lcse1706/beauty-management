@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import ReceiptDetails from './ReceiptDetails';
-import './ReceiptList.scss';
+import { ReceiptDetails } from './ReceiptDetails';
 import { useHttp } from '../hooks/useHttp';
+import './ReceiptList.scss';
 
 interface Receipt {
   id: string;
@@ -15,7 +15,7 @@ interface Receipt {
   };
 }
 
-const ReceiptList = () => {
+export const ReceiptList = () => {
   const [receipts, setReceipts] = useState<Receipt[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -49,5 +49,3 @@ const ReceiptList = () => {
     </div>
   );
 };
-
-export default ReceiptList;

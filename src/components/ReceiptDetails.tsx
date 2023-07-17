@@ -11,7 +11,7 @@ type Props = {
   };
 };
 
-const ReceiptDetails = ({ data }: Props) => {
+export const ReceiptDetails = ({ data }: Props) => {
   return (
     <div className="details">
       <p>{data.receipt_id}</p>
@@ -23,5 +23,3 @@ const ReceiptDetails = ({ data }: Props) => {
     </div>
   );
 };
-
-export default ReceiptDetails;

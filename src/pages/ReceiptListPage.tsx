@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router';
 import { useAuthContext } from '../components/Auth/AuthContext';
-import ReceiptList from '../components/ReceiptList';
+import { ReceiptList } from '../components/ReceiptList';
 import { useEffect } from 'react';
 
 const ReceiptListPage = () => {
-  const { isLoggedin } = useAuthContext();
+  const { isLogged } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedin) {
+    if (!isLogged) {
       navigate('/');
     }
   }, []);

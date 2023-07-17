@@ -1,21 +1,21 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import Button from '../../../UI/Button';
-import './Navigation.scss';
+import { Button } from '../../../UI/Button';
 import { useAuthContext } from '../../Auth/AuthContext';
+import './Navigation.scss';
 
-const Navigation: React.FC = () => {
-  const { isLoggedin, setIsLoggedIn } = useAuthContext();
+export const Navigation: React.FC = () => {
+  const { isLogged, setIsLogged } = useAuthContext();
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    setIsLoggedIn(false);
+    setIsLogged(false);
     localStorage.setItem('isAuth', 'false');
     navigate('/');
   };
 
   return (
     <nav className="mainNav">
-      {isLoggedin && (
+      {isLogged && (
         <ul className="menu-list">
           <li>
             <NavLink to="/sendreceipt">Send Receipt</NavLink>
@@ -33,5 +33,3 @@ const Navigation: React.FC = () => {
     </nav>
   );
 };
-
-export default Navigation;
