@@ -1,5 +1,13 @@
+import { sendToAirtable } from '../services/receipts';
+
 export const sendReceipt = (data: object) => {
-  console.log(data);
+  const airtableFormatedData = {
+    fields: {
+      ...data,
+    },
+  };
+
+  sendToAirtable(airtableFormatedData);
 
   return null;
 };

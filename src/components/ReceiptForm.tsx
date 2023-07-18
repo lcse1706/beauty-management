@@ -6,7 +6,7 @@ import { Button } from '../UI/Button';
 import './ReceiptForm.scss';
 
 interface Receipt {
-  id: string;
+  receipt_id: string;
   name: string;
   email: string;
   treatment: string;
@@ -58,7 +58,7 @@ export const ReceiptForm = () => {
     }
 
     const data: Receipt = {
-      id: receiptsList.length + 1 + '/' + new Date().getFullYear(),
+      receipt_id: receiptsList.length + 1 + '/' + new Date().getFullYear(),
       name: clientNameRef.current?.value ?? '',
       email: clientEmailRef.current?.value ?? '',
       treatment: treatmentRef.current?.value ?? '',
@@ -68,7 +68,7 @@ export const ReceiptForm = () => {
     // 1.Save array to display and edit if needed, 2.load from the server
     setReceiptsList((current) => [...current, data]);
 
-    // Send data to make a form and send it to client
+    // Send data to aritable and a client
     sendReceipt(data);
 
     // Reset inputs
