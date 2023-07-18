@@ -3,7 +3,7 @@ import { useAuthContext } from '../components/Auth/AuthContext';
 import { ReceiptList } from '../components/ReceiptList';
 import { useEffect } from 'react';
 
-const ReceiptListPage = () => {
+export const ReceiptListPage = () => {
   const { isLogged } = useAuthContext();
   const navigate = useNavigate();
 
@@ -14,5 +14,3 @@ const ReceiptListPage = () => {
   }, []);
   return <ReceiptList />;
 };
-
-export default ReceiptListPage;

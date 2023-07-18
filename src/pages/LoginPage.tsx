@@ -3,7 +3,7 @@ import { LoginForm } from '../components/LoginForm';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const isAuth = sessionStorage.getItem('isAuth');
   const navigate = useNavigate();
 
@@ -15,5 +15,3 @@ const LoginPage = () => {
 
   return <LoginForm />;
 };
-
-export default LoginPage;

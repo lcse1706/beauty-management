@@ -4,7 +4,7 @@ import { useAuthContext } from '../components/Auth/AuthContext';
 import { ReceiptForm } from '../components/ReceiptForm';
 import './ReceiptPage.scss';
 
-const ReceiptPage = () => {
+export const ReceiptPage = () => {
   const { isLogged } = useAuthContext();
   const navigate = useNavigate();
 
@@ -21,5 +21,3 @@ const ReceiptPage = () => {
     </div>
   );
 };
-
-export default ReceiptPage;
