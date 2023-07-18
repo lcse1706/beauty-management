@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { useAuthContext } from '../components/Auth/AuthContext';
+import { useAuthContext } from '../components/Context/AuthContext';
 import { ReceiptList } from '../components/ReceiptList';
 import { useEffect } from 'react';
 

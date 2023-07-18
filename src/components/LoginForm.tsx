@@ -2,7 +2,7 @@ import { FormEventHandler, useRef, useState } from 'react';
 import { Input } from '../UI/Input';
 import { Button } from '../UI/Button';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from './Auth/AuthContext';
+import { useAuthContext } from './Context/AuthContext';
 import './LoginForm.scss';
 
 interface Users {

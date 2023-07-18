@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useAuthContext } from '../components/Auth/AuthContext';
+import { useAuthContext } from '../components/Context/AuthContext';
 import { ReceiptForm } from '../components/ReceiptForm';
 import './ReceiptPage.scss';
 
