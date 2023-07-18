@@ -40,11 +40,7 @@ export const ReceiptList = () => {
   return (
     <div className="receiptList">
       <h2>Receipts</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        receipts.map((receipt) => <ReceiptDetails key={receipt.id} data={receipt.fields} />)
-      )}
+      {loading ? <p>Loading...</p> : receipts.map((receipt) => <ReceiptDetails key={receipt.id} data={receipt} />)}
     </div>
   );
 };
