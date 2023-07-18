@@ -3,6 +3,7 @@ import { sendReceipt } from './sendReceipt';
 import { Input } from '../UI/Input';
 import { Select } from '../UI/Select';
 import { Button } from '../UI/Button';
+import { useDataContext } from './Context/DataContext';
 import './ReceiptForm.scss';
 
 interface Receipt {
@@ -14,8 +15,8 @@ interface Receipt {
 }
 
 export const ReceiptForm = () => {
-  const [receiptsList, setReceiptsList] = useState<Receipt[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const { receiptsList } = useDataContext();
 
   const clearInputs = () => {
     if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
@@ -26,10 +27,10 @@ export const ReceiptForm = () => {
     }
   };
 
-  useEffect(() => {
-    // rerender receipt list
-    console.dir(receiptsList);
-  }, [receiptsList]);
+  // useEffect(() => {
+  //   // rerender receipt list
+  //   console.dir(receiptsList);
+  // }, [receiptsList]);
 
   const clientNameRef = useRef<HTMLInputElement>(null);
   const clientEmailRef = useRef<HTMLInputElement>(null);
@@ -66,7 +67,7 @@ export const ReceiptForm = () => {
     };
 
     // 1.Save array to display and edit if needed, 2.load from the server
-    setReceiptsList((current) => [...current, data]);
+    // setReceiptsList((current) => [...current, data]);
 
     // Send data to aritable and a client
     sendReceipt(data);
