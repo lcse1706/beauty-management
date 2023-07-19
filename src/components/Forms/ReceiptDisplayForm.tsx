@@ -1,6 +1,7 @@
 import { Button } from '../../UI/Button';
 import { useNavigate } from 'react-router';
 import './ReceiptDisplayForm.scss';
+import { useDataContext } from '../Context/DataContext';
 
 type Props = {
   data: {
@@ -18,10 +19,11 @@ type Props = {
 
 export const ReceiptDisplayForm = ({ data }: Props) => {
   const navigate = useNavigate();
+  const { setReceiptId } = useDataContext();
 
   const goToDetails = () => {
+    setReceiptId(data.id);
     navigate(`/receiptlist/${data.id}`);
-    console.log(data.id);
   };
 
   return (
@@ -33,7 +35,7 @@ export const ReceiptDisplayForm = ({ data }: Props) => {
       <p>{data.fields.price}</p>
       <p>{data.fields.date}</p>
       <Button type="button" onClick={goToDetails}>
-        info
+        details
       </Button>
     </div>
   );
