@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect, FormEventHandler } from 'react';
-import { sendReceipt } from '../services/sendReceipt';
-import { Input } from '../UI/Input';
-import { Select } from '../UI/Select';
-import { Button } from '../UI/Button';
-import { useDataContext } from './Context/DataContext';
+import { sendReceipt } from '../../services/sendReceipt';
+import { Input } from '../../UI/Input';
+import { Select } from '../../UI/Select';
+import { Button } from '../../UI/Button';
+import { useDataContext } from '../Context/DataContext';
 import './ReceiptForm.scss';
 
 interface Receipt {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
-import { fetchReceipts } from '../services/receipts';
+import { fetchReceipts } from '../../services/receipts';
 import './ReceiptList.scss';
-import { useDataContext } from './Context/DataContext';
+import { useDataContext } from '../Context/DataContext';
 
 interface Receipt {
   id: string;
