@@ -1,16 +1,20 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface Receipt {
-  receipt_id: string;
-  name: string;
-  email: string;
-  treatment: string;
-  price: string;
+  id: string;
+  fields: {
+    receipt_id: string;
+    name: string;
+    email: string;
+    threatment: string;
+    price: number;
+    date: string;
+  };
 }
 
 interface DataContextType {
-  receiptsList: Receipt[];
-  setReceiptsList: React.Dispatch<React.SetStateAction<Receipt[]>>;
+  receipts: Receipt[];
+  setReceipts: React.Dispatch<React.SetStateAction<Receipt[]>>;
 }
 
 const DataContext = createContext<DataContextType | null>(null);
@@ -24,7 +28,7 @@ export const useDataContext = () => {
 };
 
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [receiptsList, setReceiptsList] = useState<Receipt[]>([]);
+  const [receipts, setReceipts] = useState<Receipt[]>([]);
 
-  return <DataContext.Provider value={{ receiptsList, setReceiptsList }}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={{ receipts, setReceipts }}>{children}</DataContext.Provider>;
 };

@@ -16,7 +16,7 @@ interface Receipt {
 
 export const ReceiptForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const { receiptsList } = useDataContext();
+  const { receipts } = useDataContext();
 
   const clearInputs = () => {
     if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
@@ -59,7 +59,7 @@ export const ReceiptForm = () => {
     }
 
     const data: Receipt = {
-      receipt_id: receiptsList.length + 1 + '/' + new Date().getFullYear(),
+      receipt_id: receipts.length + 1 + '/' + new Date().getFullYear(),
       name: clientNameRef.current?.value ?? '',
       email: clientEmailRef.current?.value ?? '',
       treatment: treatmentRef.current?.value ?? '',

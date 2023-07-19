@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ReceiptDetails } from './ReceiptDetails';
 import { fetchReceipts } from '../services/receipts';
 import './ReceiptList.scss';
+import { useDataContext } from './Context/DataContext';
 
 interface Receipt {
   id: string;
@@ -16,8 +17,9 @@ interface Receipt {
 }
 
 export const ReceiptList = () => {
-  const [receipts, setReceipts] = useState<Receipt[]>([]);
+  // const [receipts1, setReceipts1] = useState<Receipt[]>([]);
   const [loading, setLoading] = useState(true);
+  const { receipts, setReceipts } = useDataContext();
 
   const fetchData = async () => {
     try {
