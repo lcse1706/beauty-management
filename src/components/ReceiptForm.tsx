@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, FormEventHandler } from 'react';
-import { sendReceipt } from './sendReceipt';
+import { sendReceipt } from '../services/sendReceipt';
 import { Input } from '../UI/Input';
 import { Select } from '../UI/Select';
 import { Button } from '../UI/Button';
