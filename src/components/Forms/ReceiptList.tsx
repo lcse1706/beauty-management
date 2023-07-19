@@ -17,7 +17,6 @@ interface Receipt {
 }
 
 export const ReceiptList = () => {
-  // const [receipts1, setReceipts1] = useState<Receipt[]>([]);
   const [loading, setLoading] = useState(true);
   const { receipts, setReceipts } = useDataContext();
 
@@ -41,7 +40,6 @@ export const ReceiptList = () => {
 
   return (
     <div className="receiptList">
-      <h2>Receipts</h2>
       {loading ? <p>Loading...</p> : receipts.map((receipt) => <ReceiptDisplayForm key={receipt.id} data={receipt} />)}
     </div>
   );

@@ -12,5 +12,10 @@ export const ReceiptListPage = () => {
       navigate('/');
     }
   }, []);
-  return <ReceiptList />;
+  return (
+    <div>
+      <h2>Receipts</h2>
+      <ReceiptList />;
+    </div>
+  );
 };

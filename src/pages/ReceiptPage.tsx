@@ -16,7 +16,7 @@ export const ReceiptPage = () => {
 
   return (
     <div className="receiptWrapper">
-      <h1>Receipt Page</h1>
+      <h2>Receipt Page</h2>
       <ReceiptForm />
     </div>
   );

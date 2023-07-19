@@ -9,5 +9,10 @@ export const DetailsPage = () => {
     return data;
   };
 
-  return <ReceiptDetails data={getData()} />;
+  return (
+    <div>
+      <h2>Details: </h2>
+      <ReceiptDetails data={getData()} />
+    </div>
+  );
 };
