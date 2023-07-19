@@ -1,6 +1,6 @@
 import { Button } from '../UI/Button';
 import { useNavigate } from 'react-router';
-import './ReceiptDetails.scss';
+import './ReceiptDisplayForm.scss';
 
 type Props = {
   data: {
@@ -16,7 +16,7 @@ type Props = {
   };
 };
 
-export const ReceiptDetails = ({ data }: Props) => {
+export const ReceiptDisplayForm = ({ data }: Props) => {
   const navigate = useNavigate();
 
   const goToDetails = () => {

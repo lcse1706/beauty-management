@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ReceiptDetails } from './ReceiptDetails';
+import { ReceiptDisplayForm } from './ReceiptDisplayForm';
 import { fetchReceipts } from '../services/receipts';
 import './ReceiptList.scss';
 import { useDataContext } from './Context/DataContext';
@@ -42,7 +42,7 @@ export const ReceiptList = () => {
   return (
     <div className="receiptList">
       <h2>Receipts</h2>
-      {loading ? <p>Loading...</p> : receipts.map((receipt) => <ReceiptDetails key={receipt.id} data={receipt} />)}
+      {loading ? <p>Loading...</p> : receipts.map((receipt) => <ReceiptDisplayForm key={receipt.id} data={receipt} />)}
     </div>
   );
 };
