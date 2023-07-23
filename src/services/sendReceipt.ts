@@ -1,6 +1,14 @@
 import { sendToAirtable } from './sendToAirtable';
 
-export const sendReceipt = (data: object) => {
+interface Receipt {
+  receipt_id: string;
+  name: string;
+  email: string;
+  treatment: string;
+  price: string;
+}
+
+export const sendReceipt = (data: Receipt) => {
   const airtableFormatedData = {
     fields: {
       ...data,

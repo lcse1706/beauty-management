@@ -1,4 +1,14 @@
-export const sendToAirtable = async (data: any) => {
+interface Receipt {
+  fields: {
+    receipt_id: string;
+    name: string;
+    email: string;
+    treatment: string;
+    price: string;
+  };
+}
+
+export const sendToAirtable = async (data: Receipt) => {
   const headers = {
     Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     'Content-Type': 'application/json',
