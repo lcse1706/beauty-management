@@ -3,16 +3,10 @@ export const fetchReceipts = async () => {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
-    //POST
-    // headers: {
-    //   'Content-type': 'application/json'
-    // },
-    // body: JSON.stringify(data)
   });
 
   if (response.ok) {
     const data = await response.json();
-    // console.log(data);
     return data.records;
   }
 
@@ -35,5 +29,25 @@ export const sendToAirtable = async (data: any) => {
     console.log('Data send successful !');
   } else {
     throw new Error('Sending failed.');
+  }
+};
+
+export const deleteReceipt = async (recordId: string) => {
+  try {
+    const url = `https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts/${recordId}`;
+    const headers = {
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+    };
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: headers,
+    });
+    if (response.status === 200) {
+      console.log('Record deleted successfully.');
+    } else {
+      console.log('Error deleting record.');
+    }
+  } catch (error) {
+    console.error('An error occurred while deleting the record:', error);
   }
 };

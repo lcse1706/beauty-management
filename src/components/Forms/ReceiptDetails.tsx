@@ -1,8 +1,16 @@
 import { Button } from '../../UI/Button';
+import { deleteReceipt } from '../../services/receipts';
+import { useDataContext } from '../Context/DataContext';
 import './ReceiptDetails.scss';
 
 export const ReceiptDetails = ({ data }: any) => {
   const receipt = data[0].fields;
+  const { receiptId } = useDataContext();
+
+  const deleteHandler = () => {
+    deleteReceipt(receiptId);
+  };
+
   return (
     <div>
       {receipt && (
@@ -12,7 +20,7 @@ export const ReceiptDetails = ({ data }: any) => {
           <p>Email: {receipt.email}</p>
           <p>Treatment: {receipt.treatment}</p>
           <p>Price: {receipt.price}</p>
-          <Button className="bg-red-500 hover:bg-red-700" type="button">
+          <Button className="bg-red-500 hover:bg-red-700" type="button" onClick={deleteHandler}>
             Delete
           </Button>
         </div>
