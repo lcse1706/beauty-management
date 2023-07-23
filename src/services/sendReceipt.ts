@@ -1,4 +1,4 @@
-import { sendToAirtable } from './receipts';
+import { sendToAirtable } from './sendToAirtable';
 
 export const sendReceipt = (data: object) => {
   const airtableFormatedData = {

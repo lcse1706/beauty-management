@@ -1,20 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
-import { fetchReceipts } from '../../services/receipts';
-import './ReceiptList.scss';
+import { fetchReceipts } from '../../services/fetchReceipts';
 import { useDataContext } from '../Context/DataContext';
-
-interface Receipt {
-  id: string;
-  fields: {
-    receipt_id: string;
-    name: string;
-    email: string;
-    threatment: string;
-    price: number;
-    date: string;
-  };
-}
+import './ReceiptList.scss';
 
 export const ReceiptList = () => {
   const [loading, setLoading] = useState(true);

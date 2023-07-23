@@ -1,5 +1,5 @@
 import { Button } from '../../UI/Button';
-import { deleteReceipt } from '../../services/receipts';
+import { deleteReceipt } from '../../services/deleteReceipt';
 import { useDataContext } from '../Context/DataContext';
 import './ReceiptDetails.scss';
 
