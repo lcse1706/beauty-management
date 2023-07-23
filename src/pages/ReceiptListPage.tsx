@@ -15,7 +15,7 @@ export const ReceiptListPage = () => {
   return (
     <div>
       <h2>Receipts</h2>
-      <ReceiptList />;
+      <ReceiptList />
     </div>
   );
 };
