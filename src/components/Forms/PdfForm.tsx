@@ -1,6 +1,5 @@
 import React from 'react';
 import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import './PdfForm.scss';
 
 const styles = StyleSheet.create({
   page: {
