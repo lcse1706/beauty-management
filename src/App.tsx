@@ -7,6 +7,9 @@ import { DetailsPage } from './pages/DetailsPage';
 import './App.scss';
 import { AuthProvider } from './components/Context/AuthContext';
 import { DataProvider } from './components/Context/DataContext';
+import PdfGenerator from './components/Forms/PdfForm';
+
+const data = 'Generator pdf';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,7 @@ const router = createBrowserRouter([
       { path: 'sendreceipt', element: <ReceiptPage /> },
       { path: 'receiptlist', element: <ReceiptListPage /> },
       { path: 'receiptlist/:receiptid', element: <DetailsPage /> },
+      { path: 'pdf', element: <PdfGenerator data={data} /> },
     ],
   },
 ]);
