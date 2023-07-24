@@ -9,7 +9,13 @@ import { AuthProvider } from './components/Context/AuthContext';
 import { DataProvider } from './components/Context/DataContext';
 import PdfGenerator from './components/Forms/PdfForm';
 
-const data = 'Generator pdf';
+const data = {
+  receipt_id: '1/2023',
+  name: 'Lukasz Czarniecki',
+  treatment: 'Brwi',
+  email: 'lukasz@email.com',
+  price: '500',
+};
 
 const router = createBrowserRouter([
   {
