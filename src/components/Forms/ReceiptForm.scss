@@ -1,27 +1,6 @@
-// .receiptForm {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   // width: 90%;
-
-//   .label {
-//     margin: 5px;
-//     // width: 300px;
-//     display: flex;
-//     justify-content: space-between;
-//     font-weight: normal;
-//     // color: #fff;
-
-//     select {
-//       // width: 40%;
-//     }
-//   }
-// }
-
 .receiptFormWrapper {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   .receiptForm {
     flex-direction: column;
