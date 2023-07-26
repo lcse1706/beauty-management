@@ -34,7 +34,7 @@ export const useDataContext = () => {
 export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const [receipts, setReceipts] = useState<Receipt[]>([]);
   const [receiptId, setReceiptId] = useState<string>('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <DataContext.Provider value={{ receipts, setReceipts, receiptId, setReceiptId, loading, setLoading }}>
