@@ -1,22 +1,26 @@
 import { useRef, useState, useEffect, FormEventHandler } from 'react';
-import { sendReceipt } from '../../services/sendReceipt';
 import { Input } from '../../UI/Input';
 import { Select } from '../../UI/Select';
 import { Button } from '../../UI/Button';
 import { useDataContext } from '../Context/DataContext';
 import './ReceiptForm.scss';
+import { sendToAirtable } from '../../services/sendToAirtable';
+import { Loader } from '../../UI/Loader';
+import { MessageModal } from '../../UI/MessageModal';
 
 interface Receipt {
-  receipt_id: string;
-  name: string;
-  email: string;
-  treatment: string;
-  price: string;
+  fields: {
+    receipt_id: string;
+    name: string;
+    email: string;
+    treatment: string;
+    price: string;
+  };
 }
 
 export const ReceiptForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const { receipts } = useDataContext();
+  const { receipts, setLoading, loading } = useDataContext();
 
   const clearInputs = () => {
     if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
@@ -59,18 +63,35 @@ export const ReceiptForm = () => {
     }
 
     const data: Receipt = {
-      receipt_id: receipts.length + 1 + '/' + new Date().getFullYear(),
-      name: clientNameRef.current?.value ?? '',
-      email: clientEmailRef.current?.value ?? '',
-      treatment: treatmentRef.current?.value ?? '',
-      price: priceRef.current?.value ?? '',
+      fields: {
+        receipt_id: receipts.length + 1 + '/' + new Date().getFullYear(),
+        name: clientNameRef.current?.value ?? '',
+        email: clientEmailRef.current?.value ?? '',
+        treatment: treatmentRef.current?.value ?? '',
+        price: priceRef.current?.value ?? '',
+      },
     };
 
     // 1.Save array to display and edit if needed, 2.load from the server
     // setReceiptsList((current) => [...current, data]);
 
-    // Send data to aritable and a client
-    sendReceipt(data);
+    // Send data to aritable
+    // sendReceipt(data);
+
+    const sendData = async () => {
+      try {
+        setLoading(true);
+        await sendToAirtable(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    sendData();
+
+    // sendToAirtable(data);
 
     // Reset inputs
     clearInputs();
@@ -84,9 +105,14 @@ export const ReceiptForm = () => {
         <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
         <Input ref={priceRef} label="Price:" type="number" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-        <Button className="button is-rounded" type="submit">
-          Send
-        </Button>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Button className="button is-rounded" type="submit">
+            Send
+          </Button>
+        )}
+        <MessageModal message={errorMessage} />
       </form>
     </div>
   );

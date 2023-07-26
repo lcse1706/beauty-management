@@ -6,20 +6,24 @@ import { useDataContext } from '../Context/DataContext';
 import { useNavigate } from 'react-router';
 import { Input } from '../../UI/Input';
 import './ReceiptDetails.scss';
+import { Loader } from '../../UI/Loader';
 
 export const ReceiptDetails = ({ data }: any) => {
   const [receipt, setReceipt] = useState(data[0].fields);
-  const { receiptId } = useDataContext();
+  const { receiptId, loading, setLoading } = useDataContext();
   const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
 
   const deleteHandler = async () => {
+    setLoading(true);
     try {
       await deleteReceipt(receiptId);
       navigate('/receiptlist');
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,6 +34,7 @@ export const ReceiptDetails = ({ data }: any) => {
 
   const saveHandler = async () => {
     setIsEditing(false);
+    setLoading(true);
 
     const formatedData = {
       fields: {
@@ -44,6 +49,8 @@ export const ReceiptDetails = ({ data }: any) => {
       await updateRecord(receiptId, formatedData);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,24 +106,30 @@ export const ReceiptDetails = ({ data }: any) => {
     </div>
   );
 
+  const buttons = (
+    <div>
+      {isEditing ? (
+        <Button type="button" onClick={saveHandler}>
+          Save
+        </Button>
+      ) : (
+        <Button type="button" onClick={editHandler}>
+          Edit
+        </Button>
+      )}
+      <Button className="bg-red-500 hover:bg-red-700" type="button" onClick={deleteHandler}>
+        Delete
+      </Button>
+    </div>
+  );
+
   return (
     <div>
       {receipt && (
         <div className="receiptDetails">
           {isEditing ? inputs : paragraphs}
 
-          {isEditing ? (
-            <Button type="button" onClick={saveHandler}>
-              Save
-            </Button>
-          ) : (
-            <Button type="button" onClick={editHandler}>
-              Edit
-            </Button>
-          )}
-          <Button className="bg-red-500 hover:bg-red-700" type="button" onClick={deleteHandler}>
-            Delete
-          </Button>
+          {loading ? <Loader /> : buttons}
         </div>
       )}
     </div>
