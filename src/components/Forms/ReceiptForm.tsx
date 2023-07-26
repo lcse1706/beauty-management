@@ -6,7 +6,7 @@ import { useDataContext } from '../Context/DataContext';
 import './ReceiptForm.scss';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
-import { MessageModal } from '../../UI/MessageModal';
+import { Modal } from '../../UI/Modal';
 
 interface Receipt {
   fields: {
@@ -21,6 +21,7 @@ interface Receipt {
 export const ReceiptForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const { receipts, setLoading, loading } = useDataContext();
+  const [showModal, setShowModal] = useState(false);
 
   const clearInputs = () => {
     if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
@@ -86,6 +87,7 @@ export const ReceiptForm = () => {
         console.error(error);
       } finally {
         setLoading(false);
+        setShowModal(true);
       }
     };
 
@@ -112,7 +114,7 @@ export const ReceiptForm = () => {
             Send
           </Button>
         )}
-        <MessageModal message={errorMessage} />
+        <Modal showModal={showModal} setShowModal={setShowModal} modalContent="Czy modal dziala?" />
       </form>
     </div>
   );
