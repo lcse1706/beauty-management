@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
 import { fetchReceipts } from '../../services/fetchReceipts';
 import { useDataContext } from '../Context/DataContext';

@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router';
 import { Input } from '../../UI/Input';
 import './ReceiptDetails.scss';
 import { Loader } from '../../UI/Loader';
+import { useModalContext } from '../Context/ModalContext';
 
 export const ReceiptDetails = ({ data }: any) => {
   const [receipt, setReceipt] = useState(data[0].fields);
   const { receiptId, loading, setLoading } = useDataContext();
+  const { setShowModal, setMessage } = useModalContext();
+
   const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -19,17 +22,18 @@ export const ReceiptDetails = ({ data }: any) => {
     setLoading(true);
     try {
       await deleteReceipt(receiptId);
+      setMessage('Receipt delete successful !');
       navigate('/receiptlist');
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setShowModal(true);
     }
   };
 
   const editHandler = () => {
     setIsEditing(true);
-    console.log(receipt);
   };
 
   const saveHandler = async () => {
@@ -47,10 +51,12 @@ export const ReceiptDetails = ({ data }: any) => {
     };
     try {
       await updateRecord(receiptId, formatedData);
+      setMessage('Receipt edit successful !');
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
+      setShowModal(true);
     }
   };
 

@@ -8,6 +8,8 @@ import './App.scss';
 import { AuthProvider } from './components/Context/AuthContext';
 import { DataProvider } from './components/Context/DataContext';
 import PdfGenerator from './components/Forms/PdfForm';
+import { ModalProvider, useModalContext } from './components/Context/ModalContext';
+import { Modal } from './UI/Modal';
 
 const data = {
   receipt_id: '1/2023',
@@ -33,11 +35,14 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <DataProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />;
-      </AuthProvider>
-    </DataProvider>
+    <AuthProvider>
+      <DataProvider>
+        <ModalProvider>
+          <RouterProvider router={router} />;
+          <Modal />
+        </ModalProvider>
+      </DataProvider>
+    </AuthProvider>
   );
 };
 

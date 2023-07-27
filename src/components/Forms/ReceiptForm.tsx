@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, FormEventHandler } from 'react';
+import { useRef, FormEventHandler } from 'react';
 import { Input } from '../../UI/Input';
 import { Select } from '../../UI/Select';
 import { Button } from '../../UI/Button';
@@ -6,7 +6,7 @@ import { useDataContext } from '../Context/DataContext';
 import './ReceiptForm.scss';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
-import { Modal } from '../../UI/Modal';
+import { useModalContext } from '../Context/ModalContext';
 
 interface Receipt {
   fields: {
@@ -19,9 +19,8 @@ interface Receipt {
 }
 
 export const ReceiptForm = () => {
-  const [errorMessage, setErrorMessage] = useState<string>('');
   const { receipts, setLoading, loading } = useDataContext();
-  const [showModal, setShowModal] = useState(false);
+  const { setShowModal, setMessage } = useModalContext();
 
   const clearInputs = () => {
     if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
@@ -31,11 +30,6 @@ export const ReceiptForm = () => {
       priceRef.current.value = '';
     }
   };
-
-  // useEffect(() => {
-  //   // rerender receipt list
-  //   console.dir(receiptsList);
-  // }, [receiptsList]);
 
   const clientNameRef = useRef<HTMLInputElement>(null);
   const clientEmailRef = useRef<HTMLInputElement>(null);
@@ -49,7 +43,7 @@ export const ReceiptForm = () => {
       treatmentRef.current?.value === '' ||
       priceRef.current?.value === ''
     ) {
-      setErrorMessage('Please fill all fields');
+      setMessage('Please fill all fields');
       return true;
     }
     return false;
@@ -57,9 +51,10 @@ export const ReceiptForm = () => {
 
   const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
     event.preventDefault();
-    setErrorMessage('');
+    setMessage('');
 
     if (inputValidator()) {
+      setShowModal(true);
       return;
     }
 
@@ -73,16 +68,11 @@ export const ReceiptForm = () => {
       },
     };
 
-    // 1.Save array to display and edit if needed, 2.load from the server
-    // setReceiptsList((current) => [...current, data]);
-
-    // Send data to aritable
-    // sendReceipt(data);
-
     const sendData = async () => {
       try {
         setLoading(true);
         await sendToAirtable(data);
+        setMessage('Receipt successfully added !');
       } catch (error) {
         console.error(error);
       } finally {
@@ -92,8 +82,6 @@ export const ReceiptForm = () => {
     };
 
     sendData();
-
-    // sendToAirtable(data);
 
     // Reset inputs
     clearInputs();
@@ -106,7 +94,6 @@ export const ReceiptForm = () => {
         <Input ref={clientEmailRef} label="Client Email:" type="email" />
         <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
         <Input ref={priceRef} label="Price:" type="number" />
-        {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
         {loading ? (
           <Loader />
         ) : (
@@ -114,7 +101,6 @@ export const ReceiptForm = () => {
             Send
           </Button>
         )}
-        <Modal showModal={showModal} setShowModal={setShowModal} modalContent="Czy modal dziala?" />
       </form>
     </div>
   );
