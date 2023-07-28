@@ -15,7 +15,7 @@ type FormValues = {
 };
 
 export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register } = useForm<FormValues>();
 
   return (
     <div className={`input ${props.className}`}>

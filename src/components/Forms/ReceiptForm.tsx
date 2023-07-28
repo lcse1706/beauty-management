@@ -3,10 +3,10 @@ import { Input } from '../../UI/Input';
 import { Select } from '../../UI/Select';
 import { Button } from '../../UI/Button';
 import { useDataContext } from '../Context/DataContext';
-import './ReceiptForm.scss';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
+import './ReceiptForm.scss';
 
 interface Receipt {
   fields: {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import './ReceiptDisplayForm.scss';
 import { useDataContext } from '../Context/DataContext';
 
-type Props = {
+type ReceiptDisplayProps = {
   data: {
     id: string;
     fields: {
@@ -17,7 +17,7 @@ type Props = {
   };
 };
 
-export const ReceiptDisplayForm = ({ data }: Props) => {
+export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
   const navigate = useNavigate();
   const { setReceiptId } = useDataContext();
 

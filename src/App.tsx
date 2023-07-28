@@ -4,12 +4,12 @@ import { ReceiptPage } from './pages/ReceiptPage';
 import { LoginPage } from './pages/LoginPage';
 import { ReceiptListPage } from './pages/ReceiptListPage';
 import { DetailsPage } from './pages/DetailsPage';
-import './App.scss';
 import { AuthProvider } from './components/Context/AuthContext';
 import { DataProvider } from './components/Context/DataContext';
 import PdfGenerator from './components/Forms/PdfForm';
-import { ModalProvider, useModalContext } from './components/Context/ModalContext';
+import { ModalProvider } from './components/Context/ModalContext';
 import { Modal } from './UI/Modal';
+import './App.scss';
 
 const data = {
   receipt_id: '1/2023',
