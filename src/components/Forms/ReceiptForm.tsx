@@ -6,6 +6,7 @@ import { useDataContext } from '../Context/DataContext';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
+import { useForm } from 'react-hook-form';
 import './ReceiptForm.scss';
 
 interface Receipt {
@@ -19,38 +20,34 @@ interface Receipt {
 }
 
 export const ReceiptForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const { receipts, setLoading, loading } = useDataContext();
   const { setShowModal, setMessage } = useModalContext();
 
   const clearInputs = () => {
-    if (clientNameRef.current && clientEmailRef.current && treatmentRef.current && priceRef.current) {
-      clientNameRef.current.value = '';
-      clientEmailRef.current.value = '';
-      treatmentRef.current.value = '';
-      priceRef.current.value = '';
-    }
+    reset({
+      name: '',
+      email: '',
+      treatment: '',
+      price: '',
+    });
   };
 
-  const clientNameRef = useRef<HTMLInputElement>(null);
-  const clientEmailRef = useRef<HTMLInputElement>(null);
-  const treatmentRef = useRef<HTMLSelectElement>(null);
-  const priceRef = useRef<HTMLInputElement>(null);
-
   const inputValidator = (): boolean => {
-    if (
-      clientNameRef.current?.value.trim() === '' ||
-      clientEmailRef.current?.value.trim() === '' ||
-      treatmentRef.current?.value === '' ||
-      priceRef.current?.value === ''
-    ) {
-      setMessage('Please fill all fields');
+    if (Object.keys(errors).length > 0) {
+      setMessage('Please fill all required fields');
       return true;
     }
     return false;
   };
 
-  const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
-    event.preventDefault();
+  // const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
+  const submitHandler: any = (data: any) => {
     setMessage('');
 
     if (inputValidator()) {
@@ -58,20 +55,20 @@ export const ReceiptForm = () => {
       return;
     }
 
-    const data: Receipt = {
+    const formatedData: Receipt = {
       fields: {
         receipt_id: receipts.length + 1 + '/' + new Date().getFullYear(),
-        name: clientNameRef.current?.value ?? '',
-        email: clientEmailRef.current?.value ?? '',
-        treatment: treatmentRef.current?.value ?? '',
-        price: priceRef.current?.value ?? '',
+        name: data.name,
+        email: data.email,
+        treatment: data.treatment,
+        price: data.price,
       },
     };
 
     const sendData = async () => {
       try {
         setLoading(true);
-        await sendToAirtable(data);
+        await sendToAirtable(formatedData);
         setMessage('Receipt successfully added !');
       } catch (error) {
         console.error(error);
@@ -85,15 +82,29 @@ export const ReceiptForm = () => {
 
     // Reset inputs
     clearInputs();
+
+    console.log(formatedData);
   };
 
   return (
     <div className="receiptFormWrapper">
-      <form className="receiptForm" onSubmit={submitHandler}>
-        <Input ref={clientNameRef} label="Client Name:" type="text" />
-        <Input ref={clientEmailRef} label="Client Email:" type="email" />
-        <Select ref={treatmentRef} label="Treatment:" options={['lashes', 'brows', 'nails']} />
-        <Input ref={priceRef} label="Price:" type="number" />
+      <form className="receiptForm" onSubmit={handleSubmit(submitHandler)}>
+        <Input label="Client Name:" type="text" register={register('name', { required: true, maxLength: 80 })} />
+        {errors.name && <span className="error-message">Please enter a valid name.</span>}
+        <Input
+          label="Client Email:"
+          type="email"
+          register={register('email', { required: true, pattern: /^\S+@\S+$/i })}
+        />
+        {errors.email && <span className="error-message">Please enter a valid email address.</span>}
+        <Select
+          label="Treatment:"
+          options={['lashes', 'brows', 'nails']}
+          register={register('treatment', { required: true })}
+        />
+        {errors.treatment && <span className="error-message">Please select a treatment.</span>}
+        <Input label="Price:" type="number" register={register('price', { required: true, maxLength: 5 })} />
+        {errors.price && <span className="error-message">Please enter a valid price.</span>}
         {loading ? (
           <Loader />
         ) : (

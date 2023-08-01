@@ -4,6 +4,7 @@ import './Select.scss';
 interface SelectProps {
   label: string;
   options: string[];
+  register?: any;
 }
 
 export const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
@@ -16,7 +17,7 @@ export const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement
   return (
     <label className="label input">
       {props.label}
-      <select ref={ref} defaultValue="Choose here">
+      <select ref={ref} defaultValue="Choose here" {...props.register}>
         <option value="" disabled hidden>
           Choose here
         </option>

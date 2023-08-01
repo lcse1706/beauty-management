@@ -3,10 +3,13 @@
   margin-top: 2rem;
 
   .receiptForm {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    // color: red;
 
     text-align: center;
+  }
+  .error-message {
+    display: block;
+    color: red;
   }
 }
