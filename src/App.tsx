@@ -10,6 +10,7 @@ import PdfGenerator from './components/Forms/PdfForm';
 import { ModalProvider } from './components/Context/ModalContext';
 import { Modal } from './UI/Modal';
 import './App.scss';
+import { TestPage } from './pages/TestPage';
 
 const data = {
   receipt_id: '1/2023',
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: 'receiptlist', element: <ReceiptListPage /> },
       { path: 'receiptlist/:receiptid', element: <DetailsPage /> },
       { path: 'pdf', element: <PdfGenerator data={data} /> },
+      { path: 'test', element: <TestPage /> },
     ],
   },
 ]);
