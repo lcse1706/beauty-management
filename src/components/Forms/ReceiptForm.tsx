@@ -7,6 +7,7 @@ import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
 import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import './ReceiptForm.scss';
 
 interface Receipt {
@@ -18,6 +19,16 @@ interface Receipt {
     price: string;
   };
 }
+
+const Receipt1 = z.object({
+  fields: z.object({
+    receipt_id: z.string(),
+    name: z.string(),
+    email: z.string(),
+    treatment: z.string(),
+    price: z.string(),
+  }),
+});
 
 export const ReceiptForm = () => {
   const {
@@ -65,10 +76,12 @@ export const ReceiptForm = () => {
       },
     };
 
+    const parsedData = Receipt1.parse(formatedData);
+
     const sendData = async () => {
       try {
         setLoading(true);
-        await sendToAirtable(formatedData);
+        await sendToAirtable(parsedData);
         setMessage('Receipt successfully added !');
       } catch (error) {
         console.error(error);
