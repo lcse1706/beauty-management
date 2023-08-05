@@ -23,8 +23,8 @@ interface Receipt {
 const Receipt1 = z.object({
   fields: z.object({
     receipt_id: z.string(),
-    name: z.string(),
-    email: z.string(),
+    name: z.string().min(2),
+    email: z.string().email(),
     treatment: z.string(),
     price: z.string(),
   }),
