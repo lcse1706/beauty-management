@@ -9,6 +9,7 @@ import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
 import { z } from 'zod';
 import './ReceiptDetails.scss';
+import { Primary, Warning } from '../../stories/Button.stories';
 
 const ReceiptZOD = z.object({
   fields: z.object({
