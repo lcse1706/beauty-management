@@ -9,7 +9,7 @@ interface Receipt {
   price: string;
 }
 
-const Receipt1 = z.object({
+const ReceiptZOD = z.object({
   receipt_id: z.string(),
   name: z.string().min(1),
   email: z.string().email(),
@@ -20,7 +20,7 @@ const Receipt1 = z.object({
 export const sendReceipt = (data: Receipt) => {
   const airtableFormatedData = {
     fields: {
-      ...Receipt1.parse(data),
+      ...ReceiptZOD.parse(data),
     },
   };
 

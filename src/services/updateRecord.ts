@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 interface editedData {
   fields: {
     receipt_id: string;
@@ -7,6 +9,17 @@ interface editedData {
     price: string;
   };
 }
+
+const ReceiptZOD = z.object({
+  fields: z.object({
+    receipt_id: z.string(),
+    name: z.string().min(2),
+    email: z.string().email(),
+    treatment: z.string(),
+    price: z.string(),
+  }),
+});
+
 export const updateRecord = async (recordId: string, data: editedData) => {
   try {
     const url = `https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts/${recordId}`;
@@ -17,7 +30,7 @@ export const updateRecord = async (recordId: string, data: editedData) => {
     const response = await fetch(url, {
       method: 'PATCH',
       headers: headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify(ReceiptZOD.parse(data)),
     });
 
     if (response.status === 200) {

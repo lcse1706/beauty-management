@@ -6,7 +6,7 @@ import { useDataContext } from '../Context/DataContext';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import './ReceiptForm.scss';
 
@@ -20,7 +20,7 @@ interface Receipt {
   };
 }
 
-const Receipt1 = z.object({
+const ReceiptZOD = z.object({
   fields: z.object({
     receipt_id: z.string(),
     name: z.string().min(2),
@@ -58,7 +58,7 @@ export const ReceiptForm = () => {
   };
 
   // const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
-  const submitHandler: any = (data: any) => {
+  const submitHandler: SubmitHandler<FieldValues> = (data: FieldValues) => {
     setMessage('');
 
     if (inputValidator()) {
@@ -76,7 +76,7 @@ export const ReceiptForm = () => {
       },
     };
 
-    const parsedData = Receipt1.parse(formatedData);
+    const parsedData = ReceiptZOD.parse(formatedData);
 
     const sendData = async () => {
       try {
@@ -95,8 +95,6 @@ export const ReceiptForm = () => {
 
     // Reset inputs
     clearInputs();
-
-    console.log(formatedData);
   };
 
   return (

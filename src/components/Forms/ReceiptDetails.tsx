@@ -5,9 +5,20 @@ import { updateRecord } from '../../services/updateRecord';
 import { useDataContext } from '../Context/DataContext';
 import { useNavigate } from 'react-router';
 import { Input } from '../../UI/Input';
-import './ReceiptDetails.scss';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
+import { z } from 'zod';
+import './ReceiptDetails.scss';
+
+const ReceiptZOD = z.object({
+  fields: z.object({
+    receipt_id: z.string(),
+    name: z.string().min(2),
+    email: z.string().email(),
+    treatment: z.string(),
+    price: z.string(),
+  }),
+});
 
 export const ReceiptDetails = ({ data }: any) => {
   const [receipt, setReceipt] = useState(data[0].fields);
@@ -26,6 +37,7 @@ export const ReceiptDetails = ({ data }: any) => {
       navigate('/receiptlist');
     } catch (error) {
       console.error(error);
+      setMessage('Something went wrong !');
     } finally {
       setLoading(false);
       setShowModal(true);
@@ -49,8 +61,11 @@ export const ReceiptDetails = ({ data }: any) => {
         price: receipt.price,
       },
     };
+
+    const parsedData = ReceiptZOD.parse(formatedData);
+
     try {
-      await updateRecord(receiptId, formatedData);
+      await updateRecord(receiptId, parsedData);
       setMessage('Receipt edit successful !');
     } catch (error) {
       console.error(error);
@@ -60,7 +75,7 @@ export const ReceiptDetails = ({ data }: any) => {
     }
   };
 
-  const onChangeHandler = (event: any, field: any) => {
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {
     setReceipt({
       ...receipt,
       [field]: event.target.value,

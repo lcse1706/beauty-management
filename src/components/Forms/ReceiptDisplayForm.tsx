@@ -2,6 +2,7 @@ import { Button } from '../../UI/Button';
 import { useNavigate } from 'react-router';
 import './ReceiptDisplayForm.scss';
 import { useDataContext } from '../Context/DataContext';
+import { z } from 'zod';
 
 type ReceiptDisplayProps = {
   data: {
@@ -17,23 +18,37 @@ type ReceiptDisplayProps = {
   };
 };
 
+const ReceiptDisplayZOD = z.object({
+  id: z.string(),
+  fields: z.object({
+    receipt_id: z.string(),
+    name: z.string().min(2),
+    email: z.string().email(),
+    treatment: z.string(),
+    price: z.string(),
+    date: z.string(),
+  }),
+});
+
 export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
   const navigate = useNavigate();
   const { setReceiptId } = useDataContext();
 
+  const parsedData = ReceiptDisplayZOD.parse(data);
+
   const goToDetails = () => {
-    setReceiptId(data.id);
-    navigate(`/receiptlist/${data.id}`);
+    setReceiptId(parsedData.id);
+    navigate(`/receiptlist/${parsedData.id}`);
   };
 
   return (
     <div className="details">
-      <p>{data.fields.receipt_id}</p>
-      <p>{data.fields.name}</p>
-      <p>{data.fields.email}</p>
-      <p>{data.fields.threatment}</p>
-      <p>{data.fields.price}</p>
-      <p>{data.fields.date}</p>
+      <p>{parsedData.fields.receipt_id}</p>
+      <p>{parsedData.fields.name}</p>
+      <p>{parsedData.fields.email}</p>
+      <p>{parsedData.fields.treatment}</p>
+      <p>{parsedData.fields.price}</p>
+      <p>{parsedData.fields.date}</p>
       <Button type="button" onClick={goToDetails}>
         details
       </Button>
