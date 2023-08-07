@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../UI/Button';
+import { Button } from '../../stories/Button';
 import { deleteReceipt } from '../../services/deleteReceipt';
 import { updateRecord } from '../../services/updateRecord';
 import { useDataContext } from '../Context/DataContext';
@@ -9,7 +9,6 @@ import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
 import { z } from 'zod';
 import './ReceiptDetails.scss';
-import { Primary, Warning } from '../../stories/Button.stories';
 
 const ReceiptZOD = z.object({
   fields: z.object({
@@ -131,17 +130,11 @@ export const ReceiptDetails = ({ data }: any) => {
   const buttons = (
     <div>
       {isEditing ? (
-        <Button type="button" onClick={saveHandler}>
-          Save
-        </Button>
+        <Button label="Save" onClick={saveHandler} primary />
       ) : (
-        <Button type="button" onClick={editHandler}>
-          Edit
-        </Button>
+        <Button label="Edit" onClick={editHandler} primary />
       )}
-      <Button className="bg-red-500 hover:bg-red-700" type="button" onClick={deleteHandler}>
-        Delete
-      </Button>
+      <Button backgroundColor="red" label="Delete now" onClick={deleteHandler} primary />
     </div>
   );
 
