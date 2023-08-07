@@ -12,6 +12,8 @@ const ReceiptZOD = z.object({
   }),
 });
 
+const ReceiptArrayZOD = z.array(ReceiptZOD);
+
 export const fetchReceipts = async () => {
   const response: Response = await fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
     headers: {
@@ -21,7 +23,7 @@ export const fetchReceipts = async () => {
 
   if (response.ok) {
     const data = await response.json();
-    return ReceiptZOD.parse(data.records);
+    return ReceiptArrayZOD.parse(data.records);
   }
 
   throw new Error('Not working.');

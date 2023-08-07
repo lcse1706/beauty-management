@@ -11,8 +11,8 @@ type ReceiptDisplayProps = {
       receipt_id: string;
       name: string;
       email: string;
-      threatment: string;
-      price: number;
+      treatment: string;
+      price: string;
       date: string;
     };
   };
