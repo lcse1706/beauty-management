@@ -130,11 +130,11 @@ export const ReceiptDetails = ({ data }: any) => {
   const buttons = (
     <div>
       {isEditing ? (
-        <Button label="Save" onClick={saveHandler} primary />
+        <Button backgroundColor="green" label="Save" onClick={saveHandler} primary />
       ) : (
-        <Button label="Edit" onClick={editHandler} primary />
+        <Button backgroundColor="#009afa" label="Edit" onClick={editHandler} primary />
       )}
-      <Button backgroundColor="red" label="Delete now" onClick={deleteHandler} primary />
+      <Button backgroundColor="red" label="Delete" onClick={deleteHandler} primary />
     </div>
   );
 

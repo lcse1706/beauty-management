@@ -35,24 +35,25 @@ export const Secondary: Story = {
   },
 };
 
-export const Large: Story = {
+export const Edit: Story = {
   args: {
-    size: 'large',
-    label: 'Button',
+    primary: true,
+    label: 'Edit',
   },
 };
 
-export const Small: Story = {
+export const Save: Story = {
   args: {
-    size: 'small',
-    label: 'Button',
+    primary: true,
+    label: 'Save',
+    backgroundColor: 'green',
   },
 };
 
 export const Warning: Story = {
   args: {
     primary: true,
-    label: 'Delete now',
+    label: 'Delete',
     backgroundColor: 'red',
   },
 };
