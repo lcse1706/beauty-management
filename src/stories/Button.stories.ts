@@ -14,7 +14,7 @@ const meta = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    // backgroundColor: { control: 'color' },
   },
 } satisfies Meta<typeof Button>;
 
@@ -46,14 +46,14 @@ export const Save: Story = {
   args: {
     primary: true,
     label: 'Save',
-    backgroundColor: 'green',
+    className: 'bg-green-500 hover:bg-green-700',
   },
 };
 
-export const Warning: Story = {
+export const Delete: Story = {
   args: {
     primary: true,
     label: 'Delete',
-    backgroundColor: 'red',
+    className: 'bg-red-500 hover:bg-red-700',
   },
 };
