@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from './Button';
+import { Input } from './Input';
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'UI/Button',
-  component: Button,
+  title: 'UI/Input',
+  component: Input,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
@@ -16,7 +15,7 @@ const meta = {
   argTypes: {
     // backgroundColor: { control: 'color' },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -24,25 +23,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: 'Default',
-  },
-};
-
-export const Edit: Story = {
-  args: {
-    label: 'Edit',
-  },
-};
-
-export const Save: Story = {
-  args: {
-    label: 'Save',
-    className: 'bg-green-500 hover:bg-green-700',
-  },
-};
-
-export const Delete: Story = {
-  args: {
-    label: 'Delete',
-    className: 'bg-red-500 hover:bg-red-700',
+    type: 'text',
   },
 };

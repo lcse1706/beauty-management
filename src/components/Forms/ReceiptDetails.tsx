@@ -4,7 +4,7 @@ import { deleteReceipt } from '../../services/deleteReceipt';
 import { updateRecord } from '../../services/updateRecord';
 import { useDataContext } from '../Context/DataContext';
 import { useNavigate } from 'react-router';
-import { Input } from '../../UI/Input';
+import { Input } from '../../stories/Input';
 import { Loader } from '../../UI/Loader';
 import { useModalContext } from '../Context/ModalContext';
 import { z } from 'zod';

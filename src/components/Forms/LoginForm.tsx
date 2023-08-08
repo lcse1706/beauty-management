@@ -1,5 +1,5 @@
 import { FormEventHandler, useRef, useState } from 'react';
-import { Input } from '../../UI/Input';
+import { Input } from '../../stories/Input';
 import { Button } from '../../stories/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../Context/AuthContext';

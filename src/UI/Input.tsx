@@ -10,6 +10,8 @@ interface InputProps {
   register?: any;
 }
 
+//TODO Do usuniecia, jest w storkach
+
 export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
   return (
     <div className={`input ${props.className}`}>

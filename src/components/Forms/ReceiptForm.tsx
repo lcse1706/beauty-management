@@ -1,5 +1,5 @@
 import { useRef, FormEventHandler } from 'react';
-import { Input } from '../../UI/Input';
+import { Input } from '../../stories/Input';
 import { Select } from '../../UI/Select';
 import { Button } from '../../stories/Button';
 import { useDataContext } from '../Context/DataContext';
