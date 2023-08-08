@@ -1,4 +1,4 @@
-import { Button } from '../../UI/Button';
+import { Button } from '../../stories/Button';
 import { useNavigate } from 'react-router';
 import './ReceiptDisplayForm.scss';
 import { useDataContext } from '../Context/DataContext';
@@ -49,9 +49,7 @@ export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
       <p>{parsedData.fields.treatment}</p>
       <p>{parsedData.fields.price}</p>
       <p>{parsedData.fields.date}</p>
-      <Button type="button" onClick={goToDetails}>
-        details
-      </Button>
+      <Button label="details" onClick={goToDetails} />
     </div>
   );
 };

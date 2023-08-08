@@ -1,7 +1,7 @@
 import { useRef, FormEventHandler } from 'react';
 import { Input } from '../../UI/Input';
 import { Select } from '../../UI/Select';
-import { Button } from '../../UI/Button';
+import { Button } from '../../stories/Button';
 import { useDataContext } from '../Context/DataContext';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
@@ -116,13 +116,7 @@ export const ReceiptForm = () => {
         {errors.treatment && <span className="error-message">Please select a treatment.</span>}
         <Input label="Price:" type="number" register={register('price', { required: true, maxLength: 5 })} />
         {errors.price && <span className="error-message">Please enter a valid price.</span>}
-        {loading ? (
-          <Loader />
-        ) : (
-          <Button className="button is-rounded" type="submit">
-            Send
-          </Button>
-        )}
+        {loading ? <Loader /> : <Button label="Send" type="submit" />}
       </form>
     </div>
   );

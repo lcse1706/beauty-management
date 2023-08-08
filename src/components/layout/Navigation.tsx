@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import { Button } from '../../../UI/Button';
-import { useAuthContext } from '../../Context/AuthContext';
+import { Button } from '../../stories/Button';
+import { useAuthContext } from '../Context/AuthContext';
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
@@ -24,9 +24,7 @@ export const Navigation: React.FC = () => {
             <NavLink to="/receiptlist">Receipts</NavLink>
           </li>
           <li>
-            <Button type="button" className="button is-small is-rounded" onClick={logoutHandler}>
-              Logout
-            </Button>
+            <Button label="Log Out" onClick={logoutHandler} />
           </li>
         </ul>
       )}

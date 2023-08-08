@@ -1,6 +1,6 @@
 import { FormEventHandler, useRef, useState } from 'react';
 import { Input } from '../../UI/Input';
-import { Button } from '../../UI/Button';
+import { Button } from '../../stories/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../Context/AuthContext';
 import './LoginForm.scss';
@@ -78,9 +78,7 @@ export const LoginForm = () => {
         <Input ref={passRef} label="Password" type="password" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
-        <Button className="button is-rounded" type="submit">
-          Login
-        </Button>
+        <Button label="Log In" type="submit" />
       </form>
     </div>
   );

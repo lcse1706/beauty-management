@@ -21,30 +21,20 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    primary: true,
-    label: 'Button',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    label: 'Button',
+    label: 'Default',
   },
 };
 
 export const Edit: Story = {
   args: {
-    primary: true,
     label: 'Edit',
   },
 };
 
 export const Save: Story = {
   args: {
-    primary: true,
     label: 'Save',
     className: 'bg-green-500 hover:bg-green-700',
   },
@@ -52,7 +42,6 @@ export const Save: Story = {
 
 export const Delete: Story = {
   args: {
-    primary: true,
     label: 'Delete',
     className: 'bg-red-500 hover:bg-red-700',
   },

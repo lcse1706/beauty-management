@@ -1,12 +1,14 @@
-import { Navigation } from './navigation/Navigation';
+import { Navigation } from './Navigation';
 import './MainHeader.scss';
+import { Header } from '../../stories/Header';
+
+//TODO Do usuniecia, jest w storkach
 
 const MainHeader = () => {
   return (
-    <header className="mainNavHeader">
-      <h1>Beauty Management</h1>
+    <Header>
       <Navigation />
-    </header>
+    </Header>
   );
 };
 
