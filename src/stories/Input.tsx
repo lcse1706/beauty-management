@@ -1,16 +1,16 @@
-import { ChangeEvent, forwardRef, Ref } from 'react';
+import { ChangeEvent, ComponentProps, forwardRef, Ref } from 'react';
 import './input.scss';
 
 interface InputProps {
   label: string;
   type: string;
-  className?: string;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
   register?: any;
+  // className?: string;
+  // onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  // value?: string;
 }
 
-export const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
+export const Input = forwardRef((props: ComponentProps<'input'> & InputProps, ref: Ref<HTMLInputElement>) => {
   return (
     <div className={`flex flex-col space-y-2 ${props.className} input`}>
       <label className="text-sm font-medium text-gray-300">{props.label}</label>
