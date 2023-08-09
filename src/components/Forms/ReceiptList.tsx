@@ -27,9 +27,11 @@ export const ReceiptList = () => {
     fetchData();
   }, []);
 
+  const sortedReceipts = [...receipts].sort((a, b) => a.fields.receipt_id.localeCompare(b.fields.receipt_id));
+
   return (
     <div className="receiptList">
-      {loading ? <Loader /> : receipts.map((receipt) => <ReceiptDisplayForm key={receipt.id} data={receipt} />)}
+      {loading ? <Loader /> : sortedReceipts.map((receipt) => <ReceiptDisplayForm key={receipt.id} data={receipt} />)}
     </div>
   );
 };
