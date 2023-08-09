@@ -5,7 +5,7 @@ import { Button } from '../../stories/Button';
 import { useDataContext } from '../Context/DataContext';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../UI/Loader';
-import { useModalContext } from '../Context/ModalContext';
+import { usePopupContext } from '../Context/PopupContext';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import './ReceiptForm.scss';
@@ -40,7 +40,7 @@ export const ReceiptForm = () => {
     reset,
   } = useForm();
   const { receipts, setReceipts, setLoading, loading } = useDataContext();
-  const { setShowModal, setMessage } = useModalContext();
+  const { setShowPopup, setMessage } = usePopupContext();
 
   const clearInputs = () => {
     reset({
@@ -64,19 +64,45 @@ export const ReceiptForm = () => {
     setMessage('');
 
     if (inputValidator()) {
-      setShowModal(true);
+      setShowPopup(true);
       return;
     }
 
-    const formatedData: Receipt = {
-      fields: {
-        receipt_id: receipts.length + 1 + '/' + new Date().getFullYear(),
-        name: data.name,
-        email: data.email,
-        treatment: data.treatment,
-        price: data.price,
-      },
-    };
+    let formatedData;
+
+    if (receipts.length !== 0) {
+      const sortedReceipts = [...receipts].sort(
+        (a, b) => parseInt(a.fields.receipt_id) - parseInt(b.fields.receipt_id)
+      );
+      let getLastNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[0];
+      const getMonthNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[1];
+      console.log(getLastNumber);
+      console.log(getMonthNumber);
+
+      if (+getMonthNumber === new Date().getMonth() + 1) {
+        getLastNumber = '0';
+      }
+
+      formatedData = {
+        fields: {
+          receipt_id: +getLastNumber + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
+          name: data.name,
+          email: data.email,
+          treatment: data.treatment,
+          price: data.price,
+        },
+      };
+    } else {
+      formatedData = {
+        fields: {
+          receipt_id: '1/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
+          name: data.name,
+          email: data.email,
+          treatment: data.treatment,
+          price: data.price,
+        },
+      };
+    }
 
     const parsedData = ReceiptZOD.parse(formatedData);
 
@@ -92,7 +118,7 @@ export const ReceiptForm = () => {
         console.error(error);
       } finally {
         setLoading(false);
-        setShowModal(true);
+        setShowPopup(true);
       }
     };
 
