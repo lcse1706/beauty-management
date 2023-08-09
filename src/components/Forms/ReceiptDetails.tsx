@@ -6,7 +6,7 @@ import { useDataContext } from '../Context/DataContext';
 import { useNavigate } from 'react-router';
 import { Input } from '../../stories/Input';
 import { Loader } from '../../UI/Loader';
-import { useModalContext } from '../Context/ModalContext';
+import { usePopupContext } from '../Context/PopupContext';
 import { z } from 'zod';
 import './ReceiptDetails.scss';
 
@@ -23,13 +23,18 @@ const ReceiptZOD = z.object({
 export const ReceiptDetails = ({ data }: any) => {
   const [receipt, setReceipt] = useState(data[0].fields);
   const { receiptId, loading, setLoading } = useDataContext();
-  const { setShowModal, setMessage } = useModalContext();
+  const { setShowPopup, setMessage } = usePopupContext();
 
   const navigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
 
   const deleteHandler = async () => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this receipt?');
+    if (!isConfirmed) {
+      return;
+    }
+
     setLoading(true);
     try {
       await deleteReceipt(receiptId);
@@ -40,7 +45,7 @@ export const ReceiptDetails = ({ data }: any) => {
       setMessage('Something went wrong !');
     } finally {
       setLoading(false);
-      setShowModal(true);
+      setShowPopup(true);
     }
   };
 
@@ -71,8 +76,12 @@ export const ReceiptDetails = ({ data }: any) => {
       console.error(error);
     } finally {
       setLoading(false);
-      setShowModal(true);
+      setShowPopup(true);
     }
+  };
+
+  const backHandler = () => {
+    navigate(-1);
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {
@@ -148,9 +157,12 @@ export const ReceiptDetails = ({ data }: any) => {
       {isEditing ? (
         <Button className="bg-green-500 hover:bg-green-700" label="Save" onClick={saveHandler} />
       ) : (
-        <Button label="Edit" onClick={editHandler} />
+        <>
+          <Button label="<<<" onClick={backHandler} />
+          <Button label="Edit" onClick={editHandler} />
+          <Button className="bg-red-500 hover:bg-red-700 my-2" label="Delete" onClick={deleteHandler} />
+        </>
       )}
-      <Button className="bg-red-500 hover:bg-red-700 my-2" label="Delete" onClick={deleteHandler} />
     </div>
   );
 
