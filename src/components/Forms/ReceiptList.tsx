@@ -27,7 +27,16 @@ export const ReceiptList = () => {
     fetchData();
   }, []);
 
-  const sortedReceipts = [...receipts].sort((a, b) => a.fields.receipt_id.localeCompare(b.fields.receipt_id));
+
+
+  const sortedReceipts = [...receipts].sort((a, b) => {
+    const [numberA, monthA, yearA] = a.fields.receipt_id.split('/').map((num) => parseInt(num));
+    const [numberB, monthB, yearB] = b.fields.receipt_id.split('/').map((num) => parseInt(num));
+
+    if (yearA !== yearB) return yearA - yearB;
+    if (monthA !== monthB) return monthA - monthB;
+    return numberA - numberB;
+  });
 
   return (
     <ul className="receiptList space-y-4 p-4 bg-gray-100 rounded-lg">
