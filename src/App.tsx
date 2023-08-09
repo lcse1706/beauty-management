@@ -7,8 +7,8 @@ import { DetailsPage } from './pages/DetailsPage';
 import { AuthProvider } from './components/Context/AuthContext';
 import { DataProvider } from './components/Context/DataContext';
 import PdfGenerator from './components/Forms/PdfForm';
-import { ModalProvider } from './components/Context/ModalContext';
-import { Modal } from './UI/Modal';
+import { PopupProvider } from './components/Context/PopupContext';
+import { Popup } from './UI/Popup';
 import './App.scss';
 // import { TestPage } from './pages/TestPage';
 
@@ -39,10 +39,10 @@ const App = () => {
   return (
     <AuthProvider>
       <DataProvider>
-        <ModalProvider>
+        <PopupProvider>
           <RouterProvider router={router} />;
-          <Modal />
-        </ModalProvider>
+          <Popup />
+        </PopupProvider>
       </DataProvider>
     </AuthProvider>
   );

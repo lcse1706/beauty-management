@@ -30,6 +30,8 @@ export const ReceiptDetails = ({ data }: any) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const deleteHandler = async () => {
+    //TODO nicer modal for confirmation
+
     const isConfirmed = window.confirm('Are you sure you want to delete this receipt?');
     if (!isConfirmed) {
       return;
