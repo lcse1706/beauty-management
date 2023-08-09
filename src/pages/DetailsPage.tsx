@@ -11,7 +11,7 @@ export const DetailsPage = () => {
 
   return (
     <div>
-      <h2 className="text-xl color-black font-bold mb-4 text-center text-white">Details: </h2>
+      <h2 className="text-xl color-black font-bold mb-4 text-center text-white">Details</h2>
       <ReceiptDetails data={getData()} />
     </div>
   );
