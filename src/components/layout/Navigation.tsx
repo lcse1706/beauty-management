@@ -13,15 +13,21 @@ export const Navigation: React.FC = () => {
     navigate('/');
   };
 
+  const classes = 'text-white hover:text-gray-400 font-medium';
+
   return (
-    <nav className="mainNav">
+    <nav className="flex flex-row">
       {isLogged && (
-        <ul className="menu-list">
-          <li>
-            <NavLink to="/sendreceipt">Send Receipt</NavLink>
+        <ul className="flex flex-row items-center space-x-5  ">
+          <li className="">
+            <NavLink to="/sendreceipt" className={({ isActive }) => `${classes} ${isActive ? 'active-class' : ''}`}>
+              Send Receipt
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/receiptlist">Receipts</NavLink>
+            <NavLink to="/receiptlist" className={({ isActive }) => `${classes} ${isActive ? 'active-class' : ''}`}>
+              Receipts
+            </NavLink>
           </li>
           <li>
             <Button label="Log Out" onClick={logoutHandler} />

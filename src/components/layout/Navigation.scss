@@ -1,17 +1,22 @@
-.mainNav {
-  ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-  }
+// .mainNav {
+//   ul {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+//     list-style: none;
+//   }
 
-  li {
-    margin: 0 5px;
-  }
+//   li {
+//     margin: 0 5px;
+//   }
 
-  a {
-    color: white;
-  }
+//   a {
+//     color: white;
+//   }
+// }
+
+.active-class {
+  // color: rgba(156, 163, 175, var(--tw-text-opacity)) !important;
+  border-bottom: 1px solid rgba(156, 163, 175, var(--tw-text-opacity));
 }
