@@ -42,14 +42,18 @@ export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
   };
 
   return (
-    <div className="details">
-      <p>{parsedData.fields.receipt_id}</p>
-      <p>{parsedData.fields.name}</p>
-      <p>{parsedData.fields.email}</p>
-      <p>{parsedData.fields.treatment}</p>
-      <p>{parsedData.fields.price} kr</p>
-      <p>{parsedData.fields.date}</p>
-      <Button label="details" onClick={goToDetails} />
-    </div>
+    <li className="details bg-white p-4 rounded-lg shadow-md border border-gray-200">
+      <p className="text-gray-600">{parsedData.fields.receipt_id}</p>
+      <p className="text-gray-800 font-medium">{parsedData.fields.name}</p>
+      <p className="text-gray-600">{parsedData.fields.email}</p>
+      <p className="text-gray-600">{parsedData.fields.treatment}</p>
+      <p className="text-gray-800 font-bold">{parsedData.fields.price} kr</p>
+      <p className="text-gray-600">{parsedData.fields.date}</p>
+      <Button
+        label="details"
+        onClick={goToDetails}
+        className="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      />
+    </li>
   );
 };

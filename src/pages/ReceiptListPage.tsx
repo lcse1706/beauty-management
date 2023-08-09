@@ -14,7 +14,7 @@ export const ReceiptListPage = () => {
   }, []);
   return (
     <div>
-      <h2>Receipts</h2>
+      <h2 className="text-xl color-black font-bold mb-4 text-center text-white">Receipts</h2>
       <ReceiptList />
     </div>
   );

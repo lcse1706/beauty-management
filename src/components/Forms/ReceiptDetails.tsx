@@ -116,14 +116,30 @@ export const ReceiptDetails = ({ data }: any) => {
       ></Input>
     </div>
   );
-
   const paragraphs = (
-    <div>
-      <p>Receipt number: {receipt.receipt_id}</p>
-      <p>Name: {receipt.name}</p>
-      <p>Email: {receipt.email}</p>
-      <p>Treatment: {receipt.treatment}</p>
-      <p>Price: {receipt.price}</p>
+    <div className="max-w-md mx-auto p-5 bg-white rounded shadow-md border border-gray-200">
+      <h1 className="text-xl color-black font-bold mb-4 text-center text-gray-700">Customer Receipt</h1>
+      <hr className="mb-4" />
+      <div className="flex justify-between mb-2">
+        <span className="text-gray-700">Receipt number:</span>
+        <span className="text-gray-900">{receipt.receipt_id}</span>
+      </div>
+      <div className="flex justify-between mb-2">
+        <span className="text-gray-700">Name:</span>
+        <span className="text-gray-900">{receipt.name}</span>
+      </div>
+      <div className="flex justify-between mb-2">
+        <span className="text-gray-700">Email:</span>
+        <span className="text-gray-900">{receipt.email}</span>
+      </div>
+      <div className="flex justify-between mb-2">
+        <span className="text-gray-700">Treatment:</span>
+        <span className="text-gray-900">{receipt.treatment}</span>
+      </div>
+      <div className="flex justify-between mb-2">
+        <span className="text-gray-700 font-semibold">Price:</span>
+        <span className="text-gray-900 font-semibold">{receipt.price} kr</span>
+      </div>
     </div>
   );
 
@@ -134,7 +150,7 @@ export const ReceiptDetails = ({ data }: any) => {
       ) : (
         <Button label="Edit" onClick={editHandler} />
       )}
-      <Button className="bg-red-500 hover:bg-red-700" label="Delete" onClick={deleteHandler} />
+      <Button className="bg-red-500 hover:bg-red-700 my-2" label="Delete" onClick={deleteHandler} />
     </div>
   );
 
