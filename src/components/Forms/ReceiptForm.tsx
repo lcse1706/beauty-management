@@ -9,6 +9,8 @@ import { useModalContext } from '../Context/ModalContext';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import './ReceiptForm.scss';
+import { fetchReceipts } from '../../services/fetchReceipts';
+import { ReceiptList } from './ReceiptList';
 
 interface Receipt {
   fields: {
@@ -37,7 +39,7 @@ export const ReceiptForm = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const { receipts, setLoading, loading } = useDataContext();
+  const { receipts, setReceipts, setLoading, loading } = useDataContext();
   const { setShowModal, setMessage } = useModalContext();
 
   const clearInputs = () => {
@@ -83,6 +85,9 @@ export const ReceiptForm = () => {
         setLoading(true);
         await sendToAirtable(parsedData);
         setMessage('Receipt successfully added !');
+        const data = await fetchReceipts();
+        setReceipts(data);
+        console.log('Receipt Lists updated.');
       } catch (error) {
         console.error(error);
       } finally {
