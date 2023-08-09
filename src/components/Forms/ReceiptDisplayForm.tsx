@@ -47,7 +47,7 @@ export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
       <p>{parsedData.fields.name}</p>
       <p>{parsedData.fields.email}</p>
       <p>{parsedData.fields.treatment}</p>
-      <p>{parsedData.fields.price}</p>
+      <p>{parsedData.fields.price} kr</p>
       <p>{parsedData.fields.date}</p>
       <Button label="details" onClick={goToDetails} />
     </div>
