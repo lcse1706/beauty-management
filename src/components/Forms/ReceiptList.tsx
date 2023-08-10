@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
 import { fetchReceipts } from '../../services/fetchReceipts';
-import { useDataContext } from '../Context/DataContext';
-import { Loader } from '../../UI/Loader';
+import { useDataContext } from '../context/DataContext';
+import { Loader } from '../../ui/Loader';
 import './ReceiptList.scss';
 
 export const ReceiptList = () => {

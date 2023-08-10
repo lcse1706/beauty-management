@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
-import { useAuthContext } from '../components/Context/AuthContext';
-import { ReceiptList } from '../components/Forms/ReceiptList';
+import { useAuthContext } from '../components/context/AuthContext';
+import { ReceiptList } from '../components/forms/ReceiptList';
 import { useEffect } from 'react';
 
 export const ReceiptListPage = () => {

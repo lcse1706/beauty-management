@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Popup.scss';
-import { usePopupContext } from '../components/Context/PopupContext';
+import { usePopupContext } from '../components/context/PopupContext';
 
 export const Popup = () => {
   const { showPopup, setShowPopup, message } = usePopupContext();

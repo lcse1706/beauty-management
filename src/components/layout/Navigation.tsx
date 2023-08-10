@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from 'react-router-dom';
 import { Button } from '../../stories/Button';
-import { useAuthContext } from '../Context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {

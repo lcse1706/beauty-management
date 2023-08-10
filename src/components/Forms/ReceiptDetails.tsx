@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Button } from '../../stories/Button';
 import { deleteReceipt } from '../../services/deleteReceipt';
 import { updateRecord } from '../../services/updateRecord';
-import { useDataContext } from '../Context/DataContext';
+import { useDataContext } from '../context/DataContext';
 import { useNavigate } from 'react-router';
 import { Input } from '../../stories/Input';
-import { Loader } from '../../UI/Loader';
-import { usePopupContext } from '../Context/PopupContext';
+import { Loader } from '../../ui/Loader';
+import { usePopupContext } from '../context/PopupContext';
 import { z } from 'zod';
 import './ReceiptDetails.scss';
 
@@ -31,7 +31,6 @@ export const ReceiptDetails = ({ data }: any) => {
 
   const deleteHandler = async () => {
     //TODO nicer modal for confirmation
-
     const isConfirmed = window.confirm('Are you sure you want to delete this receipt?');
     if (!isConfirmed) {
       return;

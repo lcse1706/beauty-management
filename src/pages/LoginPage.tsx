@@ -1,4 +1,4 @@
-import { LoginForm } from '../components/Forms/LoginForm';
+import { LoginForm } from '../components/forms/LoginForm';
 
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';

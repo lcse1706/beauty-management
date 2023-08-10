@@ -4,11 +4,11 @@ import { ReceiptPage } from './pages/ReceiptPage';
 import { LoginPage } from './pages/LoginPage';
 import { ReceiptListPage } from './pages/ReceiptListPage';
 import { DetailsPage } from './pages/DetailsPage';
-import { AuthProvider } from './components/Context/AuthContext';
-import { DataProvider } from './components/Context/DataContext';
-import PdfGenerator from './components/Forms/PdfForm';
-import { PopupProvider } from './components/Context/PopupContext';
-import { Popup } from './UI/Popup';
+import { AuthProvider } from './components/context/AuthContext';
+import { DataProvider } from './components/context/DataContext';
+import PdfGenerator from './components/forms/PdfForm';
+import { PopupProvider } from './components/context/PopupContext';
+import { Popup } from './ui/Popup';
 import './App.scss';
 
 const router = createBrowserRouter([

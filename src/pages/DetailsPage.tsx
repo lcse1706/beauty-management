@@ -1,5 +1,5 @@
-import { useDataContext } from '../components/Context/DataContext';
-import { ReceiptDetails } from '../components/Forms/ReceiptDetails';
+import { useDataContext } from '../components/context/DataContext';
+import { ReceiptDetails } from '../components/forms/ReceiptDetails';
 
 export const DetailsPage = () => {
   const { receiptId, receipts } = useDataContext();
