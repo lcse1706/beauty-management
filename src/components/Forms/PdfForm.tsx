@@ -1,6 +1,5 @@
 import React from 'react';
 import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import { useDataContext } from '../Context/DataContext';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 interface Receipt {
-  data: {
+  fields: {
     receipt_id: string;
     name: string;
     email: string;
@@ -56,8 +55,7 @@ interface Receipt {
 }
 
 const PdfGenerator = () => {
-  const pdfData = JSON.parse(localStorage.getItem('pdfData') ?? '{}');
-  console.log(pdfData);
+  const pdfData: Receipt = JSON.parse(localStorage.getItem('pdfData') ?? '{}');
   return (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
       <Document>
