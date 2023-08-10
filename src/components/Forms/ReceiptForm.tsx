@@ -8,9 +8,8 @@ import { Loader } from '../../UI/Loader';
 import { usePopupContext } from '../Context/PopupContext';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import './ReceiptForm.scss';
 import { fetchReceipts } from '../../services/fetchReceipts';
-import { ReceiptList } from './ReceiptList';
+import './ReceiptForm.scss';
 
 interface Receipt {
   fields: {
@@ -68,18 +67,25 @@ export const ReceiptForm = () => {
       return;
     }
 
-    let formatedData;
+    let formatedData: Receipt;
 
     if (receipts.length !== 0) {
-      const sortedReceipts = [...receipts].sort(
-        (a, b) => parseInt(a.fields.receipt_id) - parseInt(b.fields.receipt_id)
-      );
+      //TOASK Sorting receits in order, same function as in ReceiptList - put it outside ?
+
+      const sortedReceipts = [...receipts].sort((a, b) => {
+        const [numberA, monthA, yearA] = a.fields.receipt_id.split('/').map((num) => parseInt(num));
+        const [numberB, monthB, yearB] = b.fields.receipt_id.split('/').map((num) => parseInt(num));
+        if (yearA !== yearB) return yearA - yearB;
+        if (monthA !== monthB) return monthA - monthB;
+        return numberA - numberB;
+      });
+
       let getLastNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[0];
       const getMonthNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[1];
-      console.log(getLastNumber);
+
       console.log(getMonthNumber);
 
-      if (+getMonthNumber === new Date().getMonth() + 1) {
+      if (+getMonthNumber !== new Date().getMonth() + 1) {
         getLastNumber = '0';
       }
 
@@ -123,6 +129,10 @@ export const ReceiptForm = () => {
     };
 
     sendData();
+
+    //Set data to PDF Generator and open new tab with generated PDF
+    localStorage.setItem('pdfData', JSON.stringify(parsedData));
+    // window.open('/pdf', '_blank');
 
     // Reset inputs
     clearInputs();

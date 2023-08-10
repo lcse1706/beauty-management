@@ -1,15 +1,47 @@
 import React from 'react';
 import { PDFViewer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { useDataContext } from '../Context/DataContext';
 
 const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: '20pt',
   },
   section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
+    backgroundColor: '#FFFFFF',
+    border: '1pt solid #585757',
+    borderRadius: '5pt',
+    padding: '20pt',
+    width: '500pt',
+  },
+  title: {
+    fontSize: '18pt',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: '10pt',
+    color: '#4A4A4A',
+  },
+  line: {
+    borderBottom: '1pt solid #585757',
+    marginBottom: '10pt',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: '6pt',
+  },
+  label: {
+    color: '#4A4A4A',
+  },
+  value: {
+    color: '#333333',
+  },
+  boldValue: {
+    color: '#333333',
+    fontWeight: 'bold',
   },
 });
 
@@ -23,22 +55,40 @@ interface Receipt {
   };
 }
 
-const PdfGenerator = ({ data }: Receipt) => {
+const PdfGenerator = () => {
+  const pdfData = JSON.parse(localStorage.getItem('pdfData') ?? '{}');
+  console.log(pdfData);
   return (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
       <Document>
-        <Page size="A4" style={styles.page}>
+        <Page size="A4" style={styles.container}>
           <View style={styles.section}>
-            <Text>{data.receipt_id}</Text>
-            <Text>{data.name}</Text>
-            <Text>{data.email}</Text>
-            <Text>{data.treatment}</Text>
-            <Text>{data.price}</Text>
+            <Text style={styles.title}>Customer Receipt</Text>
+            <View style={styles.line}></View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Receipt number:</Text>
+              <Text style={styles.value}>{pdfData.fields.receipt_id}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Name:</Text>
+              <Text style={styles.value}>{pdfData.fields.name}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Email:</Text>
+              <Text style={styles.value}>{pdfData.fields.email}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Treatment:</Text>
+              <Text style={styles.value}>{pdfData.fields.treatment}</Text>
+            </View>
+            <View style={styles.row}>
+              <Text style={styles.label}>Price:</Text>
+              <Text style={styles.boldValue}>{pdfData.fields.price} kr</Text>
+            </View>
           </View>
         </Page>
       </Document>
     </PDFViewer>
   );
 };
-
 export default PdfGenerator;
