@@ -7,7 +7,7 @@ interface ButtonProps {
   // onClick?: () => void;
 }
 
-//TODO Do usuniecia, jest w storkach
+//TOASK Do usuniecia, jest w storkach
 export const Button = ({ type, className, onClick, children, ...rest }: ComponentProps<'button'> & ButtonProps) => {
   const classes = `bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-full ${className}`;
 

@@ -10,15 +10,6 @@ import PdfGenerator from './components/Forms/PdfForm';
 import { PopupProvider } from './components/Context/PopupContext';
 import { Popup } from './UI/Popup';
 import './App.scss';
-// import { TestPage } from './pages/TestPage';
-
-const data = {
-  receipt_id: '1/2023',
-  name: 'Lukasz Czarniecki',
-  treatment: 'Brwi',
-  email: 'lukasz@email.com',
-  price: '500',
-};
 
 const router = createBrowserRouter([
   {
@@ -29,8 +20,7 @@ const router = createBrowserRouter([
       { path: 'sendreceipt', element: <ReceiptPage /> },
       { path: 'receiptlist', element: <ReceiptListPage /> },
       { path: 'receiptlist/:receiptid', element: <DetailsPage /> },
-      { path: 'pdf', element: <PdfGenerator data={data} /> },
-      // { path: 'test', element: <TestPage /> },
+      { path: 'pdf', element: <PdfGenerator /> },
     ],
   },
 ]);

@@ -27,12 +27,10 @@ export const ReceiptList = () => {
     fetchData();
   }, []);
 
-
-
+  //Sorting receits in order
   const sortedReceipts = [...receipts].sort((a, b) => {
     const [numberA, monthA, yearA] = a.fields.receipt_id.split('/').map((num) => parseInt(num));
     const [numberB, monthB, yearB] = b.fields.receipt_id.split('/').map((num) => parseInt(num));
-
     if (yearA !== yearB) return yearA - yearB;
     if (monthA !== monthB) return monthA - monthB;
     return numberA - numberB;

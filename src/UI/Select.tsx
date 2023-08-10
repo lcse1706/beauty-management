@@ -7,7 +7,7 @@ interface SelectProps {
   register?: any;
 }
 
-//TODO Do usuniecia, jest w storkach
+//TOASK Do usuniecia, jest w storkach
 
 export const Select = forwardRef((props: SelectProps, ref: Ref<HTMLSelectElement>) => {
   const options = props.options.map((option) => (
