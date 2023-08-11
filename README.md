@@ -7,6 +7,7 @@
 <h3>Used Technologies:</h3>
 
 - nextJS
+- Typescript
 - react
 - react-router-dom v6
 - react-hook-form
