@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Button } from '../../stories/Button';
+import { Button } from '../../ui/Button';
 import { deleteReceipt } from '../../services/deleteReceipt';
 import { updateRecord } from '../../services/updateRecord';
 import { useDataContext } from '../context/DataContext';
 import { useNavigate } from 'react-router';
-import { Input } from '../../stories/Input';
+import { Input } from '../../ui/Input';
 import { Loader } from '../../ui/Loader';
 import { usePopupContext } from '../context/PopupContext';
 import { z } from 'zod';

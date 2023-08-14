@@ -1,4 +1,4 @@
-import { Button } from '../../stories/Button';
+import { Button } from '../../ui/Button';
 import { useNavigate } from 'react-router';
 import './ReceiptDisplayForm.scss';
 import { useDataContext } from '../context/DataContext';

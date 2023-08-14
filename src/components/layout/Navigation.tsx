@@ -1,5 +1,5 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import { Button } from '../../stories/Button';
+import { Button } from '../../ui/Button';
 import { useAuthContext } from '../context/AuthContext';
 import './Navigation.scss';
 

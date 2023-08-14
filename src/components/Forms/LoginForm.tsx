@@ -1,6 +1,6 @@
 import { FormEventHandler, useRef, useState } from 'react';
-import { Input } from '../../stories/Input';
-import { Button } from '../../stories/Button';
+import { Input } from '../../ui/Input';
+import { Button } from '../../ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import './LoginForm.scss';

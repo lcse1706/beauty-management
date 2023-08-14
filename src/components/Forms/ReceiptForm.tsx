@@ -1,7 +1,7 @@
 import { useRef, FormEventHandler } from 'react';
-import { Input } from '../../stories/Input';
-import { Select } from '../../stories/Select';
-import { Button } from '../../stories/Button';
+import { Input } from '../../ui/Input';
+import { Select } from '../../ui/Select';
+import { Button } from '../../ui/Button';
 import { useDataContext } from '../context/DataContext';
 import { sendToAirtable } from '../../services/sendToAirtable';
 import { Loader } from '../../ui/Loader';
