@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
-import { fetchReceipts } from '../../services/fetchReceipts';
-import { useDataContext } from '../context/DataContext';
-import { Loader } from '../../ui/Loader';
+import { fetchReceipts } from '../../services/receipts';
+import { useDataContext } from '../../context/DataContext';
+import { Loader } from '../ui';
+import { sortReceipts } from '../../utils/sortReceipts';
 import './ReceiptList.scss';
 
 export const ReceiptList = () => {
@@ -27,14 +28,7 @@ export const ReceiptList = () => {
     fetchData();
   }, []);
 
-  //Sorting receits in order
-  const sortedReceipts = [...receipts].sort((a, b) => {
-    const [numberA, monthA, yearA] = a.fields.receipt_id.split('/').map((num) => parseInt(num));
-    const [numberB, monthB, yearB] = b.fields.receipt_id.split('/').map((num) => parseInt(num));
-    if (yearA !== yearB) return yearA - yearB;
-    if (monthA !== monthB) return monthA - monthB;
-    return numberA - numberB;
-  });
+  const sortedReceipts = sortReceipts(receipts);
 
   return (
     <ul className="receiptList space-y-4 p-4 bg-gray-100 rounded-lg">

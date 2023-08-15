@@ -1,24 +1,11 @@
 import { useState } from 'react';
-import { Button } from '../../ui/Button';
-import { deleteReceipt } from '../../services/deleteReceipt';
-import { updateRecord } from '../../services/updateRecord';
-import { useDataContext } from '../context/DataContext';
+import { Button, Input, Loader } from '../ui';
+import { updateRecord, deleteReceipt } from '../../services/receipts';
+import { useDataContext } from '../../context/DataContext';
 import { useNavigate } from 'react-router';
-import { Input } from '../../ui/Input';
-import { Loader } from '../../ui/Loader';
-import { usePopupContext } from '../context/PopupContext';
+import { usePopupContext } from '../../context/PopupContext';
 import { z } from 'zod';
 import './ReceiptDetails.scss';
-
-const ReceiptZOD = z.object({
-  fields: z.object({
-    receipt_id: z.string(),
-    name: z.string().min(2),
-    email: z.string().email(),
-    treatment: z.string(),
-    price: z.string(),
-  }),
-});
 
 export const ReceiptDetails = ({ data }: any) => {
   const [receipt, setReceipt] = useState(data[0].fields);
@@ -58,20 +45,8 @@ export const ReceiptDetails = ({ data }: any) => {
     setIsEditing(false);
     setLoading(true);
 
-    const formatedData = {
-      fields: {
-        name: receipt.name,
-        receipt_id: receipt.receipt_id,
-        treatment: receipt.treatment,
-        email: receipt.email,
-        price: receipt.price,
-      },
-    };
-
-    const parsedData = ReceiptZOD.parse(formatedData);
-
     try {
-      await updateRecord(receiptId, parsedData);
+      await updateRecord(receiptId, receipt);
       setMessage('Receipt edit successful !');
     } catch (error) {
       console.error(error);

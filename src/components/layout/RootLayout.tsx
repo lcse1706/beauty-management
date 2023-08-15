@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../../ui/Header';
+import { Header } from '../ui';
 import { Navigation } from './Navigation';
 
 export const RootLayout = () => {

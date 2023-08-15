@@ -1,6 +1,5 @@
 import './Loader.scss';
 
-//TODO do wrzucenia w storke
 export const Loader = () => {
   return (
     <div className="loadingio-spinner-spinner-krznzwxcko">

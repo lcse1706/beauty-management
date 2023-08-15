@@ -45,17 +45,16 @@ const styles = StyleSheet.create({
 });
 
 interface Receipt {
-  fields: {
-    receipt_id: string;
-    name: string;
-    email: string;
-    treatment: string;
-    price: string;
-  };
+  receipt_id: string;
+  name: string;
+  email: string;
+  treatment: string;
+  price: string;
 }
 
 const PdfGenerator = () => {
   const pdfData: Receipt = JSON.parse(localStorage.getItem('pdfData') ?? '{}');
+
   return (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
       <Document>
@@ -65,23 +64,23 @@ const PdfGenerator = () => {
             <View style={styles.line}></View>
             <View style={styles.row}>
               <Text style={styles.label}>Receipt number:</Text>
-              <Text style={styles.value}>{pdfData.fields.receipt_id}</Text>
+              <Text style={styles.value}>{pdfData.receipt_id}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Name:</Text>
-              <Text style={styles.value}>{pdfData.fields.name}</Text>
+              <Text style={styles.value}>{pdfData.name}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Email:</Text>
-              <Text style={styles.value}>{pdfData.fields.email}</Text>
+              <Text style={styles.value}>{pdfData.email}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Treatment:</Text>
-              <Text style={styles.value}>{pdfData.fields.treatment}</Text>
+              <Text style={styles.value}>{pdfData.treatment}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Price:</Text>
-              <Text style={styles.boldValue}>{pdfData.fields.price} kr</Text>
+              <Text style={styles.boldValue}>{pdfData.price} kr</Text>
             </View>
           </View>
         </Page>

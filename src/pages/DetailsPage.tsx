@@ -1,4 +1,4 @@
-import { useDataContext } from '../components/context/DataContext';
+import { useDataContext } from '../context/DataContext';
 import { ReceiptDetails } from '../components/forms/ReceiptDetails';
 
 export const DetailsPage = () => {

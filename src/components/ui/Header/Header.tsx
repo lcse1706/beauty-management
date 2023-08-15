@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import logo from './../components/layout/diamentnobgwhite.png';
+import logo from '../../layout/diamentnobgwhite.png';
 import './header.css';
 
 export const Header = ({ children }: ComponentProps<'header'>) => {

@@ -1,35 +1,18 @@
-import { useRef, FormEventHandler } from 'react';
-import { Input } from '../../ui/Input';
-import { Select } from '../../ui/Select';
-import { Button } from '../../ui/Button';
-import { useDataContext } from '../context/DataContext';
-import { sendToAirtable } from '../../services/sendToAirtable';
-import { Loader } from '../../ui/Loader';
-import { usePopupContext } from '../context/PopupContext';
+import { Input, Select, Button, Loader } from '../ui';
+import { useDataContext } from '../../context/DataContext';
+import { usePopupContext } from '../../context/PopupContext';
+import { fetchReceipts, sendReceipt } from '../../services/receipts';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { fetchReceipts } from '../../services/fetchReceipts';
+import { sortReceipts } from '../../utils/sortReceipts';
 import './ReceiptForm.scss';
 
 interface Receipt {
-  fields: {
-    receipt_id: string;
-    name: string;
-    email: string;
-    treatment: string;
-    price: string;
-  };
+  receipt_id: string;
+  name: string;
+  email: string;
+  treatment: string;
+  price: string;
 }
-
-const ReceiptZOD = z.object({
-  fields: z.object({
-    receipt_id: z.string(),
-    name: z.string().min(2),
-    email: z.string().email(),
-    treatment: z.string(),
-    price: z.string(),
-  }),
-});
 
 export const ReceiptForm = () => {
   const {
@@ -67,55 +50,38 @@ export const ReceiptForm = () => {
       return;
     }
 
-    let formatedData: Receipt;
+    let receipt: Receipt;
 
     if (receipts.length !== 0) {
-      //TOASK Sorting receits in order, same function as in ReceiptList - put it outside ?
-
-      const sortedReceipts = [...receipts].sort((a, b) => {
-        const [numberA, monthA, yearA] = a.fields.receipt_id.split('/').map((num) => parseInt(num));
-        const [numberB, monthB, yearB] = b.fields.receipt_id.split('/').map((num) => parseInt(num));
-        if (yearA !== yearB) return yearA - yearB;
-        if (monthA !== monthB) return monthA - monthB;
-        return numberA - numberB;
-      });
-
+      const sortedReceipts = sortReceipts(receipts);
       let getLastNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[0];
       const getMonthNumber = sortedReceipts[sortedReceipts.length - 1].fields.receipt_id.split('/')[1];
-
-      console.log(getMonthNumber);
 
       if (+getMonthNumber !== new Date().getMonth() + 1) {
         getLastNumber = '0';
       }
 
-      formatedData = {
-        fields: {
-          receipt_id: +getLastNumber + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
-          name: data.name,
-          email: data.email,
-          treatment: data.treatment,
-          price: data.price,
-        },
+      receipt = {
+        receipt_id: +getLastNumber + 1 + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
+        name: data.name,
+        email: data.email,
+        treatment: data.treatment,
+        price: data.price,
       };
     } else {
-      formatedData = {
-        fields: {
-          receipt_id: '1/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
-          name: data.name,
-          email: data.email,
-          treatment: data.treatment,
-          price: data.price,
-        },
+      receipt = {
+        receipt_id: '1/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear(),
+        name: data.name,
+        email: data.email,
+        treatment: data.treatment,
+        price: data.price,
       };
     }
-
-    const parsedData = ReceiptZOD.parse(formatedData);
 
     const sendData = async () => {
       try {
         setLoading(true);
-        await sendToAirtable(parsedData);
+        await sendReceipt(receipt);
         setMessage('Receipt successfully added !');
         const data = await fetchReceipts();
         setReceipts(data);
@@ -131,7 +97,7 @@ export const ReceiptForm = () => {
     sendData();
 
     //Set data to PDF Generator and open new tab with generated PDF
-    localStorage.setItem('pdfData', JSON.stringify(parsedData));
+    localStorage.setItem('pdfData', JSON.stringify(receipt));
     // window.open('/pdf', '_blank');
 
     // Reset inputs
