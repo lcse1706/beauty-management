@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Button, Input, Loader } from '../ui';
 import { updateRecord, deleteReceipt } from '../../services/receipts';
 import { useDataContext } from '../../context/DataContext';
-import { useNavigate } from 'react-router';
 import { usePopupContext } from '../../context/PopupContext';
-import { z } from 'zod';
+import { useNavigate } from 'react-router';
 import './ReceiptDetails.scss';
 
 export const ReceiptDetails = ({ data }: any) => {
