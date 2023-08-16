@@ -1,4 +1,4 @@
-<h2 align='center'>Beauty-managment system</h2>
+<h2 align='center'>Beauty-management system</h2>
 
 <p align='center'>System which helps with usual tasks in the company.</p>
 
