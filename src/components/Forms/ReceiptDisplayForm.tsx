@@ -1,7 +1,6 @@
 import { Button } from '../ui';
 import { useNavigate } from 'react-router';
 import { useDataContext } from '../../context/DataContext';
-import { z } from 'zod';
 import './ReceiptDisplayForm.scss';
 
 type ReceiptDisplayProps = {
