@@ -36,8 +36,11 @@ interface ReceiptToAirTable {
   fields: Receipt;
 }
 
+const BASE_URL = 'https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts';
+
 export const fetchReceipts = async () => {
-  const response: Response = await fetch(`${process.env.AIRTABLE_BASE_URL}`, {
+  // const response: Response = await fetch(`${process.env.AIRTABLE_BASE_URL}`, {
+  const response: Response = await fetch(BASE_URL, {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     },
@@ -67,7 +70,7 @@ export const sendReceipt = async (receipt: Receipt) => {
     'Content-Type': 'application/json',
   };
 
-  const sendResponse: Response = await fetch(`${process.env.AIRTABLE_BASE_URL}`, {
+  const sendResponse: Response = await fetch(BASE_URL, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify(ReceiptAirTableFormat.parse(receiptToAirTable)),
@@ -94,7 +97,7 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
   };
 
   try {
-    const url = `${process.env.AIRTABLE_BASE_URL}/${recordId}`;
+    const url = `${BASE_URL}/${recordId}`;
     const headers = {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
       'Content-Type': 'application/json',
@@ -117,7 +120,7 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
 
 export const deleteReceipt = async (recordId: string) => {
   try {
-    const url = `${process.env.AIRTABLE_BASE_URL}/${recordId}`;
+    const url = `${BASE_URL}/${recordId}`;
     const headers = {
       Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
     };
