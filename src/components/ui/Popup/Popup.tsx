@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import './Popup.scss';
 import { usePopupContext } from '../../../context/PopupContext';

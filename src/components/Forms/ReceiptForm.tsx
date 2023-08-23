@@ -1,10 +1,14 @@
+'use client';
+
 import { Input, Select, Button, Loader } from '../ui';
 import { useDataContext } from '../../context/DataContext';
 import { usePopupContext } from '../../context/PopupContext';
 import { fetchReceipts, sendReceipt } from '../../services/receipts';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { sortReceipts } from '../../utils/sortReceipts';
-import './ReceiptForm.scss';
+import styles from './ReceiptForm.module.css';
+
+import React from 'react';
 
 interface Receipt {
   receipt_id: string;
@@ -105,24 +109,24 @@ export const ReceiptForm = () => {
   };
 
   return (
-    <div className="receiptFormWrapper">
-      <form className="receiptForm" onSubmit={handleSubmit(submitHandler)}>
+    <div className={styles.receiptFormWrapper}>
+      <form className={styles.receiptForm} onSubmit={handleSubmit(submitHandler)}>
         <Input label="Client Name:" type="text" register={register('name', { required: true, maxLength: 80 })} />
-        {errors.name && <span className="error-message">Please enter a valid name.</span>}
+        {errors.name && <span className={styles.errorMessage}>Please enter a valid name.</span>}
         <Input
           label="Client Email:"
           type="email"
           register={register('email', { required: true, pattern: /^\S+@\S+$/i })}
         />
-        {errors.email && <span className="error-message">Please enter a valid email address.</span>}
+        {errors.email && <span className={styles.errorMessage}>Please enter a valid email address.</span>}
         <Select
           label="Treatment:"
           options={['lashes', 'brows', 'nails']}
           register={register('treatment', { required: true })}
         />
-        {errors.treatment && <span className="error-message">Please select a treatment.</span>}
+        {errors.treatment && <span className={styles.errorMessage}>Please select a treatment.</span>}
         <Input label="Price:" type="number" register={register('price', { required: true, maxLength: 5 })} />
-        {errors.price && <span className="error-message">Please enter a valid price.</span>}
+        {errors.price && <span className={styles.errorMessage}>Please enter a valid price.</span>}
         {loading ? <Loader /> : <Button label="Send" type="submit" />}
       </form>
     </div>

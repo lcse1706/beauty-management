@@ -1,7 +1,7 @@
 .receiptFormWrapper {
   margin-top: 2rem;
 
-  .error-message {
+  .errorMessage {
     display: block;
     color: red;
   }

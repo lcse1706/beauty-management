@@ -1,6 +1,6 @@
 import { FormEventHandler, useRef, useState } from 'react';
 import { Input, Button } from '../ui/';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../../context/AuthContext';
 import './LoginForm.scss';
 
@@ -31,7 +31,7 @@ const accounts: Users[] = [
 export const LoginForm = () => {
   const { setIsLogged } = useAuthContext();
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
@@ -62,7 +62,7 @@ export const LoginForm = () => {
     const password = passRef.current?.value ?? '';
     if (checkLogin(username, password)) {
       setIsLogged(true);
-      navigate('/sendreceipt');
+      router.push('/sendreceipt');
     } else {
       clearInputs();
       setErrorMessage('Incorrect login or password !');

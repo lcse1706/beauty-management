@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+'use client';
+
+import { createContext, useContext, useState } from 'react';
 
 interface Receipt {
   id: string;
