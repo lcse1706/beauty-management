@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../../src/context/AuthContext';
 import { ReceiptForm } from '../../src/components/forms/ReceiptForm';
 import styles from './ReceiptPage.module.css';
+import React from 'react';
 
 const ReceiptPage = () => {
   const { isLogged } = useAuthContext();

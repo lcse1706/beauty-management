@@ -19,7 +19,6 @@
     "react-router-dom": "^6.14.1",
     "sass": "^1.63.6",
     "tailwind": "^4.0.0",
-    "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "zod": "^3.21.4"
@@ -67,13 +66,14 @@
     "@storybook/react": "^7.2.1",
     "@storybook/react-webpack5": "^7.2.1",
     "@storybook/testing-library": "^0.2.0",
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.15",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint-plugin-storybook": "^0.6.13",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.28",
     "prettier": "2.8.8",
     "prop-types": "^15.8.1",
     "storybook": "^7.2.1",
+    "tailwindcss": "^3.3.3",
     "webpack": "^5.88.2"
   }
 }

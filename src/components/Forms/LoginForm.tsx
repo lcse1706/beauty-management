@@ -2,7 +2,7 @@ import { FormEventHandler, useRef, useState } from 'react';
 import { Input, Button } from '../ui/';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../../context/AuthContext';
-import './LoginForm.scss';
+import style from './LoginForm.module.css';
 
 interface Users {
   id: number;
@@ -71,8 +71,8 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="loginWrapper">
-      <form className="loginForm " onSubmit={formHandler}>
+    <div className={style.loginWrapper}>
+      <form className={style.loginForm} onSubmit={formHandler}>
         <Input ref={loginRef} label="Login" type="text" />
         <Input ref={passRef} label="Password" type="password" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
