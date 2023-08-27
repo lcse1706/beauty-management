@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (typeof window !== 'undefined') {
       return sessionStorage.getItem('isAuth') === 'true';
     }
-    return false;
+    return false; // Default value for server-side rendering
   };
 
   const [isLogged, setIsLogged] = useState<boolean>(initialState);
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (auth === 'true') {
       setIsLogged(true);
     } else {
-      setIsLogged(false);
+      setIsLogged(false); // Explicitly set to false if not true
     }
   }, []);
 
