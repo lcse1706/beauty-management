@@ -1,4 +1,6 @@
 import { Providers } from './providers';
+import { Header } from '../src/components/ui';
+import { Navigation } from '../src/components/layout/Navigation';
 import './globals.css';
 
 export const metadata = {
@@ -10,7 +12,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header>
+            <Navigation />
+          </Header>
+          <div className="container">{children}</div>
+        </Providers>
       </body>
     </html>
   );

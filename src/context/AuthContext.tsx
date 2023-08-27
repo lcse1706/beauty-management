@@ -18,16 +18,34 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isLogged, setIsLogged] = useState<boolean>(() => {
-    if (sessionStorage.getItem('isAuth') === 'true') {
-      return true;
-    } else return false;
-  });
+  // const [isLogged, setIsLogged] = useState<boolean>(() => {
+  //   if (sessionStorage.getItem('isAuth') === 'true') {
+  //     return true;
+  //   } else return false;
+  // });
+
+  // useEffect(() => {
+  //   const auth = sessionStorage.getItem('isAuth');
+  //   if (auth === 'true') {
+  //     setIsLogged(true);
+  //   }
+  // }, []);
+
+  const initialState = () => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('isAuth') === 'true';
+    }
+    return false;
+  };
+
+  const [isLogged, setIsLogged] = useState<boolean>(initialState);
 
   useEffect(() => {
     const auth = sessionStorage.getItem('isAuth');
     if (auth === 'true') {
       setIsLogged(true);
+    } else {
+      setIsLogged(false);
     }
   }, []);
 

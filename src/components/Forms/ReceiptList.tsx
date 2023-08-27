@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
 import { fetchReceipts } from '../../services/receipts';
