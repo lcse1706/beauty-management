@@ -92,6 +92,7 @@ export const ReceiptForm = () => {
         console.log('Receipt Lists updated.');
       } catch (error) {
         console.error(error);
+        setMessage('Something went wrong !');
       } finally {
         setLoading(false);
         setShowPopup(true);

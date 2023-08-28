@@ -1,5 +1,5 @@
 import { Providers } from './providers';
-import { Header } from '../src/components/ui';
+import { Header, Popup } from '../src/components/ui';
 import { Navigation } from '../src/components/layout/Navigation';
 import './globals.css';
 
@@ -17,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navigation />
           </Header>
           <div className="container">{children}</div>
+          <Popup />
         </Providers>
       </body>
     </html>

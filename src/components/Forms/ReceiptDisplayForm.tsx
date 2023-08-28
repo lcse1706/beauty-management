@@ -1,5 +1,5 @@
 import { Button } from '../ui';
-import { useNavigate } from 'react-router';
+import { useRouter } from 'next/navigation';
 import { useDataContext } from '../../context/DataContext';
 import './ReceiptDisplayForm.scss';
 
@@ -18,12 +18,12 @@ type ReceiptDisplayProps = {
 };
 
 export const ReceiptDisplayForm = ({ data }: ReceiptDisplayProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { setReceiptId } = useDataContext();
 
   const goToDetails = () => {
     setReceiptId(data.id);
-    navigate(`/receiptlist/${data.id}`);
+    router.push(`/receiptlist/${data.id}`);
   };
 
   return (

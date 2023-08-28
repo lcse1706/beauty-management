@@ -7,9 +7,11 @@ import { useDataContext } from '../../context/DataContext';
 import { Loader } from '../ui';
 import { sortReceipts } from '../../utils/sortReceipts';
 import './ReceiptList.scss';
+import { usePopupContext } from '../../context/PopupContext';
 
 export const ReceiptList = () => {
   const { receipts, setReceipts, loading, setLoading } = useDataContext();
+  const { setShowPopup, setMessage } = usePopupContext();
 
   const fetchData = async () => {
     try {
@@ -20,6 +22,8 @@ export const ReceiptList = () => {
         setReceipts(data);
       }
     } catch (error) {
+      setShowPopup(true);
+      setMessage('Something went wrong !');
       console.error(error);
     } finally {
       setLoading(false);

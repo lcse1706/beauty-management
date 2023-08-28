@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import './Popup.scss';
+import './Popup.css';
 import { usePopupContext } from '../../../context/PopupContext';
 
 export const Popup = () => {
@@ -17,7 +17,7 @@ export const Popup = () => {
 
   return (
     <div className={`modal ${showPopup ? 'show' : ''}`}>
-      <div className="modal-content">
+      <div className="popup">
         <h2>{message}</h2>
       </div>
     </div>

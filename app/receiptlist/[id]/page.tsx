@@ -1,11 +1,15 @@
-import { useDataContext } from '../context/DataContext';
-import { ReceiptDetails } from '../components/forms/ReceiptDetails';
+'use client';
 
-export const DetailsPage = () => {
+import { useDataContext } from '../../../src/context/DataContext';
+import { ReceiptDetails } from '../../../src/components/forms/ReceiptDetails';
+import React from 'react';
+
+const DetailsPage = () => {
   const { receiptId, receipts } = useDataContext();
 
   const getData = () => {
     const data = receipts.filter((receipt) => receipt.id === receiptId);
+    console.log(data);
     return data;
   };
 
@@ -16,3 +20,5 @@ export const DetailsPage = () => {
     </div>
   );
 };
+
+export default DetailsPage;

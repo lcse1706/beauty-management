@@ -1,9 +1,11 @@
+'use client';
+
 import { useState } from 'react';
 import { Button, Input, Loader } from '../ui';
 import { updateRecord, deleteReceipt } from '../../services/receipts';
 import { useDataContext } from '../../context/DataContext';
 import { usePopupContext } from '../../context/PopupContext';
-import { useNavigate } from 'react-router';
+import { useRouter } from 'next/navigation';
 import './ReceiptDetails.scss';
 
 export const ReceiptDetails = ({ data }: any) => {
@@ -11,7 +13,7 @@ export const ReceiptDetails = ({ data }: any) => {
   const { receiptId, loading, setLoading } = useDataContext();
   const { setShowPopup, setMessage } = usePopupContext();
 
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -26,7 +28,7 @@ export const ReceiptDetails = ({ data }: any) => {
     try {
       await deleteReceipt(receiptId);
       setMessage('Receipt delete successful !');
-      navigate('/receiptlist');
+      router.push('/receiptlist');
     } catch (error) {
       console.error(error);
       setMessage('Something went wrong !');
@@ -56,7 +58,7 @@ export const ReceiptDetails = ({ data }: any) => {
   };
 
   const backHandler = () => {
-    navigate(-1);
+    router.back();
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {

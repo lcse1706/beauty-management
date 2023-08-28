@@ -37,10 +37,10 @@ interface ReceiptToAirTable {
 }
 
 export const fetchReceipts = async () => {
-  const response: Response = await fetch(`${process.env.REACT_APP_AIRTABLE_BASE_URL}`, {
-    // const response: Response = await fetch(BASE_URL, {
+  const response: Response = await fetch(`${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`, {
+    // const response: Response = await fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
     },
   });
 
@@ -64,11 +64,11 @@ export const sendReceipt = async (receipt: Receipt) => {
   };
 
   const headers = {
-    Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
     'Content-Type': 'application/json',
   };
 
-  const sendResponse: Response = await fetch(`${process.env.REACT_APP_AIRTABLE_BASE_URL}`, {
+  const sendResponse: Response = await fetch(`${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify(ReceiptAirTableFormat.parse(receiptToAirTable)),
@@ -95,9 +95,9 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
   };
 
   try {
-    const url = `${process.env.REACT_APP_AIRTABLE_BASE_URL}/${recordId}`;
+    const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}/${recordId}`;
     const headers = {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
       'Content-Type': 'application/json',
     };
     const response = await fetch(url, {
@@ -118,9 +118,9 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
 
 export const deleteReceipt = async (recordId: string) => {
   try {
-    const url = `${process.env.REACT_APP_AIRTABLE_BASE_URL}/${recordId}`;
+    const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}/${recordId}`;
     const headers = {
-      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
     };
     const response = await fetch(url, {
       method: 'DELETE',
