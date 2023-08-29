@@ -7,7 +7,7 @@ export const Header = ({ children }: ComponentProps<'header'>) => {
   return (
     <header className="mainNavHeader">
       <h1>
-        <Image className="scale" src={logo} alt="Logo Beauty by EC" />
+        <Image src={logo} alt="Logo Beauty by EC" placeholder="blur" width={70} className="inline mr-3" />
         Beauty Management
       </h1>
       {children}
