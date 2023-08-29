@@ -14,8 +14,3 @@
   font-weight: 500;
   z-index: 10;
 }
-
-.scale {
-  transform: scale(0.3) translateX(200px);
-  display: inline;
-}
