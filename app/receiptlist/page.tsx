@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '../../src/context/AuthContext';
-import { ReceiptList } from '../../src/components/forms/ReceiptList';
+import { useAuthContext } from '../components/context/AuthContext';
+import { ReceiptList } from './ReceiptList';
 import { useEffect } from 'react';
 import React from 'react';
 

@@ -1,8 +1,9 @@
 import { FormEventHandler, useRef, useState } from 'react';
-import { Input, Button } from '../ui/';
+import { Input, Button } from '../components/ui/';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../components/context/AuthContext';
 import style from './LoginForm.module.css';
+import React from 'react';
 
 interface Users {
   id: number;

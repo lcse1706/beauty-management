@@ -1,7 +1,8 @@
 import { Providers } from './providers';
-import { Header, Popup } from '../src/components/ui';
-import { Navigation } from '../src/components/layout/Navigation';
+import { Header, Popup } from './components/ui';
+import { Navigation } from './Navigation';
 import './globals.css';
+import React from 'react';
 
 export const metadata = {
   title: 'Next.js',

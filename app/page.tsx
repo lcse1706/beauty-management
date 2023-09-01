@@ -1,21 +1,12 @@
 'use client';
 
-import { LoginForm } from '../src/components/forms/LoginForm';
 import { useRouter } from 'next/navigation';
-// import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
 
-const LoginPage = () => {
-  const isAuth = sessionStorage.getItem('isAuth');
+const StartPage = () => {
   const router = useRouter();
+  router.push('/login');
 
-  useEffect(() => {
-    if (isAuth === 'true') {
-      router.push('/sendreceipt');
-    }
-  }, []);
-
-  return <LoginForm />;
+  return;
 };
 
-export default LoginPage;
+export default StartPage;

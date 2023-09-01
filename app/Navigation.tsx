@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 // import { useNavigate, NavLink } from 'react-router-dom';
-import { Button } from '../ui';
-import { useAuthContext } from '../../context/AuthContext';
+import { Button } from './components/ui';
+import { useAuthContext } from './components/context/AuthContext';
 import './Navigation.scss';
 
 export const Navigation: React.FC = () => {
