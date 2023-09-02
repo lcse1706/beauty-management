@@ -1,7 +1,7 @@
 'use client';
 
-import { useDataContext } from '../../../src/context/DataContext';
-import { ReceiptDetails } from '../../../src/components/forms/ReceiptDetails';
+import { useDataContext } from '../../components/context/DataContext';
+import { ReceiptDetails } from './ReceiptDetails';
 import React from 'react';
 
 const DetailsPage = () => {

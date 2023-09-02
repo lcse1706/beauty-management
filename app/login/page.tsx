@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 const LoginPage = () => {
-  const isAuth = sessionStorage.getItem('isAuth');
   const router = useRouter();
 
   useEffect(() => {
+    const isAuth = sessionStorage.getItem('isAuth');
     if (isAuth === 'true') {
       router.push('/sendreceipt');
     }
