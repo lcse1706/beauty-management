@@ -1,23 +1,19 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../app/components/ui/**/*.mdx', '../app/components/ui/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-a11y',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
-    '@storybook/addon-styling',
   ],
   framework: {
-    name: '@storybook/react-webpack5',
+    name: '@storybook/nextjs',
     options: {},
   },
   docs: {
     autodocs: 'tag',
   },
-  staticDirs: ['..\\public'],
 };
 export default config;
