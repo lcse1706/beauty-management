@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Popup.css';
-import { usePopupContext } from '../../context/PopupContext';
 
-export const Popup = () => {
-  const { showPopup, setShowPopup, message } = usePopupContext();
+export const Popup = ({ useContext }: any) => {
+  const { showPopup, setShowPopup, message } = useContext();
 
   useEffect(() => {
     if (showPopup) {
