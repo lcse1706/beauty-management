@@ -6,7 +6,7 @@ interface PopupContextType {
   setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PopupContext = React.createContext<PopupContextType | null>(null);
+const MockPopupContext = React.createContext<PopupContextType | null>(null);
 
 type MockPopupProviderProps = {
   children: React.ReactNode;
@@ -23,10 +23,15 @@ export const MockPopupProvider: React.FC<MockPopupProviderProps> = ({
   const [message, setMessage] = useState(defaultMessage);
 
   return (
-    <PopupContext.Provider value={{ showPopup, setShowPopup, message, setMessage }}>{children}</PopupContext.Provider>
+    <MockPopupContext.Provider value={{ showPopup, setShowPopup, message, setMessage }}>
+      {children}
+    </MockPopupContext.Provider>
   );
 };
-
 export const usePopupContext = () => {
-  return React.useContext(PopupContext);
+  const context = React.useContext(MockPopupContext);
+  if (!context) {
+    throw new Error('Mock Provider ');
+  }
+  return context;
 };

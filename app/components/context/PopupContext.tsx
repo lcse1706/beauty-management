@@ -14,7 +14,7 @@ const PopupContext = createContext<PopupContextType | null>(null);
 export const usePopupContext = () => {
   const context = useContext(PopupContext);
   if (!context) {
-    throw new Error('Component should be placed in PopupProvider !');
+    throw new Error('Component should be placed in PopupProvider !!!');
   }
   return context;
 };
