@@ -3,6 +3,7 @@ import { Header, Popup } from './components/ui';
 import { Navigation } from './Navigation';
 import './globals.css';
 import React from 'react';
+import { usePopupContext } from './components/context/PopupContext';
 
 export const metadata = {
   title: 'Next.js',
@@ -18,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navigation />
           </Header>
           <div className="container">{children}</div>
-          <Popup />
+          <Popup useContext={usePopupContext} />
         </Providers>
       </body>
     </html>
