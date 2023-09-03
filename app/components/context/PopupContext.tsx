@@ -2,19 +2,19 @@
 
 import { createContext, useContext, useState } from 'react';
 
-interface ModalContextType {
+interface PopupContextType {
   showPopup: boolean;
   setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
   message: string;
   setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PopupContext = createContext<ModalContextType | null>(null);
+const PopupContext = createContext<PopupContextType | null>(null);
 
 export const usePopupContext = () => {
   const context = useContext(PopupContext);
   if (!context) {
-    throw new Error('Component should be placed in AuthProvider !');
+    throw new Error('Component should be placed in PopupProvider !');
   }
   return context;
 };
