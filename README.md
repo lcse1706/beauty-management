@@ -2,17 +2,13 @@
 
 <p align='center'>System which helps with usual tasks in the company.</p>
 
-
-
 <h3>Used Technologies:</h3>
 
 - nextJS
 - Typescript
 - react
-- react-router-dom v6
 - react-hook-form
 - ZOD
-- Sass
 - Tailwind
 - Storybook
 
