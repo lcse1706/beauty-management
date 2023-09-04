@@ -22,4 +22,4 @@
 
 - git clone https://github.com/lcse1706/beauty-managment.git
 - npm install
-- npm start
+- npm run dev
