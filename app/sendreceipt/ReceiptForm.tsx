@@ -103,7 +103,7 @@ export const ReceiptForm = () => {
 
     //Set data to PDF Generator and open new tab with generated PDF
     localStorage.setItem('pdfData', JSON.stringify(receipt));
-    // window.open('/pdf', '_blank');
+    window.open('/pdf', '_blank');
 
     // Reset inputs
     clearInputs();
