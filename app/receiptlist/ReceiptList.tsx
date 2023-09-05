@@ -2,12 +2,12 @@
 
 import { useEffect } from 'react';
 import { ReceiptDisplayForm } from './ReceiptDisplayForm';
-import { fetchReceipts } from '../components/services/receipts';
-import { useDataContext } from '../components/context/DataContext';
-import { Loader } from '../components/ui';
-import { sortReceipts } from '../components/utils/sortReceipts';
+import { fetchReceipts } from '../../services/receipts';
+import { useDataContext } from '../../context/DataContext';
+import { Loader } from '../../components/ui';
+import { sortReceipts } from '../../components/utils/sortReceipts';
 import './ReceiptList.scss';
-import { usePopupContext } from '../components/context/PopupContext';
+import { usePopupContext } from '../../context/PopupContext';
 import React from 'react';
 
 export const ReceiptList = () => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '../components/context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { ReceiptList } from './ReceiptList';
 import { useEffect } from 'react';
 import React from 'react';

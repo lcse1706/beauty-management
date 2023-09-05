@@ -1,11 +1,11 @@
 'use client';
 
-import { Input, Select, Button, Loader } from '../components/ui';
-import { useDataContext } from '../components/context/DataContext';
-import { usePopupContext } from '../components/context/PopupContext';
-import { fetchReceipts, sendReceipt } from '../components/services/receipts';
+import { Input, Select, Button, Loader } from '../../components/ui';
+import { useDataContext } from '../../context/DataContext';
+import { usePopupContext } from '../../context/PopupContext';
+import { fetchReceipts, sendReceipt } from '../../services/receipts';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { sortReceipts } from '../components/utils/sortReceipts';
+import { sortReceipts } from '../../components/utils/sortReceipts';
 import styles from './ReceiptForm.module.css';
 
 import React from 'react';

@@ -1,6 +1,6 @@
 'use client';
 
-import { useDataContext } from '../../components/context/DataContext';
+import { useDataContext } from '../../../context/DataContext';
 import { ReceiptDetails } from './ReceiptDetails';
 import React from 'react';
 

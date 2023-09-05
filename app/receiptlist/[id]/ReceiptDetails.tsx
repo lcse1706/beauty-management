@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Input, Loader } from '../../components/ui';
-import { updateRecord, deleteReceipt } from '../../components/services/receipts';
-import { useDataContext } from '../../components/context/DataContext';
-import { usePopupContext } from '../../components/context/PopupContext';
+import { Button, Input, Loader } from '../../../components/ui';
+import { updateRecord, deleteReceipt } from '../../../services/receipts';
+import { useDataContext } from '../../../context/DataContext';
+import { usePopupContext } from '../../../context/PopupContext';
 import { useRouter } from 'next/navigation';
 import './ReceiptDetails.scss';
 

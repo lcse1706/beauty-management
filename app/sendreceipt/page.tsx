@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthContext } from '../components/context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { ReceiptForm } from './ReceiptForm';
 import styles from './ReceiptPage.module.css';
 import React from 'react';

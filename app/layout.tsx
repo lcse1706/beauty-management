@@ -1,9 +1,9 @@
 import { Providers } from './providers';
-import { Header, Popup } from './components/ui';
+import { Header, Popup } from '../components/ui';
 import { Navigation } from './Navigation';
 import './globals.css';
 import React from 'react';
-import { usePopupContext } from './components/context/PopupContext';
+import { usePopupContext } from '../context/PopupContext';
 
 export const metadata = {
   title: 'Next.js',
