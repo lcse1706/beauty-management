@@ -16,7 +16,6 @@
 
 - bills - save, numbering, sending to client
 - storage states
-- in progress
 
 <h3>How to run:</h3>
 
