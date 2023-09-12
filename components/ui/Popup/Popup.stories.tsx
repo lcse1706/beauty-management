@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MockPopupProvider } from './mockPopupProvider';
 import { usePopupContext } from './mockPopupProvider';
 import { Popup } from './Popup';
+import React from 'react';
 
 const meta = {
   title: 'UI/Popup',
