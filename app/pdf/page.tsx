@@ -55,7 +55,13 @@ interface Receipt {
 }
 
 const PdfGenerator = () => {
-  const pdfData: Receipt = JSON.parse(localStorage.getItem('pdfData') ?? '{}');
+  let storedData: string | undefined;
+
+  if (typeof window !== 'undefined') {
+    storedData = localStorage.getItem('pdfData') ?? '{}';
+  }
+
+  const pdfData: Receipt = JSON.parse(storedData ?? '{}');
 
   return (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
