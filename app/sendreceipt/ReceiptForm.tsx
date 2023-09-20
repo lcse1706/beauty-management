@@ -6,6 +6,7 @@ import { usePopupContext } from '../../context/PopupContext';
 import { fetchReceipts, sendReceipt } from '../../services/receipts';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { sortReceipts } from '../../components/utils/sortReceipts';
+import { useRouter } from 'next/navigation';
 import styles from './ReceiptForm.module.css';
 
 import React from 'react';
@@ -19,6 +20,7 @@ interface Receipt {
 }
 
 export const ReceiptForm = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -103,7 +105,14 @@ export const ReceiptForm = () => {
 
     //Set data to PDF Generator and open new tab with generated PDF
     localStorage.setItem('pdfData', JSON.stringify(receipt));
-    window.open('/pdf', '_blank');
+    // window.open('/pdf', '_blank');
+    // window.open('/print', '_blank');
+    router.push('/print');
+
+    // router.push({
+    //   pathname: '/print',
+    //   query: { dataKey: receipt },
+    // });
 
     // Reset inputs
     clearInputs();
