@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import styles from './ReceiptForm.module.css';
 
 import React, { useEffect } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
 
 interface Receipt {
   receipt_id: string;
@@ -31,18 +30,6 @@ export const ReceiptForm = () => {
   const { receipts, setReceipts, setLoading, loading } = useDataContext();
   const { setShowPopup, setMessage } = usePopupContext();
 
-  //Moved from page.tsx to hide useEffect in client component
-
-  const { isLogged } = useAuthContext();
-
-  useEffect(() => {
-    if (!isLogged) {
-      router.push('/');
-    }
-  }, []);
-
-  /////////////////////////////////////////////////////////////
-
   const clearInputs = () => {
     reset({
       name: '',
@@ -59,6 +46,22 @@ export const ReceiptForm = () => {
     }
     return false;
   };
+
+  // Fetching list to determinate next number
+
+  const fetchData = async () => {
+    try {
+      const data = await fetchReceipts();
+      setReceipts(data);
+      console.log('Receipt Lists updated.');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [setReceipts]);
 
   // const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
   const submitHandler: SubmitHandler<FieldValues> = (data: FieldValues) => {
@@ -102,9 +105,7 @@ export const ReceiptForm = () => {
         setLoading(true);
         await sendReceipt(receipt);
         setMessage('Receipt successfully added !');
-        const data = await fetchReceipts();
-        setReceipts(data);
-        console.log('Receipt Lists updated.');
+        fetchData();
       } catch (error) {
         console.error(error);
         setMessage('Something went wrong !');
@@ -116,16 +117,9 @@ export const ReceiptForm = () => {
 
     sendData();
 
-    //Set data to PDF Generator and open new tab with generated PDF
     localStorage.setItem('pdfData', JSON.stringify(receipt));
-    // window.open('/pdf', '_blank');
-    // window.open('/print', '_blank');
-    router.push('/print');
 
-    // router.push({
-    //   pathname: '/print',
-    //   query: { dataKey: receipt },
-    // });
+    router.push('/print');
 
     // Reset inputs
     clearInputs();
