@@ -1,8 +1,8 @@
+import React from 'react';
 import { Button } from '../../components/ui';
 import { useRouter } from 'next/navigation';
 import { useDataContext } from '../../context/DataContext';
 import './ReceiptDisplayForm.scss';
-import React from 'react';
 
 type ReceiptDisplayProps = {
   data: {

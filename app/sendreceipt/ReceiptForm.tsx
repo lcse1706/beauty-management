@@ -9,7 +9,8 @@ import { sortReceipts } from '../../components/utils/sortReceipts';
 import { useRouter } from 'next/navigation';
 import styles from './ReceiptForm.module.css';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
 
 interface Receipt {
   receipt_id: string;
@@ -29,6 +30,18 @@ export const ReceiptForm = () => {
   } = useForm();
   const { receipts, setReceipts, setLoading, loading } = useDataContext();
   const { setShowPopup, setMessage } = usePopupContext();
+
+  //Moved from page.tsx to hide useEffect in client component
+
+  const { isLogged } = useAuthContext();
+
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/');
+    }
+  }, []);
+
+  /////////////////////////////////////////////////////////////
 
   const clearInputs = () => {
     reset({

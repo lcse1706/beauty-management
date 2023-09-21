@@ -1,9 +1,11 @@
-import { FormEventHandler, useRef, useState } from 'react';
+'use client';
+
+import React from 'react';
+import { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { Input, Button } from '../../components/ui/';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../../context/AuthContext';
 import style from './LoginForm.module.css';
-import React from 'react';
 
 interface Users {
   id: number;
@@ -33,6 +35,17 @@ export const LoginForm = () => {
   const { setIsLogged } = useAuthContext();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const router = useRouter();
+
+  //Moved from page.tsx to hide useEffect in client component
+
+  useEffect(() => {
+    const isAuth = sessionStorage.getItem('isAuth');
+    if (isAuth === 'true') {
+      router.push('/sendreceipt');
+    }
+  }, []);
+
+  /////////////////////////////////////////////////////////////
 
   const loginRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
