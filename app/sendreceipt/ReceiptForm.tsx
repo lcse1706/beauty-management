@@ -30,6 +30,16 @@ export const ReceiptForm = () => {
   const { receipts, setReceipts, setLoading, loading } = useDataContext();
   const { setShowPopup, setMessage } = usePopupContext();
 
+  // Refresh after back from /print path
+
+  useEffect(() => {
+    console.log('sprawdzam');
+    window.onpopstate = () => {
+      console.log('byl powrot');
+      window.location.reload();
+    };
+  }, []);
+
   const clearInputs = () => {
     reset({
       name: '',
@@ -63,7 +73,6 @@ export const ReceiptForm = () => {
     fetchData();
   }, [setReceipts]);
 
-  // const submitHandler: FormEventHandler<HTMLFormElement> = (event: React.FormEvent) => {
   const submitHandler: SubmitHandler<FieldValues> = (data: FieldValues) => {
     setMessage('');
 
