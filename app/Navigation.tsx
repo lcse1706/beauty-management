@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
-import { Button } from '../components/ui';
-import { useAuthContext } from '../context/AuthContext';
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { Button } from "@/components/ui";
+import { useAuthContext } from "@/context";
 
 export const Navigation: React.FC = () => {
   const { isLogged, setIsLogged } = useAuthContext();
@@ -11,13 +11,13 @@ export const Navigation: React.FC = () => {
   const path = usePathname();
 
   const isActive = (href: string) => {
-    return path === href ? 'active-class' : '';
+    return path === href ? "active-class" : "";
   };
 
   const logoutHandler = () => {
     setIsLogged(false);
-    sessionStorage.setItem('isAuth', 'false');
-    router.push('/');
+    sessionStorage.setItem("isAuth", "false");
+    router.push("/");
   };
 
   return (
@@ -27,7 +27,9 @@ export const Navigation: React.FC = () => {
           <li className="">
             <Link
               href="/sendreceipt"
-              className={`text-white hover:text-gray-400 font-medium ${isActive('/sendreceipt')}`}
+              className={`text-white hover:text-gray-400 font-medium ${isActive(
+                "/sendreceipt",
+              )}`}
             >
               Send Receipt
             </Link>
@@ -35,7 +37,9 @@ export const Navigation: React.FC = () => {
           <li>
             <Link
               href="/receiptlist"
-              className={`text-white hover:text-gray-400 font-medium ${isActive('/receiptlist')}`}
+              className={`text-white hover:text-gray-400 font-medium ${isActive(
+                "/receiptlist",
+              )}`}
             >
               Receipts
             </Link>
