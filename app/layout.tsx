@@ -7,7 +7,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'Beauty Management',
-  description: 'Beauty Managenet App',
+  description: 'Beauty Management App',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

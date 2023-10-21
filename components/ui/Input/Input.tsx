@@ -1,5 +1,5 @@
 import { ChangeEvent, ComponentProps, forwardRef, Ref } from 'react';
-import './input.scss';
+import './input.css';
 
 interface InputProps {
   label: string;

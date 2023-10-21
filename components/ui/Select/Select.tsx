@@ -1,5 +1,5 @@
 import { ComponentProps, forwardRef, Ref } from 'react';
-import './select.scss';
+import './select.css';
 
 interface SelectProps {
   label: string;

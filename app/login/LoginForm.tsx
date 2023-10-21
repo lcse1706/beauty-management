@@ -5,7 +5,6 @@ import { FormEventHandler, useEffect, useRef, useState } from 'react';
 import { Input, Button } from '../../components/ui/';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '../../context/AuthContext';
-import style from './LoginForm.module.css';
 
 interface Users {
   id: number;
@@ -85,8 +84,8 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className={style.loginWrapper}>
-      <form className={style.loginForm} onSubmit={formHandler}>
+    <div className="flex flex-col items-center mt-3">
+      <form className="text-center" onSubmit={formHandler}>
         <Input ref={loginRef} label="Login" type="text" />
         <Input ref={passRef} label="Password" type="password" />
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}

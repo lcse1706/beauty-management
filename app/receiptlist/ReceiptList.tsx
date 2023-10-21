@@ -10,7 +10,7 @@ import { usePopupContext } from '../../context/PopupContext';
 import { useAuthContext } from '../../context/AuthContext';
 import { useDataContext } from '../../context/DataContext';
 import { useRouter } from 'next/navigation';
-import './ReceiptList.scss';
+import './ReceiptList.css';
 
 export const ReceiptList = () => {
   const { receipts, setReceipts, loading, setLoading } = useDataContext();
