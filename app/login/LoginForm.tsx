@@ -1,12 +1,16 @@
 'use client';
 
 import React from 'react';
-import { FormEventHandler, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { NextPage } from 'next';
 import { useRouter } from 'next/navigation';
 
 import { Button, Input } from '@/components/ui/';
 import { useAuthContext } from '@/context/';
+import { loginSchema, TloginSchema } from '@/lib/types';
 
 interface Users {
     id: number;
@@ -32,10 +36,14 @@ const accounts: Users[] = [
     },
 ];
 
-export const LoginForm = () => {
+export const LoginForm: NextPage = () => {
     const { setIsLogged } = useAuthContext();
     const [errorMessage, setErrorMessage] = useState<string>('');
     const router = useRouter();
+
+    const { register, handleSubmit, reset } = useForm<TloginSchema>({
+        resolver: zodResolver(loginSchema),
+    });
 
     //Moved from page.tsx to hide useEffect in client component
 
@@ -47,16 +55,6 @@ export const LoginForm = () => {
     }, []);
 
     /////////////////////////////////////////////////////////////
-
-    const loginRef = useRef<HTMLInputElement>(null);
-    const passRef = useRef<HTMLInputElement>(null);
-
-    const clearInputs = () => {
-        if (loginRef.current && passRef.current) {
-            loginRef.current.value = '';
-            passRef.current.value = '';
-        }
-    };
 
     const checkLogin = (username: string, password: string): boolean => {
         const isLogged = accounts.some((user) => {
@@ -71,17 +69,12 @@ export const LoginForm = () => {
         }
     };
 
-    const formHandler: FormEventHandler<HTMLFormElement> = (
-        event: React.FormEvent,
-    ) => {
-        event.preventDefault();
-        const username = loginRef.current?.value ?? '';
-        const password = passRef.current?.value ?? '';
-        if (checkLogin(username, password)) {
+    const formHandler = (data: TloginSchema) => {
+        if (checkLogin(data.login, data.password)) {
             setIsLogged(true);
             router.push('/sendreceipt');
         } else {
-            clearInputs();
+            reset();
             setErrorMessage('Incorrect login or password !');
             setIsLogged(false);
         }
@@ -89,9 +82,13 @@ export const LoginForm = () => {
 
     return (
         <div className="flex flex-col items-center mt-3">
-            <form className="text-center" onSubmit={formHandler}>
-                <Input ref={loginRef} label="Login" type="text" />
-                <Input ref={passRef} label="Password" type="password" />
+            <form className="text-center" onSubmit={handleSubmit(formHandler)}>
+                <Input label="Login" type="text" register={register('login')} />
+                <Input
+                    label="Password"
+                    type="password"
+                    register={register('password')}
+                />
                 {errorMessage && (
                     <div style={{ color: 'red' }}>{errorMessage}</div>
                 )}

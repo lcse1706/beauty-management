@@ -1,14 +1,3 @@
-.input {
-  margin: 5px;
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-
-  input {
-    color: black;
-  }
-}
-
 .input.error > input {
-  border-color: red;
+    border-color: red;
 }
