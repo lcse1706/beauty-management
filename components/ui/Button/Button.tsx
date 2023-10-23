@@ -1,19 +1,31 @@
-import React, { ComponentProps, memo } from 'react';
-import './button.css';
+import React, { ComponentProps } from 'react';
 
 interface ButtonProps {
-  size?: 'small' | 'medium' | 'large';
-  label: string;
-  onClick?: () => void;
-  className?: string;
+    size?: 'small' | 'medium' | 'large';
+    label: string;
+    onClick?: () => void;
+    className?: string;
 }
 
-const BASE_BUTTON_CLASSES = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-1';
+const BASE_BUTTON_CLASSES =
+    'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-1';
 
-export const Button = memo(({ label, className, ...rest }: ComponentProps<'button'> & ButtonProps) => {
-  return (
-    <button type="button" className={[BASE_BUTTON_CLASSES, className].filter(Boolean).join(' ')} {...rest}>
-      {label}
-    </button>
-  );
-});
+export const Button = ({
+    label,
+    className,
+    ...rest
+}: ComponentProps<'button'> & ButtonProps) => {
+    return (
+        <button
+            type="button"
+            className={[BASE_BUTTON_CLASSES, className]
+                .filter(Boolean)
+                .join(' ')}
+            {...rest}
+        >
+            {label}
+        </button>
+    );
+};
+
+Button.displayName = 'Custom Button';

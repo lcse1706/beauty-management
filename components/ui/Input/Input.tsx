@@ -1,7 +1,5 @@
-import { ChangeEvent, ComponentProps, forwardRef, Ref } from 'react';
+import { ComponentProps, forwardRef, Ref } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-
-import './input.css';
 
 interface InputProps {
     label: string;
