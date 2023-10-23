@@ -2,6 +2,8 @@
 
 import { PrintReceipt } from '@/lib';
 
+// This component is adjusted to handy printer which can print receipt from App with build-in browser.
+
 const PrintPage = () => {
     let storedData: string | undefined;
 
