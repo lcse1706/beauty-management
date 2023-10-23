@@ -4,3 +4,4 @@ export { Input } from './Input';
 export { Loader } from './Loader';
 export { Popup } from './Popup';
 export { Select } from './Select';
+export { Navigation } from './Navigation';

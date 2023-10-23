@@ -1,14 +1,13 @@
 import React from 'react';
-import { AuthProvider } from '../context/AuthContext';
-import { DataProvider } from '../context/DataContext';
-import { PopupProvider } from '../context/PopupContext';
 
-export const Providers = ({ children }: any) => {
-  return (
-    <AuthProvider>
-      <DataProvider>
-        <PopupProvider>{children}</PopupProvider>
-      </DataProvider>
-    </AuthProvider>
-  );
+import { AuthProvider, DataProvider, PopupProvider } from '@/context';
+
+export const Providers = ({ children }: { children: React.ReactNode }) => {
+    return (
+        <AuthProvider>
+            <DataProvider>
+                <PopupProvider>{children}</PopupProvider>
+            </DataProvider>
+        </AuthProvider>
+    );
 };

@@ -1,3 +1,3 @@
-export { useDataContext } from './DataContext';
-export { useAuthContext } from './AuthContext';
-export { usePopupContext } from './PopupContext';
+export * from './DataContext';
+export * from './AuthContext';
+export * from './PopupContext';

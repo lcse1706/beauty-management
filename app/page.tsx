@@ -1,5 +1,5 @@
 const DefaultPage = () => {
-  return;
+    return;
 };
 
 export default DefaultPage;

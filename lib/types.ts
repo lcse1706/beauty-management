@@ -13,14 +13,6 @@ export type Users = {
     password: string;
 };
 
-export type PrintReceipt = {
-    receipt_id: string;
-    name: string;
-    email: string;
-    treatment: string;
-    price: string;
-};
-
 export type ReceiptDisplayF = {
     data: {
         id: string;
@@ -72,6 +64,18 @@ export interface Receipt {
 
 export interface ReceiptToAirTable {
     fields: Receipt;
+}
+
+export interface ReceiptsFromAirTable {
+    id: string;
+    fields: {
+        receipt_id: string;
+        name: string;
+        email: string;
+        treatment: string;
+        price: string;
+        date: string;
+    };
 }
 
 export const ReceiptFetch = z.object({

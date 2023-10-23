@@ -1,6 +1,6 @@
 'use client';
 
-import { PrintReceipt } from '@/lib';
+import { Receipt } from '@/lib';
 
 // This component is adjusted to handy printer which can print receipt from App with build-in browser.
 
@@ -8,10 +8,10 @@ const PrintPage = () => {
     let storedData: string | undefined;
 
     if (typeof window !== 'undefined') {
-        storedData = localStorage.getItem('pdfData') ?? '{}';
+        storedData = localStorage.getItem('printData') ?? '{}';
     }
 
-    const data: PrintReceipt = JSON.parse(storedData ?? '{}');
+    const data: Receipt = JSON.parse(storedData ?? '{}');
 
     return (
         <html className="bg-white text-black text-2xl" lang="en">
