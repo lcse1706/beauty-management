@@ -1,29 +1,17 @@
-.receiptList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
-  max-height: 70vh;
-  overflow: scroll;
-  h2 {
-    font-size: 2rem;
-  }
-}
-
 .receiptList::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 .receiptList::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 5px;
+    background: #f1f1f1;
+    border-radius: 5px;
 }
 
 .receiptList::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+    background: #888;
+    border-radius: 5px;
 }
 
 .receiptList::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }

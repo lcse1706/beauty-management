@@ -1,40 +1,16 @@
 'use client';
 
 import React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NextPage } from 'next';
 import { useRouter } from 'next/navigation';
 
-import { Button, Input } from '@/components/ui/';
-import { useAuthContext } from '@/context/';
-import { loginSchema, TloginSchema } from '@/lib/types';
-
-interface Users {
-    id: number;
-    login: string;
-    password: string;
-}
-
-const accounts: Users[] = [
-    {
-        id: 1,
-        login: 'Ewa',
-        password: 'Ewa',
-    },
-    {
-        id: 2,
-        login: 'Lukasz',
-        password: 'Lukasz',
-    },
-    {
-        id: 3,
-        login: '1',
-        password: '1',
-    },
-];
+import { Button, Input } from '@/components/ui';
+import { useAuthContext } from '@/context';
+import { accounts, loginSchema, TloginSchema } from '@/lib';
 
 export const LoginForm: NextPage = () => {
     const { setIsLogged } = useAuthContext();

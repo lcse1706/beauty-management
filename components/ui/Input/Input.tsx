@@ -1,14 +1,12 @@
 import { ChangeEvent, ComponentProps, forwardRef, Ref } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 import './input.css';
 
 interface InputProps {
     label: string;
     type: string;
-    register?: any;
-    // className?: string;
-    // onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-    // value?: string;
+    register?: UseFormRegisterReturn<string>;
 }
 
 export const Input = forwardRef(
