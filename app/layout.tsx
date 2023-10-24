@@ -1,5 +1,6 @@
 import React from 'react';
 
+//TODO fix issue "ReferenceError: Cannot access 'Navigation' before initialization"
 import { Header, Navigation, Popup } from '@/components/ui';
 import { usePopupContext } from '@/context';
 
