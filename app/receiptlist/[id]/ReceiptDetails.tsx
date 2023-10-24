@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+// Use next/router instead of next/navigation
 import { Button, Input, Loader } from '@/components/ui';
 import { useDataContext, usePopupContext } from '@/context';
 import { ReceiptDetailsProps } from '@/lib';
@@ -18,26 +19,37 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const deleteHandler = async () => {
-        //TODO nicer modal for confirmation
-        const isConfirmed = window.confirm(
-            'Are you sure you want to delete this receipt?',
-        );
-        if (!isConfirmed) {
-            return;
-        }
+    // State to manage the confirmation modal
+    const [confirmationModal, setConfirmationModal] = useState(false);
 
-        setLoading(true);
-        try {
-            await deleteReceipt(receiptId);
-            setMessage('Receipt delete successful !');
-            router.push('/receiptlist');
-        } catch (error) {
-            console.error(error);
-            setMessage('Something went wrong !');
-        } finally {
-            setLoading(false);
-            setShowPopup(true);
+    const openConfirmationModal = () => {
+        setConfirmationModal(true);
+    };
+
+    const closeConfirmationModal = () => {
+        setConfirmationModal(false);
+    };
+
+    const deleteHandler = async () => {
+        // Show the confirmation modal
+        openConfirmationModal();
+
+        if (confirmationModal) {
+            // If the user confirmed the deletion
+            closeConfirmationModal();
+
+            setLoading(true);
+            try {
+                await deleteReceipt(receiptId);
+                setMessage('Receipt delete successful!');
+                router.push('/receiptlist');
+            } catch (error) {
+                console.error(error);
+                setMessage('Something went wrong!');
+            } finally {
+                setLoading(false);
+                setShowPopup(true);
+            }
         }
     };
 
@@ -51,7 +63,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
         try {
             await updateRecord(receiptId, receipt);
-            setMessage('Receipt edit successful !');
+            setMessage('Receipt edit successful!');
         } catch (error) {
             console.error(error);
         } finally {
@@ -163,6 +175,18 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     return (
         <div>
+            {confirmationModal && (
+                <div>
+                    <div>
+                        <p>Are you sure you want to delete?</p>
+                        <Button label="Delete" onClick={deleteHandler} />
+                        <Button
+                            label="Cancel"
+                            onClick={closeConfirmationModal}
+                        />
+                    </div>
+                </div>
+            )}
             {receipt && (
                 <div className="receiptDetails">
                     {isEditing ? inputs : paragraphs}
