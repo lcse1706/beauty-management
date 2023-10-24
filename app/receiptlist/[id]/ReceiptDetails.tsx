@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-// Use next/router instead of next/navigation
 import { Button, Input, Loader } from '@/components/ui';
 import { useDataContext, usePopupContext } from '@/context';
 import { ReceiptDetailsProps } from '@/lib';
@@ -17,10 +16,8 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const router = useRouter();
 
-    const [isEditing, setIsEditing] = useState(false);
-
-    // State to manage the confirmation modal
-    const [confirmationModal, setConfirmationModal] = useState(false);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [confirmationModal, setConfirmationModal] = useState<boolean>(false);
 
     const openConfirmationModal = () => {
         setConfirmationModal(true);
@@ -31,11 +28,9 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     };
 
     const deleteHandler = async () => {
-        // Show the confirmation modal
         openConfirmationModal();
 
         if (confirmationModal) {
-            // If the user confirmed the deletion
             closeConfirmationModal();
 
             setLoading(true);
@@ -173,20 +168,31 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
         </div>
     );
 
+    const modal = (
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-70">
+            <div className="modal-container bg-white max-w-lg p-4 rounded shadow-lg">
+                <p className="text-gray-800 text-lg mb-4">
+                    Are you sure you want to delete?
+                </p>
+                <div className="flex justify-end">
+                    <Button
+                        label="Cancel"
+                        onClick={closeConfirmationModal}
+                        className="mr-2 bg-gray-300"
+                    />
+                    <Button
+                        label="Delete"
+                        onClick={deleteHandler}
+                        className="bg-red-500 hover:bg-red-700"
+                    />
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <div>
-            {confirmationModal && (
-                <div>
-                    <div>
-                        <p>Are you sure you want to delete?</p>
-                        <Button label="Delete" onClick={deleteHandler} />
-                        <Button
-                            label="Cancel"
-                            onClick={closeConfirmationModal}
-                        />
-                    </div>
-                </div>
-            )}
+            {confirmationModal && modal}
             {receipt && (
                 <div className="receiptDetails">
                     {isEditing ? inputs : paragraphs}
