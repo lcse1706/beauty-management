@@ -29,7 +29,6 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const deleteHandler = async () => {
         openConfirmationModal();
-
         if (confirmationModal) {
             closeConfirmationModal();
 
@@ -82,7 +81,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     };
 
     const inputs = (
-        <div>
+        <div className="max-w-md mx-auto flex flex-col items-center">
             <Input
                 label="Receipt number:"
                 type="text"
@@ -169,8 +168,8 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     );
 
     const modal = (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-70">
-            <div className="modal-container bg-white max-w-lg p-4 rounded shadow-lg">
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-700 bg-opacity-80">
+            <div className="modal-container bg-white p-4 rounded translate-y-[-10vh] ">
                 <p className="text-gray-800 text-lg mb-4">
                     Are you sure you want to delete?
                 </p>
@@ -178,7 +177,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                     <Button
                         label="Cancel"
                         onClick={closeConfirmationModal}
-                        className="mr-2 bg-gray-300"
+                        className="mr-2 bg-gray-500"
                     />
                     <Button
                         label="Delete"
