@@ -5,20 +5,26 @@ import React, { useState } from 'react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { useAuthContext } from '@/context';
 
 import { Button } from '../Button';
 
 export const NavigationMobile = () => {
+    const { setIsLogged } = useAuthContext();
     const [isOpen, setIsOpen] = useState(false);
+
+    const router = useRouter();
 
     const handleClick = () => {
         setIsOpen(!isOpen);
     };
 
     const logoutHandler = () => {
-        // setIsLogged(false);
+        setIsLogged(false);
         sessionStorage.setItem('isAuth', 'false');
-        // router.push('/');
+        router.push('/');
     };
 
     return (
@@ -57,7 +63,11 @@ export const NavigationMobile = () => {
                     </ul>
                 </div>
             )}
-            <FontAwesomeIcon icon={faBars} style={{ color: '#fafcff' }} />
+            <FontAwesomeIcon
+                icon={faBars}
+                size="xl"
+                style={{ color: '#fafcff' }}
+            />
         </button>
     );
 };
