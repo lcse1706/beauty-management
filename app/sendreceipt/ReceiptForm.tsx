@@ -70,7 +70,7 @@ export const ReceiptForm = () => {
 
         localStorage.setItem('printData', JSON.stringify(receipt));
 
-        // router.push('/print');
+        router.push('/print');
 
         // Reset inputs
         reset();
