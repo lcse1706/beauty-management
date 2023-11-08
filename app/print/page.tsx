@@ -49,7 +49,7 @@ const PrintPage = () => {
                         <p className="mb-2">{data.treatment}</p>
                         <p className="mb-1">
                             <span className="font-bold">Pris: </span>
-                            {data.price}
+                            {data.price} kr
                         </p>
                     </div>
                 </div>
