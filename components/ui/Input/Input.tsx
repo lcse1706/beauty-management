@@ -24,6 +24,7 @@ export const Input = forwardRef(
                     value={props.value}
                     {...props.register}
                     className="text-black w-[300px] border rounded-md px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-150 ease-in-out"
+                    autoComplete="on"
                 />
             </div>
         );
