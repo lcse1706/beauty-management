@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { Button, Input, Loader, Select } from '@/components/ui';
 import { setReceiptNumber } from '@/components/utils/setReceiptNumber';
 import { useDataContext, usePopupContext } from '@/context';
+import { treatments } from '@/lib/treatments';
 import { fetchReceipts, sendReceipt } from '@/services';
 
 export const ReceiptForm = () => {
@@ -105,7 +106,7 @@ export const ReceiptForm = () => {
                 )}
                 <Select
                     label="Treatment:"
-                    options={['lashes', 'brows', 'nails']}
+                    options={treatments}
                     register={register('treatment', { required: true })}
                 />
                 {errors.treatment && (
