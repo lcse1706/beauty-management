@@ -40,7 +40,7 @@ export const ReceiptForm = () => {
             console.error(error);
         }
     };
-
+    3;
     useEffect(() => {
         fetchData();
     }, [setReceipts]);
@@ -51,6 +51,7 @@ export const ReceiptForm = () => {
         const receipt = setReceiptNumber(data, receipts);
 
         const sendData = async () => {
+            console.log(receipt);
             try {
                 setLoading(true);
                 await sendReceipt(receipt);
@@ -69,7 +70,7 @@ export const ReceiptForm = () => {
 
         localStorage.setItem('printData', JSON.stringify(receipt));
 
-        router.push('/print');
+        // router.push('/print');
 
         // Reset inputs
         reset();
@@ -91,7 +92,7 @@ export const ReceiptForm = () => {
                         Please enter a valid name.
                     </span>
                 )}
-                <Input
+                {/* <Input
                     label="Client Email:"
                     type="email"
                     register={register('email', {
@@ -103,7 +104,7 @@ export const ReceiptForm = () => {
                     <span className="text-red-600 block">
                         Please enter a valid email address.
                     </span>
-                )}
+                )} */}
                 <Select
                     label="Treatment:"
                     options={treatments}

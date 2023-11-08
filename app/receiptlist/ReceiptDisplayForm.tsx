@@ -21,7 +21,7 @@ export const ReceiptDisplayForm = ({ data }: ReceiptDisplayF) => {
             <p className="w-1/4 text-gray-800 font-medium">
                 {data.fields.name}
             </p>
-            <p className="w-1/4 text-gray-600">{data.fields.email}</p>
+            {/* <p className="w-1/4 text-gray-600">{data.fields.email}</p> */}
             <p className="w-1/4 text-gray-600">{data.fields.treatment}</p>
             <p className="w-1/4 text-gray-800 font-bold">
                 {data.fields.price} kr

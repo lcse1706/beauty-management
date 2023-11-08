@@ -30,7 +30,7 @@ export const sendReceipt = async (receipt: Receipt) => {
             name: receipt.name,
             receipt_id: receipt.receipt_id,
             treatment: receipt.treatment,
-            email: receipt.email,
+            // email: receipt.email,
             price: receipt.price,
         },
     };
@@ -66,7 +66,7 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
             name: receipt.name,
             receipt_id: receipt.receipt_id,
             treatment: receipt.treatment,
-            email: receipt.email,
+            // email: receipt.email,
             price: receipt.price,
         },
     };
