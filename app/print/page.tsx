@@ -17,11 +17,19 @@ const PrintPage = () => {
 
     const data: Receipt = JSON.parse(storedData ?? '{}');
 
+    const currentDate =
+        new Date().getDate() +
+        '/' +
+        (new Date().getMonth() + 1) +
+        '/' +
+        new Date().getFullYear();
+
     return (
         <html className="bg-white text-black text-2xl" lang="en">
             <body>
                 <div className="container print:w-[4cm] print:h-[10cm] print:p-4">
                     <div>
+                        <p className="mb-5">{currentDate}</p>
                         <p className="text-lg font-bold">
                             <Image
                                 src={logo}
@@ -32,15 +40,13 @@ const PrintPage = () => {
                             />{' '}
                             Beauty By Ec
                         </p>
-                        <p className="mb-1">
-                            <span className="font-bold">Momsreg.nr: </span>
-                            SE901115750101
-                        </p>
+                        <p>Centrumvägen 17, 619 71 Vagnhärad</p>
+                        <p className="mb-1">SE901115750101</p>
                     </div>
 
                     <div>
                         <p className="mb-1">
-                            <span className="font-bold">Kvittot Nummer: </span>
+                            <span className="font-bold">Kvittens Nummer: </span>
                             {data.receipt_id}
                         </p>
                         <p className="mb-1 font-bold">Namn:</p>
