@@ -29,7 +29,10 @@ const PrintPage = () => {
             <body>
                 <div className="container print:w-[4cm] print:h-[10cm] print:p-4">
                     <div>
-                        <p className="mb-5">{currentDate}</p>
+                        <p className="mb-5">
+                            <span className="font-bold">Datum: </span>{' '}
+                            {currentDate}
+                        </p>
                         <p className="text-lg font-bold">
                             <Image
                                 src={logo}
