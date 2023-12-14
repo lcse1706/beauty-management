@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { Loader } from '@/components/ui';
 import { sortReceipts } from '@/components/utils/sortReceipts';
-import { useAuthContext, useDataContext, usePopupContext } from '@/context/';
+import { useAuthContext, useDataContext, usePopupContext } from '@/context';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { fetchReceipts } from '@/services/receipts';
 

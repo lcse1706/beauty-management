@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui';
-import { useDataContext } from '@/context/';
+import { useDataContext } from '@/context';
 import { ReceiptDisplayF } from '@/lib/types';
 
 export const ReceiptDisplayForm = ({ data }: ReceiptDisplayF) => {
