@@ -1,6 +1,6 @@
-import { Users } from './types';
+import { User } from './types';
 
-export const accounts: Users[] = [
+export const accounts: User[] = [
     {
         id: 1,
         login: 'App',
