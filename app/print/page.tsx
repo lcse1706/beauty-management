@@ -36,7 +36,7 @@ const PrintPage = () => {
 
     return (
         <div>
-            <div className="max-w-md mx-auto bg-white p-8 border border-gray-600 text-black mb-3">
+            <div className="max-w-md mx-auto bg-white p-8 border border-gray-600 text-black mb-3 mt-4">
                 <p className="text-lg font-bold mb-3">
                     <Image
                         src={logo}
