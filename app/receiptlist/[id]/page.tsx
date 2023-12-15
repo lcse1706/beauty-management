@@ -17,7 +17,7 @@ const DetailsPage = () => {
     return (
         <div>
             <h2 className="text-xl color-black font-bold mb-4 text-center text-white">
-                Details
+                Receipt Details
             </h2>
             <ReceiptDetails data={getData()} />
         </div>

@@ -116,10 +116,6 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     );
     const paragraphs = (
         <div className="max-w-md mx-auto p-5 bg-white rounded shadow-md border border-gray-200">
-            <h1 className="text-xl color-black font-bold mb-4 text-center text-gray-700">
-                Customer Receipt
-            </h1>
-            <hr className="mb-4" />
             <div className="flex justify-between mb-2">
                 <span className="text-gray-700">Receipt number:</span>
                 <span className="text-gray-900">{receipt.receipt_id}</span>
