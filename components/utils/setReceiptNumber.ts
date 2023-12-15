@@ -34,7 +34,7 @@ export const setReceiptNumber = (
                 '/' +
                 new Date().getFullYear(),
             name: data.name,
-            // email: data.email,
+            email: data.email,
             treatment: data.treatment,
             price: data.price,
         };
@@ -46,7 +46,7 @@ export const setReceiptNumber = (
                 '/' +
                 new Date().getFullYear(),
             name: data.name,
-            // email: data.email,
+            email: data.email,
             treatment: data.treatment,
             price: data.price,
         };

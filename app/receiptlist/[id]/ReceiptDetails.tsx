@@ -94,12 +94,12 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 value={receipt.name}
                 onChange={(event) => onChangeHandler(event, 'name')}
             ></Input>
-            {/* <Input
+            <Input
                 label="Email: "
                 type="email"
                 value={receipt.email}
                 onChange={(event) => onChangeHandler(event, 'email')}
-            ></Input> */}
+            ></Input>
             <Input
                 label="Treatment: "
                 type="text"
@@ -128,10 +128,10 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 <span className="text-gray-700">Name:</span>
                 <span className="text-gray-900">{receipt.name}</span>
             </div>
-            {/* <div className="flex justify-between mb-2">
+            <div className="flex justify-between mb-2">
                 <span className="text-gray-700">Email:</span>
                 <span className="text-gray-900">{receipt.email}</span>
-            </div> */}
+            </div>
             <div className="flex justify-between mb-2">
                 <span className="text-gray-700">Treatment:</span>
                 <span className="text-gray-900">{receipt.treatment}</span>

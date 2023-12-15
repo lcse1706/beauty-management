@@ -92,7 +92,7 @@ export const ReceiptForm = () => {
                         Please enter a valid name.
                     </span>
                 )}
-                {/* <Input
+                <Input
                     label="Client Email:"
                     type="email"
                     register={register('email', {
@@ -104,7 +104,7 @@ export const ReceiptForm = () => {
                     <span className="text-red-600 block">
                         Please enter a valid email address.
                     </span>
-                )} */}
+                )}
                 <Select
                     label="Treatment:"
                     options={treatments}

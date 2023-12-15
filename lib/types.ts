@@ -19,7 +19,7 @@ export type ReceiptDisplayF = {
         fields: {
             receipt_id: string;
             name: string;
-            // email: string;
+            email: string;
             treatment: string;
             price: string;
             date: string;
@@ -32,7 +32,7 @@ export type ReceiptDetailsProps = {
         fields: {
             receipt_id: string;
             name: string;
-            // email: string;
+            email: string;
             treatment: string;
             price: string;
             date: string;
@@ -43,7 +43,7 @@ export type ReceiptDetailsProps = {
 export const ReceiptDTO = z.object({
     receipt_id: z.string(),
     name: z.string().min(2),
-    // email: z.string().email(),
+    email: z.string().email(),
     treatment: z.string(),
     price: z.string(),
 });
@@ -57,7 +57,7 @@ export const ReceiptAirTableFormat = z.object({
 export interface Receipt {
     receipt_id: string;
     name: string;
-    // email: string;
+    email: string;
     treatment: string;
     price: string;
 }
@@ -71,7 +71,7 @@ export interface ReceiptsFromAirTable {
     fields: {
         receipt_id: string;
         name: string;
-        // email: string;
+        email: string;
         treatment: string;
         price: string;
         date: string;
