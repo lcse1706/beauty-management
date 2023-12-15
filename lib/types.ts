@@ -4,43 +4,9 @@ export const loginSchema = z.object({
     login: z.string(),
     password: z.string(),
 });
-
 export type TloginSchema = z.infer<typeof loginSchema>;
 
-export type Users = {
-    id: number;
-    login: string;
-    password: string;
-};
-
-export type ReceiptDisplayF = {
-    data: {
-        id: string;
-        fields: {
-            receipt_id: string;
-            name: string;
-            email: string;
-            treatment: string;
-            price: string;
-            date: string;
-        };
-    };
-};
-export type ReceiptDetailsProps = {
-    data: Array<{
-        id: string;
-        fields: {
-            receipt_id: string;
-            name: string;
-            email: string;
-            treatment: string;
-            price: string;
-            date: string;
-        };
-    }>;
-};
-
-export const ReceiptDTO = z.object({
+const ReceiptFields = z.object({
     receipt_id: z.string(),
     name: z.string().min(2),
     email: z.string().email(),
@@ -48,19 +14,37 @@ export const ReceiptDTO = z.object({
     price: z.string(),
 });
 
+type ReceiptFieldsType = z.infer<typeof ReceiptFields>;
+
+export interface User {
+    id: number;
+    login: string;
+    password: string;
+}
+
+export interface ReceiptDisplayF {
+    data: {
+        id: string;
+        fields: ReceiptFieldsType & {
+            date: string;
+        };
+    };
+}
+
+export interface ReceiptDetailsProps {
+    data: Array<{
+        id: string;
+        fields: ReceiptFieldsType;
+    }>;
+}
+
+export const ReceiptDTO = ReceiptFields;
+
 export const ReceiptAirTableFormat = z.object({
-    fields: z.object({
-        ...ReceiptDTO.shape,
-    }),
+    fields: ReceiptFields,
 });
 
-export interface Receipt {
-    receipt_id: string;
-    name: string;
-    email: string;
-    treatment: string;
-    price: string;
-}
+export interface Receipt extends ReceiptFieldsType {}
 
 export interface ReceiptToAirTable {
     fields: Receipt;
@@ -68,12 +52,7 @@ export interface ReceiptToAirTable {
 
 export interface ReceiptsFromAirTable {
     id: string;
-    fields: {
-        receipt_id: string;
-        name: string;
-        email: string;
-        treatment: string;
-        price: string;
+    fields: ReceiptFieldsType & {
         date: string;
     };
 }
@@ -81,7 +60,7 @@ export interface ReceiptsFromAirTable {
 export const ReceiptFetch = z.object({
     id: z.string(),
     fields: z.object({
-        ...ReceiptDTO.shape,
+        ...ReceiptFields.shape,
         date: z.string(),
     }),
 });
