@@ -6,7 +6,7 @@
 
 <h3>Features:</h3>
 
--   receits - save, numbering, sending to client, print
+-   receipts - save, numbering, sending to client, print
 -   storage states
 
 <h3>Used Technologies:</h3>
