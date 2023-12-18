@@ -40,7 +40,7 @@ export const ReceiptForm = () => {
             console.error(error);
         }
     };
-    3;
+
     useEffect(() => {
         fetchData();
     }, [setReceipts]);
