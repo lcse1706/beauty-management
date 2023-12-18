@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
     Receipt,
     ReceiptAirTableFormat,
@@ -5,23 +7,33 @@ import {
     ReceiptToAirTable,
 } from '@/lib';
 
+// export const fetchReceipts = async () => {
+//     const response: Response = await fetch(
+//         `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`,
+//         {
+//             // const response: Response = await fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
+//             headers: {
+//                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
+//             },
+//         },
+//     );
+
+//     if (response.ok) {
+//         const data = await response.json();
+//         console.log(data.records);
+//         return ReceiptFetchArray.parse(data.records);
+//     }
+
+//     throw new Error('Not working.');
+// };
 export const fetchReceipts = async () => {
-    const response: Response = await fetch(
-        `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`,
-        {
-            // const response: Response = await fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-            },
-        },
-    );
+    const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`;
+    const headers = {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
+    };
 
-    if (response.ok) {
-        const data = await response.json();
-        return ReceiptFetchArray.parse(data.records);
-    }
-
-    throw new Error('Not working.');
+    const response = await axios.get(url, { headers });
+    return ReceiptFetchArray.parse(response.data.records);
 };
 
 export const sendReceipt = async (receipt: Receipt) => {
