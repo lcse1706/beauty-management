@@ -52,6 +52,7 @@ export interface ReceiptToAirTable {
 
 export interface ReceiptsFromAirTable {
     id: string;
+    createdTime: string;
     fields: ReceiptFieldsType & {
         date: string;
     };
@@ -59,6 +60,7 @@ export interface ReceiptsFromAirTable {
 
 export const ReceiptFetch = z.object({
     id: z.string(),
+    createdTime: z.string(),
     fields: z.object({
         ...ReceiptFields.shape,
         date: z.string(),
