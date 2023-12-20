@@ -1,37 +1,13 @@
 import axios from 'axios';
 
-import {
-    Receipt,
-    ReceiptAirTableFormat,
-    ReceiptFetchArray,
-    ReceiptToAirTable,
-} from '@/lib';
+import { Receipt, ReceiptFetchArray, ReceiptToAirTable } from '@/lib';
 
-// export const fetchReceipts = async () => {
-//     const response: Response = await fetch(
-//         `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`,
-//         {
-//             // const response: Response = await fetch('https://api.airtable.com/v0/appzpLACufTjr6Q8g/receipts', {
-//             headers: {
-//                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-//             },
-//         },
-//     );
+const headers = {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
+};
+const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`;
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         console.log(data.records);
-//         return ReceiptFetchArray.parse(data.records);
-//     }
-
-//     throw new Error('Not working.');
-// };
 export const fetchReceipts = async () => {
-    const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`;
-    const headers = {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-    };
-
     const response = await axios.get(url, { headers });
     return ReceiptFetchArray.parse(response.data.records);
 };
@@ -46,34 +22,16 @@ export const sendReceipt = async (receipt: Receipt) => {
             price: receipt.price,
         },
     };
-
-    const headers = {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-        'Content-Type': 'application/json',
-    };
-
-    const sendResponse: Response = await fetch(
-        `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}`,
-        {
-            method: 'POST',
-            headers: headers,
-            body: JSON.stringify(
-                ReceiptAirTableFormat.parse(receiptToAirTable),
-            ),
-        },
-    );
-
-    if (sendResponse.ok) {
+    try {
+        await axios.post(url, receiptToAirTable, { headers });
         console.log('Data send successful !');
-    } else {
-        throw new Error('Sending failed.');
+    } catch (error) {
+        console.log('Sending failed: ', error);
     }
-
-    return null;
 };
 
 export const updateRecord = async (recordId: string, receipt: Receipt) => {
-    const formatedData = {
+    const formattedData = {
         fields: {
             name: receipt.name,
             receipt_id: receipt.receipt_id,
@@ -84,42 +42,19 @@ export const updateRecord = async (recordId: string, receipt: Receipt) => {
     };
 
     try {
-        const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}/${recordId}`;
-        const headers = {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-            'Content-Type': 'application/json',
-        };
-        const response = await fetch(url, {
-            method: 'PATCH',
-            headers: headers,
-            body: JSON.stringify(ReceiptAirTableFormat.parse(formatedData)),
+        axios.put(`${url}/${recordId}`, formattedData, {
+            headers,
         });
-
-        if (response.status === 200) {
-            console.log('Record updated successfully.');
-        } else {
-            console.log('Error updating record.');
-        }
+        console.log('Record ' + recordId + ' updated !');
     } catch (error) {
-        console.error('An error occurred while updating the record:', error);
+        console.log('Record update failed: ', error);
     }
 };
 
 export const deleteReceipt = async (recordId: string) => {
     try {
-        const url = `${process.env.NEXT_PUBLIC_AIRTABLE_BASE_URL}/${recordId}`;
-        const headers = {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_TOKEN}`,
-        };
-        const response = await fetch(url, {
-            method: 'DELETE',
-            headers: headers,
-        });
-        if (response.status === 200) {
-            console.log('Record deleted successfully.');
-        } else {
-            console.log('Error deleting record.');
-        }
+        axios.delete(`${url}/${recordId}`, { headers });
+        console.log('Record ' + recordId + ' deleted !');
     } catch (error) {
         console.error('An error occurred while deleting the record:', error);
     }

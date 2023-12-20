@@ -12,6 +12,8 @@ export const metadata = {
     description: 'Beauty Management App',
 };
 
+//FIXME CSS: page height over 100 vh
+
 export default function RootLayout({
     children,
 }: {
