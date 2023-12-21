@@ -11,7 +11,7 @@
 
 <h3>Used Technologies:</h3>
 
--   NEXT.JS
+-   Next.js
 -   Typescript
 -   React
 -   React-hook-form
