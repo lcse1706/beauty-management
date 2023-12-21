@@ -2,7 +2,7 @@
 
 <p align='center'>System which helps with usual tasks in the company.</p>
 
-<h3 align='center'>Application Preview: <a href="beauty-management.vercel.app">DEMO</a></h3>
+<h3 align='center'>Application Preview: <a href="https://beauty-management.vercel.app">DEMO</a></h3>
 
 <h3>Features:</h3>
 
