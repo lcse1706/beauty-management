@@ -6,7 +6,7 @@ import logo from './logo.png';
 
 export const Header = ({ children }: ComponentProps<'header'>) => {
     return (
-        <header className="flex flex-row h-[60px] w-screen justify-around items-center border-b border-white bg-[#151f29]">
+        <header className="flex flex-row h-[60px] w-dscreen justify-around items-center border-b border-white bg-[#151f29]">
             <h1 className="text-white font-medium">
                 <Image
                     src={logo}
