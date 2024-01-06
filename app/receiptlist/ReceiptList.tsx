@@ -3,6 +3,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { useRouter } from 'next/navigation';
 
 import { Loader } from '@/components/ui';
@@ -28,36 +29,32 @@ export const ReceiptList = () => {
 
     const { isLogged } = useAuthContext();
     const router = useRouter();
+    // revalidateTag('/receiptlist');
 
     useEffect(() => {
         if (!isLogged) {
             router.push('/');
         }
-        // fetchData();
-    }, []);
+        console.log(data);
+        const fetchData = async () => {
+            setLoading(true);
 
-    /////////////////////////////////////////////////////////////
+            const fetchedData = await fetchReceipts();
 
-    // const fetchData = async () => {
-    //     try {
-    //         setLoading(true);
-    //         const data = await fetchReceipts();
+            if (Array.isArray(fetchedData)) {
+                setReceipts(fetchedData);
+            } else {
+                setReceipts([]);
+                setShowPopup(true);
+                setMessage('Data fetch failed!');
+            }
 
-    //         if (Array.isArray(data)) {
-    //             setReceipts(data);
-    //         }
-    //     } catch (error) {
-    //         setShowPopup(true);
-    //         setMessage('Something went wrong !');
-    //         console.error(error);
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
+            setLoading(false);
+        };
 
-    if (Array.isArray(data)) {
-        setReceipts(data);
-    }
+        // Call the asynchronous function
+        fetchData();
+    }, [data]);
 
     const sortedReceipts = sortReceipts(receipts);
 

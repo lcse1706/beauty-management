@@ -21,6 +21,7 @@ type ApiResponse<T> =
       };
 
 export const useApi = <T>(source: string | (() => Promise<Response>)) => {
+    // export const useApi = <T>(source: string) => {
     const [apiResponse, setApiResponse] = useState<ApiResponse<T>>({
         data: undefined,
         isLoading: true,
@@ -45,14 +46,6 @@ export const useApi = <T>(source: string | (() => Promise<Response>)) => {
                     response = await source();
                 }
 
-                if (!response.ok) {
-                    console.log('response not ok');
-                    setApiResponse({
-                        data: undefined,
-                        isLoading: false,
-                        isError: true,
-                    });
-                }
                 const responseData = (await response.json()) as T;
                 setApiResponse({
                     data: responseData,
@@ -60,6 +53,11 @@ export const useApi = <T>(source: string | (() => Promise<Response>)) => {
                     isError: false,
                 });
             } catch (error) {
+                setApiResponse({
+                    data: undefined,
+                    isLoading: false,
+                    isError: true,
+                });
                 console.log('Something went wrong ! ', error);
             }
         };
