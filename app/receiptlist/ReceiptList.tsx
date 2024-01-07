@@ -35,26 +35,24 @@ export const ReceiptList = () => {
         if (!isLogged) {
             router.push('/');
         }
-        console.log(data);
+
+        setLoading(isLoading);
+
         const fetchData = async () => {
-            setLoading(true);
-
             const fetchedData = await fetchReceipts();
-
             if (Array.isArray(fetchedData)) {
                 setReceipts(fetchedData);
-            } else {
+            }
+
+            if (isError) {
                 setReceipts([]);
                 setShowPopup(true);
                 setMessage('Data fetch failed!');
             }
-
-            setLoading(false);
         };
 
-        // Call the asynchronous function
         fetchData();
-    }, [data]);
+    }, [data, isLoading, isError]);
 
     const sortedReceipts = sortReceipts(receipts);
 
