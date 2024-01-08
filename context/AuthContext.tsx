@@ -4,7 +4,9 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
     isLogged: boolean;
-    setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
+    // setIsLogged: React.Dispatch<React.SetStateAction<boolean>>;
+    logIn: () => void;
+    logOut: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -17,7 +19,9 @@ export const useAuthContext = () => {
     return context;
 };
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+// Logic close in hook separate from view, easy to test
+
+const useAuth = () => {
     const initialState = () => {
         if (typeof window !== 'undefined') {
             return sessionStorage.getItem('isAuth') === 'true';
@@ -36,8 +40,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
     }, []);
 
+    const logIn = () => setIsLogged(true);
+    const logOut = () => setIsLogged(false);
+
+    return { isLogged, logIn, logOut };
+};
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return (
-        <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+        <AuthContext.Provider value={useAuth()}>
             {children}
         </AuthContext.Provider>
     );
