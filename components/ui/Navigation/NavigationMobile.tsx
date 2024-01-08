@@ -12,7 +12,7 @@ import { useAuthContext } from '@/context';
 import { Button } from '../Button';
 
 export const NavigationMobile = () => {
-    const { setIsLogged } = useAuthContext();
+    const { logOut } = useAuthContext();
     const [isOpen, setIsOpen] = useState(false);
 
     const router = useRouter();
@@ -22,7 +22,7 @@ export const NavigationMobile = () => {
     };
 
     const logoutHandler = () => {
-        setIsLogged(false);
+        logOut();
         sessionStorage.setItem('isAuth', 'false');
         router.push('/');
     };

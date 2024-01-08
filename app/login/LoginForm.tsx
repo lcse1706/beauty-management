@@ -13,7 +13,7 @@ import { useAuthContext } from '@/context';
 import { accounts, loginSchema, TloginSchema } from '@/lib';
 
 export const LoginForm: NextPage = () => {
-    const { setIsLogged } = useAuthContext();
+    const { logIn, logOut } = useAuthContext();
     const [errorMessage, setErrorMessage] = useState<string>('');
     const router = useRouter();
 
@@ -47,12 +47,12 @@ export const LoginForm: NextPage = () => {
 
     const formHandler = (data: TloginSchema) => {
         if (checkLogin(data.login, data.password)) {
-            setIsLogged(true);
+            logIn();
             router.push('/sendreceipt');
         } else {
             reset();
             setErrorMessage('Incorrect login or password !');
-            setIsLogged(false);
+            logOut();
         }
     };
 

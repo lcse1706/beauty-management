@@ -6,13 +6,13 @@ import { useAuthContext } from '@/context';
 import { Button } from '../Button';
 
 export const NavigationDesktop = () => {
-    const { setIsLogged } = useAuthContext();
+    const { logOut } = useAuthContext();
 
     const router = useRouter();
     const path = usePathname();
 
     const logoutHandler = () => {
-        setIsLogged(false);
+        logOut();
         sessionStorage.setItem('isAuth', 'false');
         router.push('/');
     };
