@@ -19,7 +19,8 @@ export const ReceiptForm = () => {
         formState: { errors },
         reset,
     } = useForm();
-    const { receipts, setReceipts, setLoading, loading } = useDataContext();
+    const { receipts, setReceipts, loading, loadingOn, loadingOff } =
+        useDataContext();
     const { setShowPopup, setMessage } = usePopupContext();
 
     // Refresh after back from /print path
@@ -53,7 +54,7 @@ export const ReceiptForm = () => {
         const sendData = async () => {
             console.log(receipt);
             try {
-                setLoading(true);
+                loadingOn();
                 await sendReceipt(receipt);
                 setMessage('Receipt successfully added !');
                 fetchData();
@@ -61,7 +62,7 @@ export const ReceiptForm = () => {
                 console.error(error);
                 setMessage('Something went wrong !');
             } finally {
-                setLoading(false);
+                loadingOff();
                 setShowPopup(true);
             }
         };

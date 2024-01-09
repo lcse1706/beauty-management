@@ -11,7 +11,7 @@ import { deleteReceipt, updateRecord } from '@/services';
 
 export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     const [receipt, setReceipt] = useState(data[0].fields);
-    const { receiptId, loading, setLoading } = useDataContext();
+    const { receiptId, loading, loadingOn, loadingOff } = useDataContext();
     const { setShowPopup, setMessage } = usePopupContext();
 
     const router = useRouter();
@@ -31,8 +31,8 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
         openConfirmationModal();
         if (confirmationModal) {
             closeConfirmationModal();
+            loadingOn();
 
-            setLoading(true);
             try {
                 await deleteReceipt(receiptId);
                 setMessage('Receipt delete successful!');
@@ -41,7 +41,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 console.error(error);
                 setMessage('Something went wrong!');
             } finally {
-                setLoading(false);
+                loadingOff();
                 setShowPopup(true);
             }
         }
@@ -53,7 +53,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const saveHandler = async () => {
         setIsEditing(false);
-        setLoading(true);
+        loadingOn();
 
         try {
             await updateRecord(receiptId, receipt);
@@ -61,7 +61,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
         } catch (error) {
             console.error(error);
         } finally {
-            setLoading(false);
+            loadingOff();
             setShowPopup(true);
         }
     };

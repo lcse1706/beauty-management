@@ -19,7 +19,8 @@ import './ReceiptList.css';
 import { ReceiptDisplayFormMobile } from './RecieiptDisplayFormMobile';
 
 export const ReceiptList = () => {
-    const { receipts, setReceipts, loading, setLoading } = useDataContext();
+    const { receipts, setReceipts, loading, loadingOn, loadingOff } =
+        useDataContext();
     const { setShowPopup, setMessage } = usePopupContext();
     const { data, isLoading, isError } = useApi<ReceiptsFromAirTable[]>('');
 
@@ -35,8 +36,6 @@ export const ReceiptList = () => {
         if (!isLogged) {
             router.push('/');
         }
-
-        setLoading(isLoading);
 
         const fetchData = async () => {
             const fetchedData = await fetchReceipts();
