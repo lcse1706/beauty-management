@@ -10,7 +10,8 @@ interface DataContextType {
     receiptId: string;
     setReceiptId: React.Dispatch<React.SetStateAction<string>>;
     loading: boolean;
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    loadingOn: () => void;
+    loadingOff: () => void;
 }
 
 const DataContext = createContext<DataContextType | null>(null);
@@ -28,6 +29,9 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     const [receiptId, setReceiptId] = useState<string>('');
     const [loading, setLoading] = useState(false);
 
+    const loadingOn = () => setLoading(true);
+    const loadingOff = () => setLoading(false);
+
     return (
         <DataContext.Provider
             value={{
@@ -36,7 +40,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
                 receiptId,
                 setReceiptId,
                 loading,
-                setLoading,
+                loadingOn,
+                loadingOff,
             }}
         >
             {children}
