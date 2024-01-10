@@ -1,9 +1,12 @@
-import { ComponentProps, forwardRef, Ref } from 'react';
+import { ChangeEvent, ComponentProps, forwardRef, Ref } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
 interface SelectProps {
     label: string;
     options: string[];
-    register?: any;
+    value?: string;
+    register?: UseFormRegisterReturn<string>;
+    onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const Select = forwardRef(
@@ -26,13 +29,14 @@ export const Select = forwardRef(
                 </label>
                 <select
                     ref={ref}
-                    defaultValue="Choose here"
+                    onChange={props.onChange}
+                    value={props.value}
                     {...props.register}
                     className="text-black w-[300px] border rounded-md px-3 py-2 focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-150 ease-in-out"
                 >
-                    <option value="" disabled hidden>
+                    {/* <option value="" disabled hidden>
                         Choose here
-                    </option>
+                    </option> */}
                     {options}
                 </select>
             </div>
