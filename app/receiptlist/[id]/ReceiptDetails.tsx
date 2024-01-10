@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Button, Input, Loader } from '@/components/ui';
+import { Button, Input, Loader, Select } from '@/components/ui';
 import { useDataContext, usePopupContext } from '@/context';
 import { ReceiptDetailsProps } from '@/lib';
+import { treatments } from '@/lib/treatments';
 import { deleteReceipt, updateRecord } from '@/services';
 
 export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
@@ -18,6 +19,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [confirmationModal, setConfirmationModal] = useState<boolean>(false);
+    const [selectValue, setSelectValue] = useState<string>('');
 
     const openConfirmationModal = () => {
         setConfirmationModal(true);
@@ -49,6 +51,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
 
     const editHandler = () => {
         setIsEditing(true);
+        setSelectValue(receipt.treatment);
     };
 
     const saveHandler = async () => {
@@ -71,7 +74,9 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     };
 
     const onChangeHandler = (
-        event: React.ChangeEvent<HTMLInputElement>,
+        event:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLSelectElement>,
         field: string,
     ) => {
         setReceipt({
@@ -100,12 +105,22 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 value={receipt.email}
                 onChange={(event) => onChangeHandler(event, 'email')}
             ></Input>
-            <Input
+            {/* <Input
                 label="Treatment: "
                 type="text"
                 value={receipt.treatment}
                 onChange={(event) => onChangeHandler(event, 'treatment')}
-            ></Input>
+            ></Input> */}
+            <Select
+                label="Treatment: "
+                value={selectValue}
+                options={treatments}
+                onChange={(event) => {
+                    setSelectValue(event.target.value);
+                    onChangeHandler(event, 'treatment');
+                }}
+            />
+
             <Input
                 label="Price"
                 type="text"
