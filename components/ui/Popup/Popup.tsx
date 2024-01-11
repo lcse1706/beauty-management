@@ -2,8 +2,7 @@
 
 import React, { useEffect } from 'react';
 
-import { usePopupContext } from '@/context';
-
+import { usePopupContext } from '../../../context';
 import './Popup.css';
 
 export const Popup = () => {
