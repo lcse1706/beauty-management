@@ -21,16 +21,28 @@ export const usePopupContext = () => {
     return context;
 };
 
-export const PopupProvider = ({ children }: { children: React.ReactNode }) => {
-    const [popup, setPopup] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>('');
+export const PopupProvider = ({
+    children,
+    storybookValues,
+}: {
+    children: React.ReactNode;
+    storybookValues?: PopupContextType;
+}) => {
+    const usePopup = () => {
+        const [popup, setPopup] = useState<boolean>(false);
+        const [message, setMessage] = useState<string>('');
 
-    const showPopup = () => setPopup(true);
-    const hidePopup = () => setPopup(false);
+        const showPopup = () => setPopup(true);
+        const hidePopup = () => setPopup(false);
+
+        return { popup, setPopup, message, setMessage, showPopup, hidePopup };
+    };
+
+    const callUsePopup = usePopup();
 
     return (
         <PopupContext.Provider
-            value={{ popup, showPopup, hidePopup, message, setMessage }}
+            value={storybookValues ? storybookValues : callUsePopup}
         >
             {children}
         </PopupContext.Provider>
