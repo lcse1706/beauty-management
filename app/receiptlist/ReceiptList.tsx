@@ -21,7 +21,7 @@ import { ReceiptDisplayFormMobile } from './RecieiptDisplayFormMobile';
 export const ReceiptList = () => {
     const { receipts, setReceipts, loading, loadingOn, loadingOff } =
         useDataContext();
-    const { setShowPopup, setMessage } = usePopupContext();
+    const { showPopup, setMessage } = usePopupContext();
     const { data, isLoading, isError } = useApi<ReceiptsFromAirTable[]>('');
 
     const breakpoint768 = useMediaQuery(768);
@@ -45,7 +45,7 @@ export const ReceiptList = () => {
 
             if (isError) {
                 setReceipts([]);
-                setShowPopup(true);
+                showPopup();
                 setMessage('Data fetch failed!');
             }
         };

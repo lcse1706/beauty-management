@@ -13,7 +13,7 @@ import { deleteReceipt, updateRecord } from '@/services';
 export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
     const [receipt, setReceipt] = useState(data[0].fields);
     const { receiptId, loading, loadingOn, loadingOff } = useDataContext();
-    const { setShowPopup, setMessage } = usePopupContext();
+    const { showPopup, setMessage } = usePopupContext();
 
     const router = useRouter();
 
@@ -44,7 +44,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 setMessage('Something went wrong!');
             } finally {
                 loadingOff();
-                setShowPopup(true);
+                showPopup();
             }
         }
     };
@@ -65,7 +65,7 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
             console.error(error);
         } finally {
             loadingOff();
-            setShowPopup(true);
+            showPopup();
         }
     };
 
@@ -105,12 +105,6 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                 value={receipt.email}
                 onChange={(event) => onChangeHandler(event, 'email')}
             ></Input>
-            {/* <Input
-                label="Treatment: "
-                type="text"
-                value={receipt.treatment}
-                onChange={(event) => onChangeHandler(event, 'treatment')}
-            ></Input> */}
             <Select
                 label="Treatment: "
                 value={selectValue}
@@ -120,7 +114,6 @@ export const ReceiptDetails = ({ data }: ReceiptDetailsProps) => {
                     onChangeHandler(event, 'treatment');
                 }}
             />
-
             <Input
                 label="Price"
                 type="text"

@@ -21,7 +21,7 @@ export const ReceiptForm = () => {
     } = useForm();
     const { receipts, setReceipts, loading, loadingOn, loadingOff } =
         useDataContext();
-    const { setShowPopup, setMessage } = usePopupContext();
+    const { showPopup, setMessage } = usePopupContext();
 
     // Refresh after back from /print path
 
@@ -63,7 +63,7 @@ export const ReceiptForm = () => {
                 setMessage('Something went wrong !');
             } finally {
                 loadingOff();
-                setShowPopup(true);
+                showPopup();
             }
         };
 

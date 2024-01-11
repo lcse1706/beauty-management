@@ -2,7 +2,6 @@ import React from 'react';
 
 //TODO fix issue "ReferenceError: Cannot access 'Navigation' before initialization"
 import { Header, Navigation, Popup } from '@/components/ui';
-import { usePopupContext } from '@/context';
 
 import './globals.css';
 import { Providers } from './providers';
@@ -25,7 +24,7 @@ export default function RootLayout({
                         <Navigation />
                     </Header>
                     <div className="container">{children}</div>
-                    <Popup useContext={usePopupContext} />
+                    <Popup />
                 </Providers>
             </body>
         </html>
