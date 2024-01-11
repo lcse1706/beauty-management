@@ -3,8 +3,10 @@
 import { createContext, useContext, useState } from 'react';
 
 interface PopupContextType {
-    showPopup: boolean;
-    setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+    popup: boolean;
+    // setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+    showPopup: () => void;
+    hidePopup: () => void;
     message: string;
     setMessage: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -20,12 +22,15 @@ export const usePopupContext = () => {
 };
 
 export const PopupProvider = ({ children }: { children: React.ReactNode }) => {
-    const [showPopup, setShowPopup] = useState<boolean>(false);
+    const [popup, setPopup] = useState<boolean>(false);
     const [message, setMessage] = useState<string>('');
+
+    const showPopup = () => setPopup(true);
+    const hidePopup = () => setPopup(false);
 
     return (
         <PopupContext.Provider
-            value={{ showPopup, setShowPopup, message, setMessage }}
+            value={{ popup, showPopup, hidePopup, message, setMessage }}
         >
             {children}
         </PopupContext.Provider>

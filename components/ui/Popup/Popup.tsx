@@ -1,24 +1,27 @@
 'use client';
 
 import React, { useEffect } from 'react';
+
+import { usePopupContext } from '@/context';
+
 import './Popup.css';
 
-export const Popup = ({ useContext }: any) => {
-  const { showPopup, setShowPopup, message } = useContext();
+export const Popup = () => {
+    const { popup, hidePopup, message } = usePopupContext();
 
-  useEffect(() => {
-    if (showPopup) {
-      setTimeout(() => {
-        setShowPopup(false);
-      }, 3000);
-    }
-  }, [showPopup, setShowPopup]);
+    useEffect(() => {
+        if (popup) {
+            setTimeout(() => {
+                hidePopup();
+            }, 3000);
+        }
+    }, [popup]);
 
-  return (
-    <div className={`modal ${showPopup ? 'show' : ''}`}>
-      <div className="popup">
-        <h2>{message}</h2>
-      </div>
-    </div>
-  );
+    return (
+        <div className={`modal ${popup ? 'show' : ''}`}>
+            <div className="popup">
+                <h2>{message}</h2>
+            </div>
+        </div>
+    );
 };
