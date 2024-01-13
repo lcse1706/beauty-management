@@ -1,5 +1,7 @@
 'use client';
 
+import { isMobile } from 'react-device-detect';
+
 import { useAuthContext } from '@/context';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
@@ -14,7 +16,7 @@ export const Navigation: React.FC = () => {
     return (
         <nav className="flex flex-row">
             {isLogged &&
-                (breakpoint768 ? <NavigationMobile /> : <NavigationDesktop />)}
+                (isMobile ? <NavigationMobile /> : <NavigationDesktop />)}
         </nav>
     );
 };
