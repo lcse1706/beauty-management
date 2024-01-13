@@ -2,15 +2,14 @@
 
 import React from 'react';
 import { useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 
-import { revalidatePath, revalidateTag } from 'next/cache';
 import { useRouter } from 'next/navigation';
 
 import { Loader } from '@/components/ui';
 import { sortReceipts } from '@/components/utils/sortReceipts';
 import { useAuthContext, useDataContext, usePopupContext } from '@/context';
 import { useApi } from '@/hooks/useApi';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ReceiptsFromAirTable } from '@/lib';
 import { fetchReceipts } from '@/services/receipts';
 
@@ -23,8 +22,6 @@ export const ReceiptList = () => {
         useDataContext();
     const { showPopup, setMessage } = usePopupContext();
     const { data, isLoading, isError } = useApi<ReceiptsFromAirTable[]>('');
-
-    const breakpoint768 = useMediaQuery(768);
 
     //Moved from page.tsx to hide useEffect in client component
 
@@ -61,7 +58,7 @@ export const ReceiptList = () => {
                 <Loader />
             ) : (
                 sortedReceipts.map((receipt) =>
-                    breakpoint768 ? (
+                    isMobile ? (
                         <ReceiptDisplayFormMobile
                             key={receipt.id}
                             data={receipt}
