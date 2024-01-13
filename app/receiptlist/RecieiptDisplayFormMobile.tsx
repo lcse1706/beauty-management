@@ -16,10 +16,10 @@ export const ReceiptDisplayFormMobile = ({ data }: ReceiptDisplayF) => {
     };
 
     return (
-        <li className="flex flex-col items-center justify-center border-b-2 w-11/12 bg-white rounded-lg shadow-md border border-gray-200">
+        <li className="flex flex-col items-center p-2 w-11/12 bg-white rounded-lg shadow-md border border-gray-200">
             <p className=" text-gray-600">{data.fields.receipt_id}</p>
             <p className=" text-gray-800 font-medium">{data.fields.name}</p>
-            <p className="w-1/4 text-gray-600">{data.fields.email}</p>
+            <p className="text-gray-600 ">{data.fields.email}</p>s
             {/* <p className="w-1/4 text-gray-600">{data.fields.treatment}</p> */}
             {/* <p className="w-1/4 text-gray-800 font-bold"> */}
             {/* {data.fields.price} kr */}
